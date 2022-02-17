@@ -23,5 +23,12 @@ export type AmplifyDependentResourcesAttributes = {
             "BucketName": "string",
             "Region": "string"
         }
+    },
+    "api": {
+        "CelticsFrontendS3": {
+            "GraphQLAPIKeyOutput": "string",
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
+        }
     }
 }
