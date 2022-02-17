@@ -1,10 +1,11 @@
+<div *ngIf="!loggedIn">
+  <form id="Sigh-Upform" [formGroup]="profileForm" (ngSubmit)="signIn()">
+    <input type="text" formControlName="userName">
+    <input type="password" formControlName="password">
 
-<form id="Sigh-Upform" [formGroup]="profileForm" (ngSubmit)="button()">
-  <input type="text" formControlName="userName">
-  <input type="password" formControlName="password">
-
-  <button type="submit" [disabled]="!profileForm.valid">submit</button>
-</form>
+    <button type="submit" [disabled]="!profileForm.valid">submit</button>
+  </form>
+</div>
 
 
 

@@ -13,6 +13,7 @@ export class AppComponent {
   constructor() {
     Amplify.configure(awsConfig);
     Auth.configure(awsConfig);
+
   }
 
 }

@@ -11,7 +11,9 @@ import { Auth } from 'aws-amplify';
 })
 export class AuthComponent implements OnInit {
 
-  valid = true;
+  loggedIn = false;
+
+  // attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
   constructor(private fb : FormBuilder) {}
 
@@ -20,24 +22,43 @@ export class AuthComponent implements OnInit {
     password : ["", [Validators.required, Validators.minLength(8)]]
   })
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
+  }
 
-  button(): void {
-    console.log("clicked")
-
+  isLoggedIn(): void {
     try {
+      Auth.currentAuthenticatedUser().then(() => {
+        this.loggedIn = true
+      })
+    } catch {
+      this.loggedIn = false
+    }
+  }
 
+
+  signup(): void {
+    console.log("clicked")
+    try {
       Auth.signUp({
         username : this.userName,
         password : this.password,
         attributes: {
-          email : this.userName
+          email : this.userName,
         }
-
       }).then((user) => {
-        console.log(user.user.getUsername())
+         console.log(user.user.getUsername());
       });
+    } catch (error) {
+      console.log('error signing up:', error);
+    }
+  }
+
+  signIn(): void {
+    try {
+      Auth.signIn(this.userName, this.password).then((user) => {
+        console.log(user.user.getUsername())
+      })
     } catch (error) {
       console.log('error signing up:', error);
     }
