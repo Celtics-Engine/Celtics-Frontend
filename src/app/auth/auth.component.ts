@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import { Auth } from 'aws-amplify';
+import { CognitoUser } from 'amazon-cognito-identity-js'
 
 // implement form builder validators
 
@@ -11,7 +12,10 @@ import { Auth } from 'aws-amplify';
 })
 export class AuthComponent implements OnInit {
 
+  user: string = "";
+
   loggedIn = false;
+  userConfirmationPage = false;
 
   // attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
@@ -21,9 +25,59 @@ export class AuthComponent implements OnInit {
     userName : ["", [Validators.required, Validators.email]],
     password : ["", [Validators.required, Validators.minLength(8)]]
   })
+  confirmationForm = this.fb.group({
+    confirmation : ["", [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+  })
+
 
   ngOnInit(): void {
+    this.isLoggedIn();
+  }
 
+
+
+  logoutUser(): void{
+    if(!this.loggedIn)
+      return;
+
+    Auth.signOut().then((user) => {
+      this.loggedIn = false;
+      console.info("User signed out.")
+    });
+  }
+
+  confirmUser(): void{
+    Auth.confirmSignUp(this.user, this.confirmation).then((user) => {
+      console.info("User Confirmed");
+    });
+  }
+
+  signup(): void {
+    Auth.signUp({
+      username : this.userName,
+      password : this.password,
+      attributes: {
+        email : this.userName,
+      }
+    }).then((user) => {
+       this.userConfirmationPage = true
+       this.user = user.user.getUsername();
+       console.log(user.user.getUsername());
+    });
+
+  }
+
+  signIn(): void {
+    Auth.signIn(this.userName, this.password).then((user) => {
+      this.loggedIn = true;
+      console.log("SignIn Success")
+    }).catch((err) => {
+      if (err.message === "User is not confirmed."){
+        this.userConfirmationPage = true;
+        this.user = this.userName;
+      }
+      console.error("User not confirmed.")
+    })
   }
 
   isLoggedIn(): void {
@@ -36,34 +90,6 @@ export class AuthComponent implements OnInit {
     }
   }
 
-
-  signup(): void {
-    console.log("clicked")
-    try {
-      Auth.signUp({
-        username : this.userName,
-        password : this.password,
-        attributes: {
-          email : this.userName,
-        }
-      }).then((user) => {
-         console.log(user.user.getUsername());
-      });
-    } catch (error) {
-      console.log('error signing up:', error);
-    }
-  }
-
-  signIn(): void {
-    try {
-      Auth.signIn(this.userName, this.password).then((user) => {
-        console.log(user.user.getUsername())
-      })
-    } catch (error) {
-      console.log('error signing up:', error);
-    }
-  }
-
   get userName(): string {
     return this.profileForm.get("userName")?.value
   }
@@ -71,6 +97,8 @@ export class AuthComponent implements OnInit {
   get password(): string {
     return this.profileForm.get("password")?.value
   }
-
+  get confirmation(): string {
+    return this.confirmationForm.get("confirmation")?.value
+  }
 
 }

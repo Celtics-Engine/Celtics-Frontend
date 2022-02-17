@@ -1,11 +1,24 @@
 <div *ngIf="!loggedIn">
-  <form id="Sigh-Upform" [formGroup]="profileForm" (ngSubmit)="signIn()">
+  <form id="Sigh-Up-Form" [formGroup]="profileForm" (ngSubmit)="signIn()">
     <input type="text" formControlName="userName">
     <input type="password" formControlName="password">
 
-    <button type="submit" [disabled]="!profileForm.valid">submit</button>
+    <button type="button" [disabled]="!profileForm.valid" (click)="signup()">Sigh-Up</button>
+    <button type="button" [disabled]="!profileForm.valid" (click)="signIn()">Sigh-In</button>
+
   </form>
 </div>
 
+<div *ngIf="userConfirmationPage">
+  <form id="Confirmation-Form" [formGroup]="confirmationForm" (ngSubmit)="confirmUser()">
+    <input type="text" formControlName="confirmation">
 
+    <button type="submit" [disabled]="!profileForm.valid">Confirm email</button>
+
+  </form>
+</div>
+
+<div *ngIf="loggedIn">
+  <button type="button" (click)="logoutUser()">Logout</button>
+</div>
 
