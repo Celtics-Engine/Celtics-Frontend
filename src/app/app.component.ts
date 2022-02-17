@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import Amplify, {Auth} from "aws-amplify";
+import awsConfig from "../aws-exports";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Celtics-Frontend';
+
+  constructor() {
+    Amplify.configure(awsConfig);
+    Auth.configure(awsConfig);
+  }
+
 }
