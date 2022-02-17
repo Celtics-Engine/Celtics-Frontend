@@ -84,7 +84,10 @@ export class AuthComponent implements OnInit {
 
   isLoggedIn(): void {
     try {
-      Auth.currentAuthenticatedUser().then(() => {
+      Auth.currentAuthenticatedUser().then((user) => {
+        if(user instanceof CognitoUser){
+          this.user = user.getUsername();
+        }
         this.loggedIn = true
       })
     } catch {
