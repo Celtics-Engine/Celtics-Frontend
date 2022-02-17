@@ -1,9 +1,9 @@
 
 <form [formGroup]="profileForm" (ngSubmit)="button()">
-  <input type="text" formControlName="name">
+  <input type="text" formControlName="userName">
   <input type="password" formControlName="password">
 
-  <button type="submit" [disabled]="valid">submit</button>
+  <button type="submit" [disabled]="!profileForm.valid">submit</button>
 
 </form>
 
