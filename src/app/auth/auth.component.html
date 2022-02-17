@@ -1,0 +1,11 @@
+
+<form [formGroup]="profileForm" (ngSubmit)="button()">
+  <input type="text" formControlName="name">
+  <input type="password" formControlName="password">
+
+  <button type="submit" [disabled]="valid">submit</button>
+
+</form>
+
+
+
