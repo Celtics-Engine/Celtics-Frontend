@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "UntitledModel": {
-            "name": "UntitledModel",
+        "Assets": {
+            "name": "Assets",
             "fields": {
                 "id": {
                     "name": "id",
@@ -70,7 +70,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "UntitledModels",
+            "pluralName": "Assets",
             "attributes": [
                 {
                     "type": "model",
@@ -83,18 +83,6 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            },
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
                                     "read"
                                 ]
                             },
@@ -118,5 +106,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "1826687d9bd0d920b29d1ab6c6112018"
+    "version": "9ca53e0cedc517e1de97813c218c1fcc"
 };

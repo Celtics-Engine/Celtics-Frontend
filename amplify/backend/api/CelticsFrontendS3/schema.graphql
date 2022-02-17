@@ -1,4 +1,4 @@
-type UntitledModel @model @auth(rules: [{allow: public}, {allow: private}, {allow: owner}]) {
+type Assets @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
   id: ID!
   Name: String
   Description: String
@@ -7,3 +7,4 @@ type UntitledModel @model @auth(rules: [{allow: public}, {allow: private}, {allo
   CompatableEngineVer: String
   DateCreated: AWSDateTime
 }
+ 

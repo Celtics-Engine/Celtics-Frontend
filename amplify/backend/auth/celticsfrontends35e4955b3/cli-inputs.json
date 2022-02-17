@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "celticsfrontends35e4955b3_identitypool_5e4955b3",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "celtic5e4955b3",
     "userPoolName": "celticsfrontends35e4955b3_userpool_5e4955b3",
     "autoVerifiedAttributes": [
