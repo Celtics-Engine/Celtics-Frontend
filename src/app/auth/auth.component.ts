@@ -28,13 +28,9 @@ export class AuthComponent implements OnInit {
   confirmationForm = this.fb.group({
     confirmation : ["", [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
   })
-
-
   ngOnInit(): void {
     this.isLoggedIn();
   }
-
-
 
   logoutUser(): void{
     if(!this.loggedIn)
@@ -46,9 +42,12 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  confirmUser(): void{
+  confirmUser(): void {
     Auth.confirmSignUp(this.user, this.confirmation).then((user) => {
+      this.userConfirmationPage = false;
       console.info("User Confirmed");
+    }).catch((err) => {
+      console.error(err);
     });
   }
 
@@ -72,11 +71,14 @@ export class AuthComponent implements OnInit {
       this.loggedIn = true;
       console.log("SignIn Success")
     }).catch((err) => {
-      if (err.message === "User is not confirmed."){
+      if(err.code === "UserNotConfirmedException"){
         this.userConfirmationPage = true;
         this.user = this.userName;
+        console.log("UserNotConfirmedException");
       }
-      console.error("User not confirmed.")
+      else{
+        console.error(err);
+      }
     })
   }
 
