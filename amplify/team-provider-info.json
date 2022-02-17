@@ -18,7 +18,7 @@
       "function": {
         "S3Triggerf17dc664": {
           "deploymentBucketName": "amplify-celticsfrontends3-dev-175323-deployment",
-          "s3Key": "amplify-builds/S3Triggerf17dc664-4d5854463934536c7634-build.zip"
+          "s3Key": "amplify-builds/S3Triggerf17dc664-744c3972626f68536273-build.zip"
         }
       }
     }
