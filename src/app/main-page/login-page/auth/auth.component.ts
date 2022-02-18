@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from 'amazon-cognito-identity-js'
+import {WebsiteStateService} from "../../../services/website-state/website-state.service";
 
 // implement form builder validators
 
@@ -17,9 +18,15 @@ export class AuthComponent implements OnInit {
   loggedIn = false;
   userConfirmationPage = false;
 
-  // attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
-  constructor(private fb : FormBuilder) {}
+  constructor(private fb : FormBuilder, private websiteState: WebsiteStateService) {
+    websiteState.loggedIn$.subscribe(state => {
+      this.loggedIn = state;
+    })
+    websiteState.username$.subscribe(state => {
+      this.user = state;
+    })
+  }
 
   profileForm = this.fb.group({
     userName : ["", [Validators.required, Validators.email]],
@@ -28,8 +35,9 @@ export class AuthComponent implements OnInit {
   confirmationForm = this.fb.group({
     confirmation : ["", [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
   })
+
   ngOnInit(): void {
-    this.isLoggedIn();
+
   }
 
   logoutUser(): void{
@@ -60,7 +68,7 @@ export class AuthComponent implements OnInit {
       }
     }).then((user) => {
        this.userConfirmationPage = true
-       this.user = user.user.getUsername();
+       this.websiteState.loginState(false);
        console.log(user.user.getUsername());
     });
 
@@ -68,31 +76,18 @@ export class AuthComponent implements OnInit {
 
   signIn(): void {
     Auth.signIn(this.userName, this.password).then((user) => {
-      this.loggedIn = true;
+      this.websiteState.loginState(true)
       console.log("SignIn Success")
     }).catch((err) => {
       if(err.code === "UserNotConfirmedException"){
         this.userConfirmationPage = true;
-        this.user = this.userName;
+        this.websiteState.usernameState(this.userName)
         console.log("UserNotConfirmedException");
       }
       else{
         console.error(err);
       }
     })
-  }
-
-  isLoggedIn(): void {
-    try {
-      Auth.currentAuthenticatedUser().then((user) => {
-        if(user instanceof CognitoUser){
-          this.user = user.getUsername();
-        }
-        this.loggedIn = true
-      })
-    } catch {
-      this.loggedIn = false
-    }
   }
 
   get userName(): string {

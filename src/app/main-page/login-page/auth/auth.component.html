@@ -1,0 +1,30 @@
+
+<div class="login">
+
+  <div *ngIf="!loggedIn">
+
+    <h1>Login</h1>
+    <div class="login-container">
+      <form id="Sigh-Up-Form" [formGroup]="profileForm" (ngSubmit)="signIn()">
+          <input type="text" class="form-control" formControlName="userName" placeholder="email">
+          <input type="password" class="form-control" formControlName="password" placeholder="password">
+          <button type="button" [disabled]="!profileForm.valid" (click)="signIn()">Sign-In</button>
+          <button type="button" [disabled]="!profileForm.valid" (click)="signup()">Sign-Up</button>
+          <div *ngIf="userConfirmationPage">
+            <form id="Confirmation-Form" [formGroup]="confirmationForm" (ngSubmit)="confirmUser()">
+              <input type="text" formControlName="confirmation">
+              <button type="submit" [disabled]="!profileForm.valid">Confirm email</button>
+            </form>
+          </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="loggedIn">
+    <button type="button" (click)="logoutUser()">Logout</button>
+  </div>
+
+  <div *ngIf="loggedIn">
+    <h1>Welcome {{user}}</h1>
+  </div>
+</div>
