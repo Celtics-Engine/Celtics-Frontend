@@ -23,3 +23,6 @@ export class DropMenuComponent implements OnInit {
     this.websiteState.changeWebsiteState(this.shown ? PageState.SEARCH : PageState.LOGIN);
   }
 }
+
+//TODO: make buttons to jump between screens
+
