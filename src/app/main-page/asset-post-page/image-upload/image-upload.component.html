@@ -1,0 +1,9 @@
+<form>
+  <input type="file" class="file-upload" (change)="addImage($event)" accept="image/*">
+</form>
+
+<ul class="heroes">
+  <li *ngFor="let image of images">
+    <span class="badge">{{image.name}}</span>
+  </li>
+</ul>

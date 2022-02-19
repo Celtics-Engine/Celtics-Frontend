@@ -20,7 +20,7 @@ export class DropMenuComponent implements OnInit {
 
   onClick(): void {
     this.shown = !this.shown;
-    this.websiteState.changeWebsiteState(this.shown ? PageState.SEARCH : PageState.LOGIN);
+    this.websiteState.changeWebsiteState(this.shown ? PageState.ASSET_POST : PageState.LOGIN);
   }
 }
 

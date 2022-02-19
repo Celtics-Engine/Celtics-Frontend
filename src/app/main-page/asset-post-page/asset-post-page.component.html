@@ -1,1 +1,13 @@
-<p>asset-post-page works!</p>
+<div id="asset-post">
+  <form (ngSubmit)="postAsset()">
+    <input type="text" value="Name">
+    <input type="text" value="Description">
+    <div *ngFor="let engine of EngineVersions | keyvalue">
+      <input id="engine-ver-{{engine.value}}}" type="checkbox" name="{{engine.value}}}" value="{{engine.value}}">
+      <label for="engine-ver-{{engine.value}}">{{engine.value}}</label>
+    </div>
+    <app-image-upload></app-image-upload>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
