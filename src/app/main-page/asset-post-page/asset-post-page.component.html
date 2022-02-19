@@ -1,13 +1,16 @@
 <div id="asset-post">
-  <form (ngSubmit)="postAsset()">
-    <input type="text" value="Name">
-    <input type="text" value="Description">
-    <div *ngFor="let engine of EngineVersions | keyvalue">
-      <input id="engine-ver-{{engine.value}}}" type="checkbox" name="{{engine.value}}}" value="{{engine.value}}">
-      <label for="engine-ver-{{engine.value}}">{{engine.value}}</label>
-    </div>
+  <form id="asset-post-form" [formGroup]="assetForm">
+    <input type="text" value="Name" formControlName="name">
+    <input type="text" value="Description" formControlName="description">
+
+    <ng-container formArrayName="engineVer">
+      <div *ngFor="let engine of engineVer; let i = index">
+        <input type="checkbox" id="{{'engine' + i}}" [formControlName]="i">
+        <label for="{{'engine' + i}}">{{engineStrings[i]}}</label>
+      </div>
+    </ng-container>
     <app-image-upload></app-image-upload>
 
-    <button type="submit">Submit</button>
+    <button type="button" (click)="postAsset()">Submit</button>
   </form>
 </div>
