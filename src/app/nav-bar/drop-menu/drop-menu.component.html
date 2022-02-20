@@ -1,24 +1,20 @@
-<div>
-  <div id="nav-bar-dropdown-menu">
-    <div id="nav-icon" [className]="shown ? 'open' : ''" (click)="onClick()">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
+<div id="nav-bar-dropdown-menu">
+  <div id="nav-icon" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
-
+  <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'"
+       *ngFor="let option of menuOpts" (click)="onClickOption(option)">
+    <div id="nav-dropdown-menu-options-items">
+        <div class="btn">{{ option.label }} <fa-icon [icon]="option.icon"></fa-icon></div>
+    </div>
+  </div>
 </div>
 
-
-
-<!--<button type="button" (click)="onClick()">Dropdown</button>-->
-<!--<ul *ngIf="shown">-->
-<!--  <li (click)="onClick()">Test</li>-->
-<!--  <li>Test</li>-->
-<!--  <li>Test</li>-->
-<!--  <li>Test</li>-->
-<!--  <li>Test</li>-->
-<!--  <li>Test</li>-->
-<!--</ul>-->
+<div>
+  <div class="btn" (animationend)="toggleMenu()">
+    <h4>{{ 'Celtics Asset Management' }}</h4>
+  </div>
+</div>
