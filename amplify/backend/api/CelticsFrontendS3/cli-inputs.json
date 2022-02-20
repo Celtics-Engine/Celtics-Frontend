@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "CelticsFrontendS3",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-62723a8b-34c2-4163-b56f-3772ed8b0110/amplify/backend/api/CelticsFrontendS3/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-b8eaddae-c9df-470d-b2b3-0abfe04d4bae/amplify/backend/api/CelticsFrontendS3/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from 'aws-amplify';
+import {Storage} from "aws-amplify";
 
 @Component({
-  selector: 'app-bucket',
-  templateUrl: './bucket.component.html',
-  styleUrls: ['./bucket.component.scss']
+  selector: 'app-image-upload',
+  templateUrl: './image-upload.component.html',
+  styleUrls: ['./image-upload.component.scss']
 })
-export class BucketComponent implements OnInit {
-
+export class ImageUploadComponent implements OnInit {
   images: Array<File> = [];
 
   constructor() { }
@@ -37,7 +36,5 @@ export class BucketComponent implements OnInit {
       });
     }
   }
-
-
 
 }

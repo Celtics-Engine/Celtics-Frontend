@@ -1,7 +1,16 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>asset-post-page works!</h1>
-    </div>
-  </div>
+<div id="asset-post" class="container">
+  <form id="asset-post-form" [formGroup]="assetForm">
+    <input type="text" value="Name" formControlName="name">
+    <input type="text" value="Description" formControlName="description">
+
+    <ng-container formArrayName="engineVer">
+      <div *ngFor="let engine of engineVer; let i = index">
+        <input type="checkbox" id="{{'engine' + i}}" [formControlName]="i">
+        <label for="{{'engine' + i}}">{{engineStrings[i]}}</label>
+      </div>
+    </ng-container>
+    <app-image-upload></app-image-upload>
+
+    <button type="button" (click)="postAsset()">Submit</button>
+  </form>
 </div>

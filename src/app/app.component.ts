@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Amplify, Auth} from "aws-amplify";
-import awsExports from "../aws-exports";
+import {Amplify, Auth, AuthModeStrategyType} from "aws-amplify";
+import awsconfig from "../aws-exports";
 import {WebsiteStateService} from "./services/website-state/website-state.service";
 import {CognitoUser} from "amazon-cognito-identity-js";
 
@@ -13,7 +13,12 @@ export class AppComponent implements OnInit {
   title = 'Celtics-Frontend';
 
   constructor(private stateService: WebsiteStateService) {
-    Amplify.configure(awsExports);
+    Amplify.configure({
+      ...awsconfig,
+      DataStore: {
+        authModeStrategyType: AuthModeStrategyType.MULTI_AUTH
+      }
+    });
   }
 
   ngOnInit() {

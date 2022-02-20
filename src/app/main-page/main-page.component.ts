@@ -16,10 +16,11 @@ export class MainPageComponent implements OnInit {
   constructor(private websiteState: WebsiteStateService) {
     websiteState.websiteState$.subscribe(state => {
       this.state = state;
-    })
+    });
   }
 
   ngOnInit(): void {
+    console.log(PageState[this.state])
 
   }
 }

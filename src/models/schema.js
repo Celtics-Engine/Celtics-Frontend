@@ -40,17 +40,11 @@ export const schema = {
                 },
                 "CompatableEngineVer": {
                     "name": "CompatableEngineVer",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
-                },
-                "DateCreated": {
-                    "name": "DateCreated",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -106,5 +100,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "9ca53e0cedc517e1de97813c218c1fcc"
+    "version": "401396bbe22cc7c01c5f3a519ec7e023"
 };

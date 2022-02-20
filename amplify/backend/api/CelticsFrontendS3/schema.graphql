@@ -4,7 +4,6 @@ type Assets @model @auth(rules: [{allow: public, operations: [read]}, {allow: ow
   Description: String
   Images: AWSJSON
   FileSize: String
-  CompatableEngineVer: String
-  DateCreated: AWSDateTime
+  CompatableEngineVer: [String]
 }
  
