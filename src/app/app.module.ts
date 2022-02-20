@@ -13,6 +13,11 @@ import { MainPageComponent } from './main-page/main-page.component';
 import {PageState} from "./types/page-state";
 import { LoginPageComponent } from './main-page/login-page/login-page.component';
 import { AssetPostPageComponent } from './main-page/asset-post-page/asset-post-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfilePageComponent } from './main-page/profile-page/profile-page.component';
+import { AssetDetailsPageComponent } from './main-page/asset-details-page/asset-details-page.component';
+import { SearchPageComponent } from './main-page/search-page/search-page.component';
+
 
 @NgModule({
   declarations: [
@@ -23,11 +28,15 @@ import { AssetPostPageComponent } from './main-page/asset-post-page/asset-post-p
     DropMenuComponent,
     MainPageComponent,
     LoginPageComponent,
-    AssetPostPageComponent
+    AssetPostPageComponent,
+    ProfilePageComponent,
+    AssetDetailsPageComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,5 +5,3 @@ export enum PageState {
   ASSET_POST,
   ASSET_DETAILS
 }
-// PROFILE
-//
