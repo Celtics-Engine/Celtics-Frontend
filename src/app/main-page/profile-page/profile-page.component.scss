@@ -1,0 +1,50 @@
+.profile-container {
+  display: flex;
+  padding: 3rem;
+  margin: 0 auto;
+  height: 45vh;
+  width: 80vw;
+}
+
+.card {
+  border-radius: 25px;
+  text-align: center;
+  flex: 1;
+  padding: 3.5em 0;
+  margin: .5em;
+  border: 1px black solid;
+}
+
+.tableCard {
+  border-radius: 25px;
+  flex: 3;
+  padding: 3.5em 2rem;
+  margin: .5em;
+  border: 1px black solid;
+}
+
+.table {
+  border-radius: 25px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+img {
+  margin-bottom: 2rem;
+  padding-bottom: .5em;
+  border-radius: 50%;
+}
+
+h3 {
+  padding-bottom: 1.5rem;
+}
+
+tr, th {
+  padding: .5rem;
+  border: 1px black solid;
+}
+
