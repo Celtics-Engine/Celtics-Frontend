@@ -12,7 +12,7 @@ import {MENU_OPTIONS} from "./menu-options";
 })
 export class DropMenuComponent implements OnInit {
   menuOpts: Option[] = MENU_OPTIONS
-  shown: boolean = false;
+  shown: boolean = true;
 
   constructor(private websiteState: WebsiteStateService) {}
 
@@ -21,7 +21,6 @@ export class DropMenuComponent implements OnInit {
 
   toggleMenu() {
     this.shown = !this.shown;
-    this.websiteState.changeWebsiteState(PageState.SEARCH);
   }
 
   onClickOption(option: Option): void {

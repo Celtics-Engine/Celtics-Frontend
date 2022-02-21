@@ -10,7 +10,7 @@ import {WebsiteStateService} from "../services/website-state/website-state.servi
 })
 export class MainPageComponent implements OnInit {
   public PageState = PageState;
-  public state: PageState = PageState.SEARCH;
+  public state: PageState = PageState.LOGIN;
   shown: boolean = false;
 
   constructor(private websiteState: WebsiteStateService) {
