@@ -8,7 +8,7 @@
       </div>
       <div class="tableCard">
         <h3>Assets</h3>
-        <table class="profileTable">
+        <table class="profile-table">
           <thead>
           <tr>
             <th class="asset-name">Name</th>
@@ -17,7 +17,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let asset of assets">
-              <td class="asset-name">{{asset.name}}</td>
+              <td class="asset-name"><a href="https://linktoasset.com">{{asset.name}}</a></td>  <!-- Add method to get link for asset -->
               <td class="asset-description">{{asset.description}}</td>
             </tr>
           </tbody>
