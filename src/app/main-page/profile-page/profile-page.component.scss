@@ -29,7 +29,6 @@
 
 .profileTable {
   border-radius: 25px;
-  border-collapse: collapse;
   width: 100%;
 }
 
@@ -44,7 +43,7 @@ img {
 }
 
 h3 {
-  padding-bottom: 1.5rem;
+  padding: .5rem 0;
 }
 
 tr, th, td {
@@ -73,10 +72,21 @@ tr:nth-child(odd) {
 }
 table tbody {
   height:300px;
+  border-collapse: collapse;
   overflow-y:scroll;
   display:block;
 }
 
 table thead {
   display:block;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #555555;
 }

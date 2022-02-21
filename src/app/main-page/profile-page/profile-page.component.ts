@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
 
-// interface Asset {
-//   name: string,
-//   description: string;
-// }
-
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -24,22 +19,28 @@ export class ProfilePageComponent implements OnInit {
       this._user = state;
     })
     // TODO: add method to count asset Contributions
+    this._count = this.totalRows;
   }
 
   get user(): string {
     return this._user;
   }
 
-  get count(): number {
-    return this._count;
-  }
-
   get loggedIn(): boolean {
     return this._loggedIn;
   }
 
+
+  get count(): number {
+    return this._count;
+  }
+
   ngOnInit(): void {
 
+  }
+
+  get totalRows(): number {
+    return document.getElementsByName("row").length;
   }
 
   assets = [
@@ -61,14 +62,5 @@ export class ProfilePageComponent implements OnInit {
     {name: "asset16", description: "Some description about this asset. This asset is really cool."}
   ];
 
-  // loadTableData(data: [{Name: string, Description: string}])  {
-  //   const tableBody = document.getElementById("tableData")
-  //   let dataHtml = "";
-  //
-  //   for (let asset of data) {
-  //     dataHtml += `<tr><td>${asset.Name}</td><td>${asset.Description}</td></tr>`;
-  //   }
-  //
-  //   tableBody.innerHTML(dataHtml);
-  // }
+
 }
