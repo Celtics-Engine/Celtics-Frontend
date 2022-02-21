@@ -47,7 +47,18 @@ export class ProfilePageComponent implements OnInit {
     {name: "asset2", description: "Some description about this asset. This asset is really cool."},
     {name: "asset3", description: "Some description about this asset. This asset is really cool."},
     {name: "asset4", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset5", description: "Some description about this asset. This asset is really cool."}
+    {name: "asset5", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset6", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset7", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset8", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset9", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset10", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset11", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset12", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset13", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset14", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset15", description: "Some description about this asset. This asset is really cool."},
+    {name: "asset16", description: "Some description about this asset. This asset is really cool."}
   ];
 
   // loadTableData(data: [{Name: string, Description: string}])  {

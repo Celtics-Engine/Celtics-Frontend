@@ -8,17 +8,17 @@
       </div>
       <div class="tableCard">
         <h3>Assets</h3>
-        <table class="table">
+        <table class="profileTable">
           <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th class="asset-name">Name</th>
+            <th class="asset-description">Description</th>
           </tr>
           </thead>
           <tbody>
             <tr *ngFor="let asset of assets">
-              <td>{{asset.name}}</td>
-              <td>{{asset.description}}</td>
+              <td class="asset-name">{{asset.name}}</td>
+              <td class="asset-description">{{asset.description}}</td>
             </tr>
           </tbody>
         </table>

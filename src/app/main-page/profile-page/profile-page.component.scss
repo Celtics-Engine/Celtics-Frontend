@@ -27,7 +27,7 @@
   max-height: 500px;
 }
 
-.table {
+.profileTable {
   border-radius: 25px;
   border-collapse: collapse;
   width: 100%;
@@ -47,17 +47,36 @@ h3 {
   padding-bottom: 1.5rem;
 }
 
-tr, th, td{
+tr, th, td {
   padding: .5rem;
-  border: 1px black solid;
   text-align: left;
 }
 
-th, tr:nth-child(even) {
+td {
+  border: 2px black solid;
+}
+
+.asset-name {
+  width: 15rem;
+}
+
+.asset-description {
+  width: 50rem;
+}
+
+tr:nth-child(even) {
   background: #CCC;
 }
 
 tr:nth-child(odd) {
   background: #FFF;
 }
+table tbody {
+  height:300px;
+  overflow-y:scroll;
+  display:block;
+}
 
+table thead {
+  display:block;
+}
