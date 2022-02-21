@@ -1,7 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>profile-page works!</h1>
+<div class="profile">
+  <h1>Profile</h1>
+    <div class="profile-container">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1611488006001-eb993d4d2ec4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1635&q=80"  width="150" height="150">
+        <h3>User: {{user}}</h3>
+        <h3>Contributions: {{count}}</h3>
+      </div>
+      <div class="tableCard">
+        <h3>Assets</h3>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let asset of assets">
+              <td>{{asset.name}}</td>
+              <td>{{asset.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 </div>
