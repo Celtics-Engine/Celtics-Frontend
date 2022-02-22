@@ -21,7 +21,6 @@ export class DropMenuComponent implements OnInit {
 
   toggleMenu() {
     this.shown = !this.shown;
-    this.websiteState.changeWebsiteState(PageState.SEARCH);
   }
 
   onClickOption(option: Option): void {
