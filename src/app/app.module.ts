@@ -6,7 +6,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { AuthComponent } from './main-page/login-page/auth/auth.component';
 import { DropMenuComponent } from './nav-bar/drop-menu/drop-menu.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import {PageState} from "./types/page-state";
@@ -17,13 +16,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfilePageComponent } from './main-page/profile-page/profile-page.component';
 import { AssetDetailsPageComponent } from './main-page/asset-details-page/asset-details-page.component';
 import { SearchPageComponent } from './main-page/search-page/search-page.component';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 
+import awsconfig from '../aws-exports';
+import {Amplify} from "aws-amplify";
+
+Amplify.configure(awsconfig);
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    AuthComponent,
     DropMenuComponent,
     MainPageComponent,
     LoginPageComponent,
@@ -35,6 +38,7 @@ import { SearchPageComponent } from './main-page/search-page/search-page.compone
   ],
   imports: [
     BrowserModule,
+    AmplifyAuthenticatorModule,
     ReactiveFormsModule,
     FontAwesomeModule,
   ],

@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     Amplify.configure(awsconfig);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isLoggedIn();
   }
 
@@ -29,4 +29,5 @@ export class AppComponent implements OnInit {
       console.error(err)
     })
   }
+
 }

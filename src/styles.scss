@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@aws-amplify/ui-angular/theme.css';
+
+//.amplify-button[data-variation='primary'] {}
 
 * {
   box-sizing: border-box;
@@ -7,7 +10,23 @@
 }
 
 body {
+
+}
+
+.btn {
   font-family: "Cascadia Code", sans-serif;
+  display: inline-block;
+  background: darkslategrey;
+  color: #d2ea94;
+  border: #ffffff;
+  padding: 5px 5px;
+  margin: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  text-decoration: white;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .container {
@@ -23,6 +42,7 @@ body {
 .btn:focus {
   outline: none;
 }
+
 .btn:active {
   transform: scale(0.98);
 }
