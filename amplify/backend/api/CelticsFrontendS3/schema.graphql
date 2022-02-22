@@ -1,4 +1,4 @@
-type Assets @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner}]) {
+type Assets @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner, operations: [create, update, delete]}]) {
   id: ID!
   Name: String
   Description: String
@@ -6,4 +6,3 @@ type Assets @model @auth(rules: [{allow: public, operations: [read]}, {allow: ow
   FileSize: String
   CompatableEngineVer: [String]
 }
- 

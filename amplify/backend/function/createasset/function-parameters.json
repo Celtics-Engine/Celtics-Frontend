@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "auth": {
+      "celticsfrontends35e4955b3": [
+        "read"
+      ]
+    },
+    "storage": {
+      "UserAssetStorage": [
+        "read"
+      ],
+      "Assets:@model(appsync)": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

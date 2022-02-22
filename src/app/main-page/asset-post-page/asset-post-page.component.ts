@@ -2,8 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {EngineVersions} from "../../types/engine-versions";
 import {ImageUploadComponent} from "./image-upload/image-upload.component";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {DataStore} from "@aws-amplify/datastore";
-import {Assets} from "../../../models";
+import {APIService, GetAssetsQuery} from '../../API.service'
+import {AppSync} from "aws-sdk";
+import {Auth} from "aws-amplify";
+
 
 @Component({
   selector: 'app-asset-post-page',
@@ -16,7 +18,7 @@ export class AssetPostPageComponent implements OnInit {
 
   engineStrings: Array<string> = Object.values(EngineVersions);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private api: APIService,private fb: FormBuilder) {}
 
   assetForm = this.fb.group({
     name: ["", [Validators.required]],
@@ -26,19 +28,22 @@ export class AssetPostPageComponent implements OnInit {
   })
 
 
+
   ngOnInit(): void {
+    this.api.ListAssets().then(result=>{
+      console.log(result.items)
+    })
   }
 
-  postAsset(): void{/*
-    DataStore.save(new Assets({
+  postAsset(): void{
+    this.api.CreateAssets({
       Name: this.assetName,
       Description: this.assetDescription,
-      CompatableEngineVer: this.engineEngineCompat,
-    })).then(asset=>{
-      console.log(asset.id);
-    })*/
-    DataStore.query(Assets).then(assets=>{
-      console.log(assets)
+      CompatableEngineVer: this.engineEngineCompat
+    }).then(stuff=>{
+      console.info(stuff)
+    }).catch(err=>{
+      console.log(err)
     })
   }
 

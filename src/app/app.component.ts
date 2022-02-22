@@ -13,12 +13,7 @@ export class AppComponent implements OnInit {
   title = 'Celtics-Frontend';
 
   constructor(private stateService: WebsiteStateService) {
-    Amplify.configure({
-      ...awsconfig,
-      DataStore: {
-        authModeStrategyType: AuthModeStrategyType.MULTI_AUTH
-      }
-    });
+    Amplify.configure(awsconfig);
   }
 
   ngOnInit() {
