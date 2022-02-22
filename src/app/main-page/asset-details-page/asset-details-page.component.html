@@ -1,8 +1,12 @@
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>asset-details-page works!</h1>
+<div class="details-container">
+  <h1>Asset Details</h1>
+  <div class="asset-cards" >
+    <div class="card" *ngFor="let asset of assets">
+      <p>Name: {{asset.Name}}</p>
+      <p>Date Created: {{asset.createdAt}}</p>
+      <p>Last Modified: {{asset.updatedAt}}</p>
+      <p>Description: {{asset.Description}}</p>
     </div>
   </div>
 </div>
