@@ -1,58 +1,90 @@
+.profile {
+  position: absolute;
+  min-width: 100vw;
+}
 .profile-container {
   display: flex;
-  padding: 3rem;
-  margin: 0 auto;
-  height: 45vh;
-  width: 80vw;
-  max-width: 1800px;
-  min-width: 1100px;
+  flex-direction: column;
+  padding: 1rem;
+  margin:  auto;
+  height: 90vh;
+  width: 90vw;
+  max-width: 1200px;
+  min-width: 390px;
 }
 
 .card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: .5rem 0;
+  border: 3px solid #000;
   border-radius: 25px;
-  text-align: center;
-  flex: 1;
-  padding: 3.5em 0;
-  margin: .5em;
-  border: 2px black solid;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
+  min-width: 250px;
+  min-height: 250px;
   max-height: 500px;
+
+  .card div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+h3 {
+  font-size: 1rem;
+  padding: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .tableCard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 1rem;
+  margin: .5rem 0;
+  border: 3px solid #000;
   border-radius: 25px;
-  flex: 3;
-  padding: 1.5em 2rem 3.5rem;
-  margin: .5em;
-  border: 2px black solid;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
+  min-width: 300px;
+  min-height: 250px;
   max-height: 500px;
+
+  .profileTable {
+    border-radius: 25px;
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
-.profileTable {
-  border-radius: 25px;
-  width: 100%;
-}
+
 
 h1 {
+  position: relative;
+  padding: 1rem;
   text-align: center;
 }
 
 img {
-  margin-bottom: 2rem;
-  border: 2px black solid;
+  margin: .5rem 0;
+  border: 3px black solid;
   border-radius: 50%;
-}
-
-h3 {
-  padding: .5rem 0;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
 }
 
 tr, th, td {
+  font-size: 1rem;
   padding: .5rem;
   text-align: left;
 }
 
 td {
-  border: 2px black solid;
+  border: 3px black solid;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
 }
 
 .asset-name {
@@ -89,4 +121,18 @@ a {
 
 a:hover {
   color: #555555;
+}
+
+@media screen and (min-width: 900px) {
+  .profile-container {
+    flex-direction: row;
+  }
+
+  .card, .tableCard {
+    margin: .5rem;
+  }
+
+  .card {
+    flex-direction: column;
+  }
 }
