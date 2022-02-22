@@ -24,6 +24,7 @@ export class AssetPostPageComponent implements OnInit {
     websiteState.username$.subscribe(user=>{
       this.username = user;
     })
+    console.log(this.username);
   }
 
   assetForm = this.fb.group({
