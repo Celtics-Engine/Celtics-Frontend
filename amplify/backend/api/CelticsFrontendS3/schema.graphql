@@ -2,7 +2,7 @@ type Assets @model @searchable @auth(rules: [{allow: public, operations: [read]}
   id: ID!
   Name: String
   Description: String
-  Images: AWSJSON
+  Images: [String]
   FileSize: String
   CompatableEngineVer: [String]
   UserName: String

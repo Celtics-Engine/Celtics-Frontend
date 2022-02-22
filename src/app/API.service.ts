@@ -19,7 +19,7 @@ export type CreateAssetsInput = {
   id?: string | null;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -82,7 +82,7 @@ export type Assets = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -98,7 +98,7 @@ export type UpdateAssetsInput = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -306,7 +306,7 @@ export type CreateAssetsMutation = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -323,7 +323,7 @@ export type UpdateAssetsMutation = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -340,7 +340,7 @@ export type DeleteAssetsMutation = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -357,7 +357,7 @@ export type GetAssetsQuery = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -376,7 +376,7 @@ export type ListAssetsQuery = {
     id: string;
     Name?: string | null;
     Description?: string | null;
-    Images?: string | null;
+    Images?: Array<string | null> | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
     UserName?: string | null;
@@ -398,7 +398,7 @@ export type SyncAssetsQuery = {
     id: string;
     Name?: string | null;
     Description?: string | null;
-    Images?: string | null;
+    Images?: Array<string | null> | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
     UserName?: string | null;
@@ -420,7 +420,7 @@ export type SearchAssetsQuery = {
     id: string;
     Name?: string | null;
     Description?: string | null;
-    Images?: string | null;
+    Images?: Array<string | null> | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
     UserName?: string | null;
@@ -460,7 +460,7 @@ export type OnCreateAssetsSubscription = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -477,7 +477,7 @@ export type OnUpdateAssetsSubscription = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
@@ -494,7 +494,7 @@ export type OnDeleteAssetsSubscription = {
   id: string;
   Name?: string | null;
   Description?: string | null;
-  Images?: string | null;
+  Images?: Array<string | null> | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;

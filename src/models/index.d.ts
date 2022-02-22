@@ -12,7 +12,7 @@ export declare class Assets {
   readonly id: string;
   readonly Name?: string;
   readonly Description?: string;
-  readonly Images?: string;
+  readonly Images?: (string | null)[];
   readonly FileSize?: string;
   readonly CompatableEngineVer?: (string | null)[];
   readonly UserName?: string;
