@@ -17,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfilePageComponent } from './main-page/profile-page/profile-page.component';
 import { AssetDetailsPageComponent } from './main-page/asset-details-page/asset-details-page.component';
 import { SearchPageComponent } from './main-page/search-page/search-page.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SearchPageComponent } from './main-page/search-page/search-page.compone
     ImageUploadComponent,
     ProfilePageComponent,
     AssetDetailsPageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
