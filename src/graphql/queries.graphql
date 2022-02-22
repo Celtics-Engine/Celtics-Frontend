@@ -7,6 +7,7 @@ query GetAssets($id: ID!) {
     Images
     FileSize
     CompatableEngineVer
+    UserName
     createdAt
     updatedAt
     _version
@@ -28,6 +29,7 @@ query ListAssets(
       Images
       FileSize
       CompatableEngineVer
+      UserName
       createdAt
       updatedAt
       _version
@@ -58,6 +60,7 @@ query SyncAssets(
       Images
       FileSize
       CompatableEngineVer
+      UserName
       createdAt
       updatedAt
       _version
@@ -67,5 +70,54 @@ query SyncAssets(
     }
     nextToken
     startedAt
+  }
+}
+query SearchAssets(
+  $filter: SearchableAssetsFilterInput
+  $sort: [SearchableAssetsSortInput]
+  $limit: Int
+  $nextToken: String
+  $from: Int
+  $aggregates: [SearchableAssetsAggregationInput]
+) {
+  searchAssets(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+    from: $from
+    aggregates: $aggregates
+  ) {
+    items {
+      id
+      Name
+      Description
+      Images
+      FileSize
+      CompatableEngineVer
+      UserName
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+    nextToken
+    total
+    aggregateItems {
+      name
+      result {
+        ... on SearchableAggregateScalarResult {
+          value
+        }
+        ... on SearchableAggregateBucketResult {
+          buckets {
+            key
+            doc_count
+          }
+        }
+      }
+    }
   }
 }

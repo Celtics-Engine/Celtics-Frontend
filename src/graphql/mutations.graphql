@@ -10,6 +10,7 @@ mutation CreateAssets(
     Images
     FileSize
     CompatableEngineVer
+    UserName
     createdAt
     updatedAt
     _version
@@ -29,6 +30,7 @@ mutation UpdateAssets(
     Images
     FileSize
     CompatableEngineVer
+    UserName
     createdAt
     updatedAt
     _version
@@ -48,6 +50,7 @@ mutation DeleteAssets(
     Images
     FileSize
     CompatableEngineVer
+    UserName
     createdAt
     updatedAt
     _version

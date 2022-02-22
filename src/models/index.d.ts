@@ -15,6 +15,7 @@ export declare class Assets {
   readonly Images?: string;
   readonly FileSize?: string;
   readonly CompatableEngineVer?: (string | null)[];
+  readonly UserName?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Assets, AssetsMetaData>);

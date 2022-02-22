@@ -1,8 +1,9 @@
-type Assets @model @auth(rules: [{allow: public, operations: [read]}, {allow: owner, operations: [create, update, delete]}]) {
+type Assets @model @searchable @auth(rules: [{allow: public, operations: [read]}, {allow: owner, operations: [create, update, delete]}]) {
   id: ID!
   Name: String
   Description: String
   Images: AWSJSON
   FileSize: String
   CompatableEngineVer: [String]
+  UserName: String
 }

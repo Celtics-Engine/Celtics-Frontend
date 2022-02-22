@@ -5,6 +5,7 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {APIService, GetAssetsQuery} from '../../API.service'
 import {AppSync} from "aws-sdk";
 import {Auth} from "aws-amplify";
+import {WebsiteStateService} from "../../services/website-state/website-state.service";
 
 
 @Component({
@@ -17,8 +18,13 @@ export class AssetPostPageComponent implements OnInit {
   imageUpload : ImageUploadComponent | undefined;
 
   engineStrings: Array<string> = Object.values(EngineVersions);
+  username: string = "";
 
-  constructor(private api: APIService,private fb: FormBuilder) {}
+  constructor(private api: APIService,private fb: FormBuilder, private websiteState: WebsiteStateService) {
+    websiteState.username$.subscribe(user=>{
+      this.username = user;
+    })
+  }
 
   assetForm = this.fb.group({
     name: ["", [Validators.required]],
@@ -39,7 +45,8 @@ export class AssetPostPageComponent implements OnInit {
     this.api.CreateAssets({
       Name: this.assetName,
       Description: this.assetDescription,
-      CompatableEngineVer: this.engineEngineCompat
+      CompatableEngineVer: this.engineEngineCompat,
+      UserName: this.username
     }).then(stuff=>{
       console.info(stuff)
     }).catch(err=>{

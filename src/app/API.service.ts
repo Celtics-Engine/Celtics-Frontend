@@ -22,6 +22,7 @@ export type CreateAssetsInput = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   _version?: number | null;
 };
 
@@ -31,6 +32,7 @@ export type ModelAssetsConditionInput = {
   Images?: ModelStringInput | null;
   FileSize?: ModelStringInput | null;
   CompatableEngineVer?: ModelStringInput | null;
+  UserName?: ModelStringInput | null;
   and?: Array<ModelAssetsConditionInput | null> | null;
   or?: Array<ModelAssetsConditionInput | null> | null;
   not?: ModelAssetsConditionInput | null;
@@ -83,6 +85,7 @@ export type Assets = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -98,6 +101,7 @@ export type UpdateAssetsInput = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   _version?: number | null;
 };
 
@@ -113,6 +117,7 @@ export type ModelAssetsFilterInput = {
   Images?: ModelStringInput | null;
   FileSize?: ModelStringInput | null;
   CompatableEngineVer?: ModelStringInput | null;
+  UserName?: ModelStringInput | null;
   and?: Array<ModelAssetsFilterInput | null> | null;
   or?: Array<ModelAssetsFilterInput | null> | null;
   not?: ModelAssetsFilterInput | null;
@@ -141,6 +146,161 @@ export type ModelAssetsConnection = {
   startedAt?: number | null;
 };
 
+export type SearchableAssetsFilterInput = {
+  id?: SearchableIDFilterInput | null;
+  Name?: SearchableStringFilterInput | null;
+  Description?: SearchableStringFilterInput | null;
+  Images?: SearchableStringFilterInput | null;
+  FileSize?: SearchableStringFilterInput | null;
+  CompatableEngineVer?: SearchableStringFilterInput | null;
+  UserName?: SearchableStringFilterInput | null;
+  createdAt?: SearchableStringFilterInput | null;
+  updatedAt?: SearchableStringFilterInput | null;
+  _version?: SearchableIntFilterInput | null;
+  _deleted?: SearchableBooleanFilterInput | null;
+  _lastChangedAt?: SearchableIntFilterInput | null;
+  and?: Array<SearchableAssetsFilterInput | null> | null;
+  or?: Array<SearchableAssetsFilterInput | null> | null;
+  not?: SearchableAssetsFilterInput | null;
+};
+
+export type SearchableIDFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchableStringFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchableIntFilterInput = {
+  ne?: number | null;
+  gt?: number | null;
+  lt?: number | null;
+  gte?: number | null;
+  lte?: number | null;
+  eq?: number | null;
+  range?: Array<number | null> | null;
+};
+
+export type SearchableBooleanFilterInput = {
+  eq?: boolean | null;
+  ne?: boolean | null;
+};
+
+export type SearchableAssetsSortInput = {
+  field?: SearchableAssetsSortableFields | null;
+  direction?: SearchableSortDirection | null;
+};
+
+export enum SearchableAssetsSortableFields {
+  id = "id",
+  Name = "Name",
+  Description = "Description",
+  Images = "Images",
+  FileSize = "FileSize",
+  CompatableEngineVer = "CompatableEngineVer",
+  UserName = "UserName",
+  createdAt = "createdAt",
+  updatedAt = "updatedAt",
+  _version = "_version",
+  _deleted = "_deleted",
+  _lastChangedAt = "_lastChangedAt"
+}
+
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc"
+}
+
+export type SearchableAssetsAggregationInput = {
+  name: string;
+  type: SearchableAggregateType;
+  field: SearchableAssetsAggregateField;
+};
+
+export enum SearchableAggregateType {
+  terms = "terms",
+  avg = "avg",
+  min = "min",
+  max = "max",
+  sum = "sum"
+}
+
+export enum SearchableAssetsAggregateField {
+  id = "id",
+  Name = "Name",
+  Description = "Description",
+  Images = "Images",
+  FileSize = "FileSize",
+  CompatableEngineVer = "CompatableEngineVer",
+  UserName = "UserName",
+  createdAt = "createdAt",
+  updatedAt = "updatedAt",
+  _version = "_version",
+  _deleted = "_deleted",
+  _lastChangedAt = "_lastChangedAt"
+}
+
+export type SearchableAssetsConnection = {
+  __typename: "SearchableAssetsConnection";
+  items: Array<Assets | null>;
+  nextToken?: string | null;
+  total?: number | null;
+  aggregateItems: Array<SearchableAggregateResult | null>;
+};
+
+export type SearchableAggregateResult = {
+  __typename: "SearchableAggregateResult";
+  name: string;
+  result?: SearchableAggregateGenericResult | null;
+};
+
+export type SearchableAggregateGenericResult =
+  | SearchableAggregateScalarResult
+  | SearchableAggregateBucketResult;
+
+export type SearchableAggregateScalarResult = {
+  __typename: "SearchableAggregateScalarResult";
+  value: number;
+};
+
+export type SearchableAggregateBucketResult = {
+  __typename: "SearchableAggregateBucketResult";
+  buckets?: Array<SearchableAggregateBucketResultItem | null> | null;
+};
+
+export type SearchableAggregateBucketResultItem = {
+  __typename: "SearchableAggregateBucketResultItem";
+  key: string;
+  doc_count: number;
+};
+
 export type CreateAssetsMutation = {
   __typename: "Assets";
   id: string;
@@ -149,6 +309,7 @@ export type CreateAssetsMutation = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -165,6 +326,7 @@ export type UpdateAssetsMutation = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -181,6 +343,7 @@ export type DeleteAssetsMutation = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -197,6 +360,7 @@ export type GetAssetsQuery = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -215,6 +379,7 @@ export type ListAssetsQuery = {
     Images?: string | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
+    UserName?: string | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -236,6 +401,7 @@ export type SyncAssetsQuery = {
     Images?: string | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
+    UserName?: string | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -247,6 +413,48 @@ export type SyncAssetsQuery = {
   startedAt?: number | null;
 };
 
+export type SearchAssetsQuery = {
+  __typename: "SearchableAssetsConnection";
+  items: Array<{
+    __typename: "Assets";
+    id: string;
+    Name?: string | null;
+    Description?: string | null;
+    Images?: string | null;
+    FileSize?: string | null;
+    CompatableEngineVer?: Array<string | null> | null;
+    UserName?: string | null;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    owner?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  total?: number | null;
+  aggregateItems: Array<{
+    __typename: "SearchableAggregateResult";
+    name: string;
+    result:
+      | (
+          | {
+              __typename: "SearchableAggregateScalarResult";
+              value: number;
+            }
+          | {
+              __typename: "SearchableAggregateBucketResult";
+              buckets?: Array<{
+                __typename: string;
+                key: string;
+                doc_count: number;
+              } | null> | null;
+            }
+        )
+      | null;
+  } | null>;
+};
+
 export type OnCreateAssetsSubscription = {
   __typename: "Assets";
   id: string;
@@ -255,6 +463,7 @@ export type OnCreateAssetsSubscription = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -271,6 +480,7 @@ export type OnUpdateAssetsSubscription = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -287,6 +497,7 @@ export type OnDeleteAssetsSubscription = {
   Images?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
+  UserName?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -312,6 +523,7 @@ export class APIService {
           Images
           FileSize
           CompatableEngineVer
+          UserName
           createdAt
           updatedAt
           _version
@@ -344,6 +556,7 @@ export class APIService {
           Images
           FileSize
           CompatableEngineVer
+          UserName
           createdAt
           updatedAt
           _version
@@ -376,6 +589,7 @@ export class APIService {
           Images
           FileSize
           CompatableEngineVer
+          UserName
           createdAt
           updatedAt
           _version
@@ -405,6 +619,7 @@ export class APIService {
           Images
           FileSize
           CompatableEngineVer
+          UserName
           createdAt
           updatedAt
           _version
@@ -437,6 +652,7 @@ export class APIService {
             Images
             FileSize
             CompatableEngineVer
+            UserName
             createdAt
             updatedAt
             _version
@@ -462,8 +678,7 @@ export class APIService {
       query: statement,
       variables: gqlAPIServiceArguments,
       authMode: "API_KEY"
-      }
-    )) as any;
+    })) as any;
     return <ListAssetsQuery>response.data.listAssets;
   }
   async SyncAssets(
@@ -483,6 +698,7 @@ export class APIService {
             Images
             FileSize
             CompatableEngineVer
+            UserName
             createdAt
             updatedAt
             _version
@@ -512,13 +728,84 @@ export class APIService {
     )) as any;
     return <SyncAssetsQuery>response.data.syncAssets;
   }
-  OnCreateAssetsListener(
-    owner?: string
-  ): Observable<
+  async SearchAssets(
+    filter?: SearchableAssetsFilterInput,
+    sort?: Array<SearchableAssetsSortInput | null>,
+    limit?: number,
+    nextToken?: string,
+    from?: number,
+    aggregates?: Array<SearchableAssetsAggregationInput | null>
+  ): Promise<SearchAssetsQuery> {
+    const statement = `query SearchAssets($filter: SearchableAssetsFilterInput, $sort: [SearchableAssetsSortInput], $limit: Int, $nextToken: String, $from: Int, $aggregates: [SearchableAssetsAggregationInput]) {
+        searchAssets(filter: $filter, sort: $sort, limit: $limit, nextToken: $nextToken, from: $from, aggregates: $aggregates) {
+          __typename
+          items {
+            __typename
+            id
+            Name
+            Description
+            Images
+            FileSize
+            CompatableEngineVer
+            UserName
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            owner
+          }
+          nextToken
+          total
+          aggregateItems {
+            __typename
+            name
+            result {
+              __typename
+              ... on SearchableAggregateScalarResult {
+                value
+              }
+              ... on SearchableAggregateBucketResult {
+                buckets {
+                  __typename
+                  key
+                  doc_count
+                }
+              }
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (sort) {
+      gqlAPIServiceArguments.sort = sort;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (from) {
+      gqlAPIServiceArguments.from = from;
+    }
+    if (aggregates) {
+      gqlAPIServiceArguments.aggregates = aggregates;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SearchAssetsQuery>response.data.searchAssets;
+  }
+  OnCreateAssetsListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateAssets">>
-  > {
-    const statement = `subscription OnCreateAssets($owner: String) {
-        onCreateAssets(owner: $owner) {
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateAssets {
+        onCreateAssets {
           __typename
           id
           Name
@@ -526,6 +813,7 @@ export class APIService {
           Images
           FileSize
           CompatableEngineVer
+          UserName
           createdAt
           updatedAt
           _version
@@ -533,25 +821,18 @@ export class APIService {
           _lastChangedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<
-      SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateAssets">>
-    >;
-  }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateAssets">>
+  >;
 
-  OnUpdateAssetsListener(
-    owner?: string
-  ): Observable<
+  OnUpdateAssetsListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateAssets">>
-  > {
-    const statement = `subscription OnUpdateAssets($owner: String) {
-        onUpdateAssets(owner: $owner) {
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateAssets {
+        onUpdateAssets {
           __typename
           id
           Name
@@ -559,6 +840,7 @@ export class APIService {
           Images
           FileSize
           CompatableEngineVer
+          UserName
           createdAt
           updatedAt
           _version
@@ -566,25 +848,18 @@ export class APIService {
           _lastChangedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<
-      SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateAssets">>
-    >;
-  }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateAssets">>
+  >;
 
-  OnDeleteAssetsListener(
-    owner?: string
-  ): Observable<
+  OnDeleteAssetsListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteAssets">>
-  > {
-    const statement = `subscription OnDeleteAssets($owner: String) {
-        onDeleteAssets(owner: $owner) {
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteAssets {
+        onDeleteAssets {
           __typename
           id
           Name
@@ -592,6 +867,7 @@ export class APIService {
           Images
           FileSize
           CompatableEngineVer
+          UserName
           createdAt
           updatedAt
           _version
@@ -599,15 +875,9 @@ export class APIService {
           _lastChangedAt
           owner
         }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
-    }
-    return API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    ) as Observable<
-      SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteAssets">>
-    >;
-  }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteAssets">>
+  >;
 }

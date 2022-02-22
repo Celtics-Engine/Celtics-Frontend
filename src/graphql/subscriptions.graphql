@@ -1,12 +1,13 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateAssets($owner: String) {
-  onCreateAssets(owner: $owner) {
+subscription OnCreateAssets {
+  onCreateAssets {
     id
     Name
     Description
     Images
     FileSize
     CompatableEngineVer
+    UserName
     createdAt
     updatedAt
     _version
@@ -15,14 +16,15 @@ subscription OnCreateAssets($owner: String) {
     owner
   }
 }
-subscription OnUpdateAssets($owner: String) {
-  onUpdateAssets(owner: $owner) {
+subscription OnUpdateAssets {
+  onUpdateAssets {
     id
     Name
     Description
     Images
     FileSize
     CompatableEngineVer
+    UserName
     createdAt
     updatedAt
     _version
@@ -31,14 +33,15 @@ subscription OnUpdateAssets($owner: String) {
     owner
   }
 }
-subscription OnDeleteAssets($owner: String) {
-  onDeleteAssets(owner: $owner) {
+subscription OnDeleteAssets {
+  onDeleteAssets {
     id
     Name
     Description
     Images
     FileSize
     CompatableEngineVer
+    UserName
     createdAt
     updatedAt
     _version
