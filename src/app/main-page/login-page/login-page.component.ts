@@ -11,40 +11,27 @@ import {Auth} from 'aws-amplify';
 export class LoginPageComponent implements OnInit {
   loggedIn = false;
 
-  user: Promise<any> = new Promise<any>(resolve => {
-    Auth.currentAuthenticatedUser()
-      .then(user => {
-        resolve(user);
-        this.loggedIn = true;
-        console.log(user);
-      })
-      .catch(err => {
-        resolve(null);
-        this.loggedIn = false;
-        console.log(err);
-      });
-  });
-  userName = this.getUserName()
-
-
   constructor(private websiteState: WebsiteStateService) {
     websiteState.loggedIn$.subscribe(state => {
       this.loggedIn = state;
     })
-    websiteState.username$.subscribe(state => {
-      this.userName = state;
-    })
   }
 
   ngOnInit(): void {
-
+    Auth.currentAuthenticatedUser()
+      .then(user => {
+        this.loggedIn = true;
+        console.log(user);
+        return user;
+      })
+      .catch(err => {
+        this.loggedIn = false;
+        console.log(err);
+        return err;
+      });
+    console.log(Auth.currentAuthenticatedUser())
   }
 
-  getUserName(): string {
-    this.user.then(user => {
-      this.userName = user.username;
-    })
-    return this.userName;
-  }
+
 
 }

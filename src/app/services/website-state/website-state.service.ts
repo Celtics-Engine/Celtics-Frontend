@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {PageState} from "../../types/page-state";
 import {BehaviorSubject} from "rxjs";
+import {Auth} from 'aws-amplify';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,14 @@ export class WebsiteStateService {
 
   changeWebsiteState(state: PageState){
     this.websiteState.next(state)
+    Auth.currentAuthenticatedUser().then(user => {
+      this.loginState(true);
+      this.usernameState(user);
+    }).catch(err => {
+      this.loginState(false);
+      this.usernameState("");
+      console.log(err)
+    })
   }
   loginState(state: boolean){
     this.loggedIn.next(state);
