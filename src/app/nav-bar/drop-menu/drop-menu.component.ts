@@ -3,12 +3,21 @@ import {WebsiteStateService} from "../../services/website-state/website-state.se
 import {PageState} from "../../types/page-state";
 import {Option} from "./Option";
 import {MENU_OPTIONS} from "./menu-options";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 
 @Component({
   selector: 'app-drop-menu',
   templateUrl: './drop-menu.component.html',
-  styleUrls: ['./drop-menu.component.scss']
+  styleUrls: ['./drop-menu.component.scss'],
+  animations: [
+    trigger('fadein', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('.5s ease-out', style({ opacity: '1' })),
+      ]),
+    ]),
+  ],
 })
 export class DropMenuComponent implements OnInit {
   menuOpts: Option[] = MENU_OPTIONS

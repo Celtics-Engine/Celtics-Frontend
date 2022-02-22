@@ -18,18 +18,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Auth.currentAuthenticatedUser()
-      .then(user => {
-        this.loggedIn = true;
-        console.log(user);
-        return user;
-      })
-      .catch(err => {
-        this.loggedIn = false;
-        console.log(err);
-        return err;
-      });
-    console.log(Auth.currentAuthenticatedUser())
   }
 
 

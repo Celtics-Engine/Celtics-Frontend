@@ -23,7 +23,7 @@ export class WebsiteStateService {
     this.websiteState.next(state)
     Auth.currentAuthenticatedUser().then(user => {
       this.loginState(true);
-      this.usernameState(user);
+      this.usernameState(user.getUsername());
     }).catch(err => {
       this.loginState(false);
       this.usernameState("");
