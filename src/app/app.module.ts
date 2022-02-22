@@ -17,6 +17,7 @@ import { ProfilePageComponent } from './main-page/profile-page/profile-page.comp
 import { AssetDetailsPageComponent } from './main-page/asset-details-page/asset-details-page.component';
 import { SearchPageComponent } from './main-page/search-page/search-page.component';
 import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
+import { FooterComponent } from './footer/footer.component';
 
 import awsconfig from '../aws-exports';
 import {Amplify} from "aws-amplify";
@@ -34,7 +35,8 @@ Amplify.configure(awsconfig);
     ImageUploadComponent,
     ProfilePageComponent,
     AssetDetailsPageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
