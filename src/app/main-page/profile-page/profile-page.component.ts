@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
+import {APIService} from "../../API.service";
+import {Assets} from "../../../models";
 
 @Component({
   selector: 'app-profile-page',
@@ -10,8 +12,9 @@ export class ProfilePageComponent implements OnInit {
   private _user = "";
   private _count = 0;
   private _loggedIn = false;
+  assets: Array<Assets> = [];
 
-  constructor(private websiteState: WebsiteStateService) {
+  constructor(private websiteState: WebsiteStateService, private api: APIService) {
     websiteState.loggedIn$.subscribe(state => {
       this._loggedIn = state;
     })
@@ -22,6 +25,21 @@ export class ProfilePageComponent implements OnInit {
     this._count = this.totalRows;
   }
 
+  ngOnInit(): void {
+    this.api.ListAssets().then(asset=>{
+      asset.items.forEach(asset=>{
+        if (asset == null || asset.owner != this.user)
+          return;
+        let temp = new Assets({
+          Name: asset.Name == null ? "" : asset.Name,
+          Description: asset.Description == null ? "" : asset.Description
+        })
+        console.log(temp)
+        this.assets.push(temp);
+      })
+    })
+  }
+
   get user(): string {
     return this._user;
   }
@@ -30,37 +48,16 @@ export class ProfilePageComponent implements OnInit {
     return this._loggedIn;
   }
 
-
   get count(): number {
     return this._count;
   }
 
-  ngOnInit(): void {
 
-  }
 
   get totalRows(): number {
     return document.getElementsByName("row").length;
   }
 
-  assets = [
-    {name: "asset1", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset2", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset3", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset4", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset5", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset6", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset7", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset8", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset9", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset10", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset11", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset12", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset13", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset14", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset15", description: "Some description about this asset. This asset is really cool."},
-    {name: "asset16", description: "Some description about this asset. This asset is really cool."}
-  ];
 
 
 }
