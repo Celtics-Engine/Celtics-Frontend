@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Storage} from "aws-amplify";
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-image-upload',
@@ -8,6 +9,8 @@ import {Storage} from "aws-amplify";
 })
 export class ImageUploadComponent implements OnInit {
   images: Array<File> = [];
+  zipFiles: Array<File> = [];
+  removeFileIcon = faTrashAlt;
 
 
   constructor() { }
@@ -25,25 +28,27 @@ export class ImageUploadComponent implements OnInit {
     }
   }
 
-  uploadAssetZip(event: Event): void{
-    let promises = [];
+  addZip(event: Event): void{
     let files = (event.target as HTMLInputElement).files;
-    for (let i = 0; i < this.images.length; i++) {
-      let file = this.images[i];
-      promises.push(Storage.put("/zip" + file.name, file, {
-        level: "private",
-        contentType: file.type,
-      }));
       if(files === null)
         return;
       for (let i = 0; i < files.length; i++) {
         let file = files[i];
-        this.images.push(file as File)
+        this.zipFiles.push(file as File)
       }
+  }
+
+  uploadZip(): void {
+    let promises = [];
+    for (let i = 0; i < this.zipFiles.length; i++) {
+      let file = this.zipFiles[i];
+      promises.push(Storage.put("/zip" + file.name, file, {
+        level: "private",
+        contentType: file.type,
+      }).then(() => {
+        console.log("upload " + file.name);
+      }));
     }
-    Promise.all(promises).then(() => {
-      console.log("ready to upload");
-    });
   }
 
   uploadImages():void{
@@ -65,4 +70,12 @@ export class ImageUploadComponent implements OnInit {
       this.images.splice(index, 1);
     }
   }
+
+  removeZipFilesFromList(zip: File) {
+    let index = this.zipFiles.indexOf(zip);
+    if (index > -1) {
+      this.zipFiles.splice(index, 1);
+    }
+  }
+
 }

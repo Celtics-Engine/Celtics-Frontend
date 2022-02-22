@@ -1,17 +1,20 @@
 <form>
   <input type="file" class="file-upload" (change)="addImage($event)" accept="image/*">
+  <input type="file" class="file-upload" (change)="addZip($event)" accept="application/zip">
+<!--  <input type="file" class="file-upload" (change)="addZip($event)" accept="application/gzip">-->
 </form>
-<!--<form>-->
-<!--  <input type="file" class="file-upload" (change)="uploadAssetZip()" accept="application/gzip">-->
-<!--</form>-->
-<form>
-  <input type="file" class="file-upload" (change)="uploadAssetZip($event)" accept="application/zip">
-</form>
-
 
 <ul class="heroes">
   <li *ngFor="let image of images">
-    <button (click)="removeImageFromList(image)">remove</button>
     <span class="badge">{{image.name}}</span>
+    <button (click)="removeImageFromList(image)"><fa-icon [icon]="removeFileIcon"></fa-icon></button>
   </li>
 </ul>
+<ul class="heroes">
+  <li *ngFor="let zip of zipFiles">
+    <span class="badge">{{zip.name}}</span>
+    <button (click)="removeZipFilesFromList(zip)"><fa-icon [icon]="removeFileIcon"></fa-icon></button>
+  </li>
+</ul>
+
+
