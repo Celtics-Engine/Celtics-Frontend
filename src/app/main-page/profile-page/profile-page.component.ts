@@ -26,9 +26,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //FIXME: This should be doing the search on the DB side not the client side.
     this.api.ListAssets({UserName: {eq: this.user}}).then(asset=>{
-      console.log(asset.items)
       asset.items.forEach(asset=>{
         if (asset == null || asset.owner != this.user)
           return;
