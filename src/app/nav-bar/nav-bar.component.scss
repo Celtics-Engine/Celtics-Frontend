@@ -1,6 +1,8 @@
+
 #Nav-Bar {
-  width: 100%;
+  width: 100vw;
   height: 40px;
+  min-width: 390px;
   background: darkslategrey;
   justify-content: space-between;
 
@@ -11,7 +13,6 @@
     padding: 2px;
     color: #ffffff;
     font-size: 1.5em;
-
     justify-content: center;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;

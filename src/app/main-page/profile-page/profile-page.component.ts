@@ -10,7 +10,6 @@ import {Assets} from "../../../models";
 })
 export class ProfilePageComponent implements OnInit {
   private _user = "";
-  private _count = 0;
   private _loggedIn = false;
   assets: Array<Assets> = [];
 
@@ -21,8 +20,6 @@ export class ProfilePageComponent implements OnInit {
     websiteState.username$.subscribe(state => {
       this._user = state;
     })
-    // TODO: add method to count asset Contributions
-    this._count = this.totalRows;
   }
 
   ngOnInit(): void {
@@ -46,17 +43,4 @@ export class ProfilePageComponent implements OnInit {
   get loggedIn(): boolean {
     return this._loggedIn;
   }
-
-  get count(): number {
-    return this._count;
-  }
-
-
-
-  get totalRows(): number {
-    return document.getElementsByName("row").length;
-  }
-
-
-
 }

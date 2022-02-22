@@ -14,7 +14,8 @@
   flex: 1;
   padding: 3.5em 0;
   margin: .5em;
-  border: 2px black solid;
+  border: 3px black solid;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
   max-height: 500px;
 }
 
@@ -23,7 +24,8 @@
   flex: 3;
   padding: 1.5em 2rem 3.5rem;
   margin: .5em;
-  border: 2px black solid;
+  border: 3px black solid;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
   max-height: 500px;
 }
 
