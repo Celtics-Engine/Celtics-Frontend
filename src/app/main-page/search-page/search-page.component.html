@@ -1,9 +1,20 @@
+<div class="details-container">
+  <h1>Search Assets</h1>
+  <form [formGroup]="searchForm" (ngSubmit)="reloadAssets()">
+    <input type="text" formControlName="search">
+    <!--TODO: Needs Icon-->
+    <button type="submit">Search</button>
+  </form>
+  <!--TODO: Needs Css to go with it-->
+  <h1 *ngIf="assets.length === 0 && !noAssets">Loading</h1>
+  <h1 *ngIf="noAssets">No Assets Found</h1>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-          <h1>search-page works!</h1>
-        </div>
+  <div class="asset-cards" *ngIf="assets.length != 0">
+    <div class="card" *ngFor="let asset of assets">
+      <p>Name: {{asset.Name}}</p>
+      <p>Date Created: {{asset.createdAt}}</p>
+      <p>Last Modified: {{asset.updatedAt}}</p>
+      <p>Description: {{asset.Description}}</p>
     </div>
+  </div>
 </div>
-

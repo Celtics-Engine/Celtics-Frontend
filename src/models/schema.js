@@ -26,10 +26,11 @@ export const schema = {
                 },
                 "Images": {
                     "name": "Images",
-                    "isArray": false,
-                    "type": "AWSJSON",
+                    "isArray": true,
+                    "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "FileSize": {
                     "name": "FileSize",
@@ -110,5 +111,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "823e5d966de6cebc39cc37637712ca40"
+    "version": "ff4a64872f962a0ffd7d26192a41b909"
 };
