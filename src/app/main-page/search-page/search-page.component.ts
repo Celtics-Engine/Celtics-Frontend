@@ -17,7 +17,7 @@ export class SearchPageComponent implements OnInit {
   }
 
   searchForm = this.fb.group({
-    search: ["asset"]
+    search: [""]
   })
 
 
