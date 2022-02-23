@@ -26,6 +26,7 @@ export class ImageUploadComponent implements OnInit {
     }
   }
 
+  //FIXME: Should return some kind of feedback of progress
   uploadImages(imagePath: string):void{
     for (const image of this.images) {
       Storage.put(imagePath + "images/" + image.name, image, {

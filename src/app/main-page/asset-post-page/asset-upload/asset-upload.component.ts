@@ -30,6 +30,7 @@ export class AssetUploadComponent implements OnInit {
     this.file = undefined;
   }
 
+  //FIXME: Should return some kind of feedback of progress
   uploadAssetToBucket(userPath: string): void {
     if(this.file == undefined)
       return;
