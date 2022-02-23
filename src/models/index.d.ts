@@ -13,9 +13,11 @@ export declare class Assets {
   readonly Name?: string;
   readonly Description?: string;
   readonly Images?: (string | null)[];
+  readonly AssetFile?: string;
   readonly FileSize?: string;
   readonly CompatableEngineVer?: (string | null)[];
   readonly UserName?: string;
+  readonly UserId?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Assets, AssetsMetaData>);

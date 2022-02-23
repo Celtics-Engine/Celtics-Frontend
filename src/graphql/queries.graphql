@@ -5,9 +5,11 @@ query GetAssets($id: ID!) {
     Name
     Description
     Images
+    AssetFile
     FileSize
     CompatableEngineVer
     UserName
+    UserId
     createdAt
     updatedAt
     _version
@@ -27,9 +29,11 @@ query ListAssets(
       Name
       Description
       Images
+      AssetFile
       FileSize
       CompatableEngineVer
       UserName
+      UserId
       createdAt
       updatedAt
       _version
@@ -58,9 +62,11 @@ query SyncAssets(
       Name
       Description
       Images
+      AssetFile
       FileSize
       CompatableEngineVer
       UserName
+      UserId
       createdAt
       updatedAt
       _version
@@ -93,9 +99,11 @@ query SearchAssets(
       Name
       Description
       Images
+      AssetFile
       FileSize
       CompatableEngineVer
       UserName
+      UserId
       createdAt
       updatedAt
       _version

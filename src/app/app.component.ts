@@ -24,7 +24,9 @@ export class AppComponent implements OnInit {
         case 'signIn':
           this.websiteState.loginState(true);
           this.websiteState.usernameState(data.payload.data.getUsername())
-          this.websiteState.changeWebsiteState(PageState.SEARCH);
+          Auth.currentUserCredentials().then(user=>{
+            this.websiteState.userIdState(user.identityId)
+          })
           console.log('user signed in');
           break;
         case 'signUp':
@@ -51,6 +53,12 @@ export class AppComponent implements OnInit {
       console.info("User Logged in")
     }).catch( err => {
       console.error(err)
+    })
+
+    Auth.currentUserCredentials().then(user=>{
+      this.websiteState.userIdState(user.identityId)
+    }).catch(err=>{
+
     })
   }
 

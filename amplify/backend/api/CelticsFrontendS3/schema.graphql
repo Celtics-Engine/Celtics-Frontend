@@ -3,7 +3,9 @@ type Assets @model @searchable @auth(rules: [{allow: public, operations: [read]}
   Name: String
   Description: String
   Images: [String]
+  AssetFile: String
   FileSize: String
   CompatableEngineVer: [String]
   UserName: String
+  UserId: String
 }

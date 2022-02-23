@@ -8,9 +8,11 @@ mutation CreateAssets(
     Name
     Description
     Images
+    AssetFile
     FileSize
     CompatableEngineVer
     UserName
+    UserId
     createdAt
     updatedAt
     _version
@@ -28,9 +30,11 @@ mutation UpdateAssets(
     Name
     Description
     Images
+    AssetFile
     FileSize
     CompatableEngineVer
     UserName
+    UserId
     createdAt
     updatedAt
     _version
@@ -48,9 +52,11 @@ mutation DeleteAssets(
     Name
     Description
     Images
+    AssetFile
     FileSize
     CompatableEngineVer
     UserName
+    UserId
     createdAt
     updatedAt
     _version

@@ -7,17 +7,17 @@ import {Auth} from 'aws-amplify';
   providedIn: 'root'
 })
 export class WebsiteStateService {
-  private websiteState = new BehaviorSubject<PageState>(PageState.SEARCH);
+  private websiteState = new BehaviorSubject<PageState>(PageState.ASSET_POST);
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   private username = new BehaviorSubject<string>("")
+  private userId = new BehaviorSubject<string>("");
 
   websiteState$ = this.websiteState.asObservable()
 
   loggedIn$ = this.loggedIn.asObservable();
   username$ = this.username.asObservable();
-
-  constructor() {}
+  userId$ = this.userId.asObservable();
 
   changeWebsiteState(state: PageState){
     this.websiteState.next(state)
@@ -27,7 +27,11 @@ export class WebsiteStateService {
     }).catch(err => {
       this.loginState(false);
       this.usernameState("");
+      this.userIdState("");
       console.log(err)
+    })
+    Auth.currentUserCredentials().then(user=>{
+      this.userIdState(user.identityId)
     })
   }
   loginState(state: boolean){
@@ -37,5 +41,8 @@ export class WebsiteStateService {
   }
   usernameState(state: string){
     this.username.next(state);
+  }
+  userIdState(state: string){
+    this.userId.next(state);
   }
 }

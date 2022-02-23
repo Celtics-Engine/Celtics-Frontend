@@ -20,9 +20,11 @@ export type CreateAssetsInput = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   _version?: number | null;
 };
 
@@ -30,9 +32,11 @@ export type ModelAssetsConditionInput = {
   Name?: ModelStringInput | null;
   Description?: ModelStringInput | null;
   Images?: ModelStringInput | null;
+  AssetFile?: ModelStringInput | null;
   FileSize?: ModelStringInput | null;
   CompatableEngineVer?: ModelStringInput | null;
   UserName?: ModelStringInput | null;
+  UserId?: ModelStringInput | null;
   and?: Array<ModelAssetsConditionInput | null> | null;
   or?: Array<ModelAssetsConditionInput | null> | null;
   not?: ModelAssetsConditionInput | null;
@@ -83,9 +87,11 @@ export type Assets = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -99,9 +105,11 @@ export type UpdateAssetsInput = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   _version?: number | null;
 };
 
@@ -115,9 +123,11 @@ export type ModelAssetsFilterInput = {
   Name?: ModelStringInput | null;
   Description?: ModelStringInput | null;
   Images?: ModelStringInput | null;
+  AssetFile?: ModelStringInput | null;
   FileSize?: ModelStringInput | null;
   CompatableEngineVer?: ModelStringInput | null;
   UserName?: ModelStringInput | null;
+  UserId?: ModelStringInput | null;
   and?: Array<ModelAssetsFilterInput | null> | null;
   or?: Array<ModelAssetsFilterInput | null> | null;
   not?: ModelAssetsFilterInput | null;
@@ -151,9 +161,11 @@ export type SearchableAssetsFilterInput = {
   Name?: SearchableStringFilterInput | null;
   Description?: SearchableStringFilterInput | null;
   Images?: SearchableStringFilterInput | null;
+  AssetFile?: SearchableStringFilterInput | null;
   FileSize?: SearchableStringFilterInput | null;
   CompatableEngineVer?: SearchableStringFilterInput | null;
   UserName?: SearchableStringFilterInput | null;
+  UserId?: SearchableStringFilterInput | null;
   createdAt?: SearchableStringFilterInput | null;
   updatedAt?: SearchableStringFilterInput | null;
   _version?: SearchableIntFilterInput | null;
@@ -223,9 +235,11 @@ export enum SearchableAssetsSortableFields {
   Name = "Name",
   Description = "Description",
   Images = "Images",
+  AssetFile = "AssetFile",
   FileSize = "FileSize",
   CompatableEngineVer = "CompatableEngineVer",
   UserName = "UserName",
+  UserId = "UserId",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
   _version = "_version",
@@ -257,9 +271,11 @@ export enum SearchableAssetsAggregateField {
   Name = "Name",
   Description = "Description",
   Images = "Images",
+  AssetFile = "AssetFile",
   FileSize = "FileSize",
   CompatableEngineVer = "CompatableEngineVer",
   UserName = "UserName",
+  UserId = "UserId",
   createdAt = "createdAt",
   updatedAt = "updatedAt",
   _version = "_version",
@@ -307,9 +323,11 @@ export type CreateAssetsMutation = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -324,9 +342,11 @@ export type UpdateAssetsMutation = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -341,9 +361,11 @@ export type DeleteAssetsMutation = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -358,9 +380,11 @@ export type GetAssetsQuery = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -377,9 +401,11 @@ export type ListAssetsQuery = {
     Name?: string | null;
     Description?: string | null;
     Images?: Array<string | null> | null;
+    AssetFile?: string | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
     UserName?: string | null;
+    UserId?: string | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -399,9 +425,11 @@ export type SyncAssetsQuery = {
     Name?: string | null;
     Description?: string | null;
     Images?: Array<string | null> | null;
+    AssetFile?: string | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
     UserName?: string | null;
+    UserId?: string | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -421,9 +449,11 @@ export type SearchAssetsQuery = {
     Name?: string | null;
     Description?: string | null;
     Images?: Array<string | null> | null;
+    AssetFile?: string | null;
     FileSize?: string | null;
     CompatableEngineVer?: Array<string | null> | null;
     UserName?: string | null;
+    UserId?: string | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -461,9 +491,11 @@ export type OnCreateAssetsSubscription = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -478,9 +510,11 @@ export type OnUpdateAssetsSubscription = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -495,9 +529,11 @@ export type OnDeleteAssetsSubscription = {
   Name?: string | null;
   Description?: string | null;
   Images?: Array<string | null> | null;
+  AssetFile?: string | null;
   FileSize?: string | null;
   CompatableEngineVer?: Array<string | null> | null;
   UserName?: string | null;
+  UserId?: string | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -521,9 +557,11 @@ export class APIService {
           Name
           Description
           Images
+          AssetFile
           FileSize
           CompatableEngineVer
           UserName
+          UserId
           createdAt
           updatedAt
           _version
@@ -554,9 +592,11 @@ export class APIService {
           Name
           Description
           Images
+          AssetFile
           FileSize
           CompatableEngineVer
           UserName
+          UserId
           createdAt
           updatedAt
           _version
@@ -587,9 +627,11 @@ export class APIService {
           Name
           Description
           Images
+          AssetFile
           FileSize
           CompatableEngineVer
           UserName
+          UserId
           createdAt
           updatedAt
           _version
@@ -617,9 +659,11 @@ export class APIService {
           Name
           Description
           Images
+          AssetFile
           FileSize
           CompatableEngineVer
           UserName
+          UserId
           createdAt
           updatedAt
           _version
@@ -650,9 +694,11 @@ export class APIService {
             Name
             Description
             Images
+            AssetFile
             FileSize
             CompatableEngineVer
             UserName
+            UserId
             createdAt
             updatedAt
             _version
@@ -696,9 +742,11 @@ export class APIService {
             Name
             Description
             Images
+            AssetFile
             FileSize
             CompatableEngineVer
             UserName
+            UserId
             createdAt
             updatedAt
             _version
@@ -745,9 +793,11 @@ export class APIService {
             Name
             Description
             Images
+            AssetFile
             FileSize
             CompatableEngineVer
             UserName
+            UserId
             createdAt
             updatedAt
             _version
@@ -811,9 +861,11 @@ export class APIService {
           Name
           Description
           Images
+          AssetFile
           FileSize
           CompatableEngineVer
           UserName
+          UserId
           createdAt
           updatedAt
           _version
@@ -838,9 +890,11 @@ export class APIService {
           Name
           Description
           Images
+          AssetFile
           FileSize
           CompatableEngineVer
           UserName
+          UserId
           createdAt
           updatedAt
           _version
@@ -865,9 +919,11 @@ export class APIService {
           Name
           Description
           Images
+          AssetFile
           FileSize
           CompatableEngineVer
           UserName
+          UserId
           createdAt
           updatedAt
           _version

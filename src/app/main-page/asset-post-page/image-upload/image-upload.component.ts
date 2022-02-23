@@ -26,10 +26,10 @@ export class ImageUploadComponent implements OnInit {
     }
   }
 
-  uploadImages():void{
+  uploadImages(imagePath: string):void{
     for (const image of this.images) {
-      Storage.put("images/" + image.name, image, {
-        level: "private",
+      Storage.put(imagePath + "images/" + image.name, image, {
+        level: "protected",
         contentType: image.type
       }).then(r  => {
         console.log(r);
@@ -37,6 +37,14 @@ export class ImageUploadComponent implements OnInit {
         console.log(e);
       });
     }
+  }
+
+  get imageFilePaths(): Array<string>{
+    let filenames: Array<string> = [];
+    for (let file of this.images){
+      filenames.push(file.name);
+    }
+    return filenames
   }
 
   removeImageFromList(image: File) {

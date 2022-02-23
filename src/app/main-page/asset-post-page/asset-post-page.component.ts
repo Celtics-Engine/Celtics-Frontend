@@ -6,6 +6,7 @@ import {APIService, GetAssetsQuery} from '../../API.service'
 import {AppSync} from "aws-sdk";
 import {Auth} from "aws-amplify";
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
+import {AssetUploadComponent} from "./asset-upload/asset-upload.component";
 
 
 @Component({
@@ -17,39 +18,52 @@ export class AssetPostPageComponent implements OnInit {
   @ViewChild(ImageUploadComponent, {static: true})
   imageUpload : ImageUploadComponent | undefined;
 
+  @ViewChild(AssetUploadComponent, {static: true})
+  assetUpload : AssetUploadComponent | undefined;
+
   engineStrings: Array<string> = Object.values(EngineVersions);
   username: string = "";
+  userId: string = "";
+  loggedIn: boolean = false;
 
   constructor(private api: APIService,private fb: FormBuilder, private websiteState: WebsiteStateService) {
     websiteState.username$.subscribe(user=>{
       this.username = user;
     })
-    console.log(this.username);
+    websiteState.userId$.subscribe(userId=>{
+      this.userId = userId;
+    })
+    websiteState.loggedIn$.subscribe(loggedIn=>{
+      this.loggedIn = loggedIn;
+    })
   }
 
   assetForm = this.fb.group({
     name: ["", [Validators.required]],
     description: [""],
     engineVer:this.fb.array(this.engineVer)
-
   })
 
-
-
   ngOnInit(): void {
-    this.api.ListAssets().then(result=>{
-      console.log(result.items)
-    })
+
   }
 
   postAsset(): void{
+    if (this.assetUpload == undefined || this.imageUpload == undefined || !this.loggedIn)
+      return;
+
     this.api.CreateAssets({
       Name: this.assetName,
       Description: this.assetDescription,
       CompatableEngineVer: this.engineEngineCompat,
-      UserName: this.username
-    }).then(stuff=>{
-      console.info(stuff)
+      AssetFile: this.assetUpload.assetFileName,
+      Images: this.imageUpload.imageFilePaths,
+      FileSize: this.assetUpload.fileSize,
+      UserName: this.username,
+      UserId: this.userId
+    }).then(data=>{
+      this.imageUpload?.uploadImages(data.id + "/");
+      this.assetUpload?.uploadAssetToBucket(data.id + "/")
     }).catch(err=>{
       console.log(err)
     })

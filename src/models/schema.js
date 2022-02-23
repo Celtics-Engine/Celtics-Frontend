@@ -32,6 +32,13 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
+                "AssetFile": {
+                    "name": "AssetFile",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "FileSize": {
                     "name": "FileSize",
                     "isArray": false,
@@ -49,6 +56,13 @@ export const schema = {
                 },
                 "UserName": {
                     "name": "UserName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "UserId": {
+                    "name": "UserId",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -111,5 +125,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "ff4a64872f962a0ffd7d26192a41b909"
+    "version": "d2ec297b482f52106be2743a2d0506d6"
 };

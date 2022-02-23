@@ -5,9 +5,11 @@ subscription OnCreateAssets {
     Name
     Description
     Images
+    AssetFile
     FileSize
     CompatableEngineVer
     UserName
+    UserId
     createdAt
     updatedAt
     _version
@@ -22,9 +24,11 @@ subscription OnUpdateAssets {
     Name
     Description
     Images
+    AssetFile
     FileSize
     CompatableEngineVer
     UserName
+    UserId
     createdAt
     updatedAt
     _version
@@ -39,9 +43,11 @@ subscription OnDeleteAssets {
     Name
     Description
     Images
+    AssetFile
     FileSize
     CompatableEngineVer
     UserName
+    UserId
     createdAt
     updatedAt
     _version

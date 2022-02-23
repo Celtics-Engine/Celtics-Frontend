@@ -10,8 +10,7 @@ import {Storage} from "aws-amplify";
 export class AssetUploadComponent implements OnInit {
 
   removeFileIcon = faTrashAlt;
-  // uploadFile: any;
-  fileList: Array<File> = [];
+  file: File | undefined;
 
   constructor() { }
 
@@ -23,33 +22,46 @@ export class AssetUploadComponent implements OnInit {
     if(files === null)
       return;
 
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-      this.fileList.push(file as File)
-    }
+    this.file = (files[0] as File)
+
   }
 
-  removeFile(file: File) {
-    this.fileList = this.fileList.filter(f => f !== file);
+  removeFile() {
+    this.file = undefined;
   }
 
-  uploadAssetToBucket(): void {
-    this.fileList.forEach(file => {
-      Storage.put(file.name, file, {level: 'protected'}).then(r => {
-        console.log(r);
-      }).catch(err => {
-        console.log(err);
-      })
-    });
-  }
+  uploadAssetToBucket(userPath: string): void {
+    if(this.file == undefined)
+      return;
 
-  getPresignedUrl(file: File) {
-    Storage.get(file.name, {level: 'public'}).then(result => {
-      console.log(result);
+    Storage.put(userPath + this.file.name, this.file, {level: 'protected'}).then(r => {
+      console.log(r);
     }).catch(err => {
       console.log(err);
-    });
+    })
   }
+
+  get assetFileName(): string{
+    return this.file?.name ?? "";
+  }
+
+  get fileSize(): string{
+    let bytes = this.file?.size ?? 0;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+    if (bytes === 0) return 'n/a'
+    const i = parseInt(String(Math.floor(Math.log(bytes) / Math.log(1024))), 10)
+    if (i === 0) return `${bytes} ${sizes[i]})`
+    return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
+  }
+
+  // async getPresignedUrl(filePath: string): string {
+  //   try {
+  //     return await Storage.get(filePath, {level: 'public'});
+  //   }catch (err){
+  //     console.log(err)
+  //     return "";
+  //   }
+  // }
 
 
   // addZip(event: Event): void{
