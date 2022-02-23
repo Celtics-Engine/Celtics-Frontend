@@ -11,12 +11,17 @@
       <span></span>
       <span></span>
     </div>
-    <!--TODO: needs to be conditional if the user is logged in or not-->
-    <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()"
-         *ngFor="let option of menuOpts" (click)="onClickOption(option)">
-      <div id="nav-dropdown-menu-options-items">
-          <div class="btn">{{ option.label }} <fa-icon [icon]="option.icon"></fa-icon></div>
-      </div>
+    <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
+        <ng-template [ngIf]="loggedin" [ngIfElse]="loggedout">
+          <div class="nav-dropdown-menu-options-items" *ngFor="let option of menuOpts" (click)="onClickOption(option)">
+            <div class="btn" *ngIf="option.state != pageState.LOGIN">{{ option.label }} <fa-icon [icon]="option.icon"></fa-icon></div>
+          </div>
+        </ng-template>
+        <ng-template #loggedout>
+          <div class="nav-dropdown-menu-options-items" *ngFor="let option of menuOpts" (click)="onClickOption(option)">
+            <div class="btn" *ngIf="option.state != pageState.LOGOUT && option.state != pageState.PROFILE">{{ option.label }} <fa-icon [icon]="option.icon"></fa-icon></div>
+          </div>
+        </ng-template>
     </div>
   </div>
 </div>

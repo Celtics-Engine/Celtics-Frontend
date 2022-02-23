@@ -4,6 +4,7 @@ import {PageState} from "../../types/page-state";
 import {Option} from "./Option";
 import {MENU_OPTIONS} from "./menu-options";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {Auth} from "aws-amplify";
 
 
 @Component({
@@ -28,6 +29,7 @@ export class DropMenuComponent implements OnInit {
   constructor(private websiteState: WebsiteStateService) {
     websiteState.loggedIn$.subscribe(state=>{
       this.loggedin = state;
+      this.shown = false;
     })
   }
 
@@ -39,7 +41,13 @@ export class DropMenuComponent implements OnInit {
   }
 
   onClickOption(option: Option): void {
-    this.websiteState.changeWebsiteState(option.state);
+    if(option.state == PageState.LOGOUT){
+      Auth.signOut().catch(err=>{
+        console.log(err);
+      })
+    } else {
+      this.websiteState.changeWebsiteState(option.state);
+    }
   }
 
 }

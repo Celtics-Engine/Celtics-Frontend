@@ -7,7 +7,7 @@ import {Auth} from 'aws-amplify';
   providedIn: 'root'
 })
 export class WebsiteStateService {
-  private websiteState = new BehaviorSubject<PageState>(PageState.LOGIN);
+  private websiteState = new BehaviorSubject<PageState>(PageState.SEARCH);
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   private username = new BehaviorSubject<string>("")
@@ -32,6 +32,8 @@ export class WebsiteStateService {
   }
   loginState(state: boolean){
     this.loggedIn.next(state);
+    if(!state)
+      this.usernameState("");
   }
   usernameState(state: string){
     this.username.next(state);
