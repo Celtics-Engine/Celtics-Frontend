@@ -12,6 +12,8 @@ export class AssetUploadComponent implements OnInit {
   removeFileIcon = faTrashAlt;
   file: File | undefined;
 
+  fileNeeded: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -55,27 +57,10 @@ export class AssetUploadComponent implements OnInit {
     return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
   }
 
-  // async getPresignedUrl(filePath: string): string {
-  //   try {
-  //     return await Storage.get(filePath, {level: 'public'});
-  //   }catch (err){
-  //     console.log(err)
-  //     return "";
-  //   }
-  // }
+  get canUpload(): boolean{
+    this.fileNeeded = !this.file?.name != undefined
 
-
-  // addZip(event: Event): void{
-  //   this.uploadFile = (event.target as HTMLInputElement).files![0];
-  // }
-  //
-  // uploadZip(): void {
-  //   Storage.put(this.uploadFile.name, this.uploadFile, {
-  //     level: "protected",
-  //     contentType: this.uploadFile.type,
-  //   }).then(() => {
-  //     console.log("upload " + this.uploadFile.name);
-  //   });
-  // }
+   return !this.fileNeeded;
+  }
 
 }

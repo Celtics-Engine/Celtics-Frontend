@@ -1,7 +1,7 @@
 <div id="asset-post" class="container">
   <form id="asset-post-form" [formGroup]="assetForm">
-    <input type="text" value="Name" formControlName="name" placeholder="name">
-    <input type="text" value="Description" formControlName="description" placeholder="description">
+    <input id="Name-Input" type="text" value="Name" formControlName="name" placeholder="Name of asset">
+    <textarea id="Description-Input" formControlName="description" placeholder="Description of asset"></textarea>
 
     <ng-container formArrayName="engineVer">
       <div *ngFor="let engine of engineVer; let i = index">

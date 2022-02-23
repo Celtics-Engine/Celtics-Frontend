@@ -14,6 +14,8 @@ export class ImageUploadComponent implements OnInit {
   }> = [];
   removeFileIcon = faTimes;
 
+  fileNeeded: boolean = false;
+
   @ViewChild('imageInput', {static: false})
   InputVar: ElementRef | undefined;
 
@@ -71,6 +73,11 @@ export class ImageUploadComponent implements OnInit {
         this.images.splice(this.images.indexOf(file),1);
       }
     }
+  }
+
+  get canUpload(): boolean{
+    this.fileNeeded = !(this.images.length > 0)
+    return !this.fileNeeded;
   }
 
 }

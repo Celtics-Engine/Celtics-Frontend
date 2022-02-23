@@ -6,6 +6,8 @@
       <input id="files" type="file" class="file-upload" (change)="addAsset($event)"
              accept="application/zip">
       <td class="inline">{{file?.name}}</td>
+      <p *ngIf="fileNeeded" id="asset-file-error">* File needed for upload</p>
+
 
     </div>
   </form>

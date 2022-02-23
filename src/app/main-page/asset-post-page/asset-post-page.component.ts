@@ -52,6 +52,9 @@ export class AssetPostPageComponent implements OnInit {
     if (this.assetUpload == undefined || this.imageUpload == undefined || !this.loggedIn)
       return;
 
+    if(!this.assetUpload.canUpload && !this.imageUpload.canUpload)
+      return;
+
     this.api.CreateAssets({
       Name: this.assetName,
       Description: this.assetDescription,
