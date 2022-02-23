@@ -12,6 +12,7 @@ import {FormBuilder} from "@angular/forms";
 export class SearchPageComponent implements OnInit {
   assets: Array<Assets> = [];
   noAssets: boolean = false;
+  loading: boolean = false;
 
   constructor(private websiteState: WebsiteStateService, private api: APIService, private fb: FormBuilder) {
   }
@@ -26,10 +27,13 @@ export class SearchPageComponent implements OnInit {
   }
 
   reloadAssets(): void{
-    this.assets = [];
-    this.noAssets = false
+    if(this.loading)
+      return;
 
+    this.noAssets = false
+    this.loading = true;
     this.api.ListAssets({Name: {contains: this.searchTerm}}).then(asset=>{
+      this.assets = [];
       asset.items.forEach(asset=>{
         if (asset == null)
           return;
@@ -42,6 +46,7 @@ export class SearchPageComponent implements OnInit {
         this.assets.push(temp);
       })
       this.noAssets = this.assets.length === 0;
+      this.loading = false;
     })
 
   }

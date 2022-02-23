@@ -21,9 +21,15 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class DropMenuComponent implements OnInit {
   menuOpts: Option[] = MENU_OPTIONS
+  pageState = PageState;
   shown: boolean = true;
+  loggedin: boolean = false;
 
-  constructor(private websiteState: WebsiteStateService) {}
+  constructor(private websiteState: WebsiteStateService) {
+    websiteState.loggedIn$.subscribe(state=>{
+      this.loggedin = state;
+    })
+  }
 
   ngOnInit(): void {
   }
