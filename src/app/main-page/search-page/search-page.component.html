@@ -9,8 +9,8 @@
   <h1 *ngIf="loading && !noAssets">Loading</h1>
   <h1 *ngIf="!loading && noAssets">No Assets Found</h1>
   <div class="asset-cards" *ngIf="!loading && !noAssets">
-    <div class="card" *ngFor="let asset of assets">
-      <app-search-pannel [asset]="asset" ></app-search-pannel>
+    <div class="card" (click)="assetDetails(asset)" *ngFor="let asset of assets">
+      <app-search-pannel [asset]="asset"></app-search-pannel>
     </div>
   </div>
 </div>

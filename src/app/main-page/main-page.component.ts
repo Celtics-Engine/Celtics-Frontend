@@ -23,6 +23,8 @@ export class MainPageComponent implements OnInit {
     console.log(PageState[this.state])
 
   }
+
+
 }
 
 

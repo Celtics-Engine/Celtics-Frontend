@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Storage} from "aws-amplify";
 import {GetAssetsQuery} from "../../../API.service";
+import {Params} from "@angular/router";
+import {PageState} from "../../../types/page-state";
+import {promises} from "fs";
 
 @Component({
   selector: 'app-search-pannel',
@@ -34,7 +37,8 @@ export class SearchPannelComponent implements OnInit {
     this.assetImage = "assets/loading-bar.png"
   }
 
-
+  redirect() {
+  }
 }
 
 
