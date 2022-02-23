@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
 import {APIService} from "../../API.service";
 import {Assets} from "../../../models";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-search-page',
@@ -12,13 +13,12 @@ export class SearchPageComponent implements OnInit {
 
   private _loggedIn = false;
   private _user = "";
-  private _date = "";
-  private _version = 0;
-  private _description = "";
+
+
 
   assets: Array<Assets> = [];
 
-  constructor(private websiteState: WebsiteStateService, private api: APIService) {
+  constructor(private websiteState: WebsiteStateService, private api: APIService, private fb: FormBuilder) {
     websiteState.loggedIn$.subscribe(state => {
       this._loggedIn = state;
     })
@@ -27,35 +27,33 @@ export class SearchPageComponent implements OnInit {
     })
   }
 
-  get name(): string {
-    return this._user;
-  }
+  searchForm = this.fb.group({
+    search: ["asset"]
+  })
 
-  get date(): string {
-    return this._date;
-  }
-
-  get version(): number {
-    return this._version;
-  }
-
-  get description(): string {
-    return this._description;
-  }
 
   ngOnInit(): void {
-    this.api.ListAssets({UserName: {eq: this._user}}).then(asset=>{
+    this.reloadAssets();
+  }
+
+  reloadAssets(): void{
+    this.api.ListAssets({Name: {contains: this.searchTerm}}).then(asset=>{
       asset.items.forEach(asset=>{
-        if (asset == null || asset.owner != this._user)
+        if (asset == null)
           return;
+
         let temp = new Assets({
-          Name: asset.Name == null ? "" : asset.Name,
-          Description: asset.Description == null ? "" : asset.Description
+          Name: asset.Name ?? "",
+          Description: asset.Description ?? "",
+          Images: asset.Images ?? []
         })
         this.assets.push(temp);
       })
     })
   }
 
+  get searchTerm(): string {
+    return this.searchForm.get("search")?.value;
+  }
 
 }
