@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
-import {APIService} from "../../API.service";
-import {Assets} from "../../../models";
+import {APIService, Assets} from "../../API.service";
 import {FormBuilder} from "@angular/forms";
+import {Storage} from "aws-amplify";
 
 @Component({
   selector: 'app-search-page',
@@ -10,7 +10,26 @@ import {FormBuilder} from "@angular/forms";
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  assets: Array<Assets> = [];
+  assets: Array<{
+    __typename: "Assets";
+    id: string;
+    Name?: string | null;
+    Description?: string | null;
+    Images?: Array<string | null> | null;
+    AssetFile?: string | null;
+    FileSize?: string | null;
+    CompatableEngineVer?: Array<string | null> | null;
+    UserName?: string | null;
+    UserId?: string | null;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    owner?: string | null;
+  }> = [];
+
+
   noAssets: boolean = false;
   loading: boolean = false;
 
@@ -32,23 +51,18 @@ export class SearchPageComponent implements OnInit {
 
     this.noAssets = false
     this.loading = true;
+
     this.api.ListAssets({Name: {contains: this.searchTerm}}).then(asset=>{
       this.assets = [];
       asset.items.forEach(asset=>{
         if (asset == null)
           return;
 
-        let temp = new Assets({
-          Name: asset.Name ?? "",
-          Description: asset.Description ?? "",
-          Images: asset.Images ?? []
-        })
-        this.assets.push(temp);
+        this.assets.push(asset);
       })
       this.noAssets = this.assets.length === 0;
       this.loading = false;
     })
-
   }
 
   get searchTerm(): string {

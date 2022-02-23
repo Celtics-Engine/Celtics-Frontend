@@ -12,8 +12,7 @@
 
   <div class="asset-cards" *ngIf="!loading && !noAssets">
     <div class="card" *ngFor="let asset of assets">
-      <img src="https://images.unsplash.com/photo-1611488006001-eb993d4d2ec4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1635&q=80"  width="150" height="150">
-      <p>Name: {{asset.Name}}</p>
+      <app-search-pannel [asset]="asset"></app-search-pannel>
     </div>
   </div>
 </div>
