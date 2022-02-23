@@ -3,6 +3,10 @@
 
 }
 
+#files {
+  width: 10px;
+}
+
 .btn {
   text-decoration: none;
   background-color: rgb(92 92 92);
@@ -23,4 +27,8 @@
     background-color: rgb(92 92 92);
     color: rgb(255 255 255);
   }
+}
+
+.inline {
+ display: inline;
 }

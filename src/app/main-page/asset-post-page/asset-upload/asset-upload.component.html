@@ -1,16 +1,12 @@
 <div class="tableCard">
   <br>
   <form>
-    <div>
+    <div class="inline">
       <label for="files" class="btn">Upload asset zip</label>
       <input id="files" type="file" class="file-upload" (change)="addAsset($event)"
              accept="application/zip">
-    </div>
+      <td class="inline">{{file?.name}}</td>
 
+    </div>
   </form>
-  <table class="profile-table-personal-assets">
-    <tbody>
-      <td class="badge">{{file?.name}}</td>
-    </tbody>
-  </table>
 </div>
