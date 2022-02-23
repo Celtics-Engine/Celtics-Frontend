@@ -37,6 +37,3 @@ export class DropMenuComponent implements OnInit {
   }
 
 }
-
-//TODO: make buttons to jump between screens
-
