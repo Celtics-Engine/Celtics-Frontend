@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import awsconfig from '../aws-exports';
 import {Amplify} from "aws-amplify";
+import { AssetUploadComponent } from './main-page/asset-post-page/asset-upload/asset-upload.component';
 
 Amplify.configure(awsconfig);
 
@@ -36,7 +37,8 @@ Amplify.configure(awsconfig);
     ProfilePageComponent,
     AssetDetailsPageComponent,
     SearchPageComponent,
-    FooterComponent
+    FooterComponent,
+    AssetUploadComponent
   ],
   imports: [
     BrowserModule,

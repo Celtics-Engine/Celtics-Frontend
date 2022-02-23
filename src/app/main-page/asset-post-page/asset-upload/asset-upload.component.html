@@ -1,0 +1,26 @@
+
+
+<!--<form>-->
+<!--  <input type="file" class="file-upload" (change)="addZip($event)" accept="application/zip application/gzip">-->
+<!--  <span class="badge">{{uploadFile.name}}</span>-->
+<!--</form>-->
+<!--<button type="button" (click)="uploadZip()"> upload zip </button>-->
+<!--<button type="button" (click)="getAssetLink(uploadFile)"> get link </button>-->
+
+
+<div class="tableCard">
+  <h3>upload asset to bucket</h3>
+  <form>
+    <input type="file" class="file-upload" (change)="addAsset($event)"
+           accept="application/zip">
+  </form>
+  <button type="button" (click)="uploadAssetToBucket()">upload to bucket</button>
+  <table class="profile-table-personal-assets">
+    <tbody>
+    <tr *ngFor="let file of fileList" >
+      <td class="badge">{{file.name}}</td>
+      <button type="button" (click)="getPresignedUrl(file)"> log presigned url to console </button>
+    </tr>
+    </tbody>
+  </table>
+</div>

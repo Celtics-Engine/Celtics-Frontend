@@ -9,9 +9,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class ImageUploadComponent implements OnInit {
   images: Array<File> = [];
-  zipFiles: Array<File> = [];
   removeFileIcon = faTrashAlt;
-
 
   constructor() { }
 
@@ -25,29 +23,6 @@ export class ImageUploadComponent implements OnInit {
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       this.images.push(file as File)
-    }
-  }
-
-  addZip(event: Event): void{
-    let files = (event.target as HTMLInputElement).files;
-      if(files === null)
-        return;
-      for (let i = 0; i < files.length; i++) {
-        let file = files[i];
-        this.zipFiles.push(file as File)
-      }
-  }
-
-  uploadZip(): void {
-    let promises = [];
-    for (let i = 0; i < this.zipFiles.length; i++) {
-      let file = this.zipFiles[i];
-      promises.push(Storage.put("/zip" + file.name, file, {
-        level: "private",
-        contentType: file.type,
-      }).then(() => {
-        console.log("upload " + file.name);
-      }));
     }
   }
 
@@ -68,13 +43,6 @@ export class ImageUploadComponent implements OnInit {
     let index = this.images.indexOf(image);
     if (index > -1) {
       this.images.splice(index, 1);
-    }
-  }
-
-  removeZipFilesFromList(zip: File) {
-    let index = this.zipFiles.indexOf(zip);
-    if (index > -1) {
-      this.zipFiles.splice(index, 1);
     }
   }
 
