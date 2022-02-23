@@ -6,10 +6,10 @@
     <button type="submit">Search</button>
   </form>
   <!--TODO: Needs Css to go with it-->
-  <h1 *ngIf="assets.length === 0 && !noAssets">Loading</h1>
-  <h1 *ngIf="noAssets">No Assets Found</h1>
+  <h1 *ngIf="loading && !noAssets">Loading</h1>
+  <h1 *ngIf="!loading && noAssets">No Assets Found</h1>
 
-  <div class="asset-cards" *ngIf="assets.length != 0">
+  <div class="asset-cards" *ngIf="!loading && !noAssets">
     <div class="card" *ngFor="let asset of assets">
       <p>Name: {{asset.Name}}</p>
       <p>Date Created: {{asset.createdAt}}</p>
