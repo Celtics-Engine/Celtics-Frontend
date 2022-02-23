@@ -10,21 +10,10 @@ import {FormBuilder} from "@angular/forms";
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-
-  private _loggedIn = false;
-  private _user = "";
-
-
-
   assets: Array<Assets> = [];
+  noAssets: boolean = false;
 
   constructor(private websiteState: WebsiteStateService, private api: APIService, private fb: FormBuilder) {
-    websiteState.loggedIn$.subscribe(state => {
-      this._loggedIn = state;
-    })
-    websiteState.username$.subscribe(state => {
-      this._user = state;
-    })
   }
 
   searchForm = this.fb.group({
@@ -38,6 +27,7 @@ export class SearchPageComponent implements OnInit {
 
   reloadAssets(): void{
     this.assets = [];
+    this.noAssets = false
 
     this.api.ListAssets({Name: {contains: this.searchTerm}}).then(asset=>{
       asset.items.forEach(asset=>{
@@ -51,7 +41,9 @@ export class SearchPageComponent implements OnInit {
         })
         this.assets.push(temp);
       })
+      this.noAssets = this.assets.length === 0;
     })
+
   }
 
   get searchTerm(): string {
