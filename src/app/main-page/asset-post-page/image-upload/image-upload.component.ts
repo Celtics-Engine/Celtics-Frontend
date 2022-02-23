@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Storage} from "aws-amplify";
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {faCross, faTimes, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-image-upload',
@@ -8,8 +8,15 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadComponent implements OnInit {
-  images: Array<File> = [];
-  removeFileIcon = faTrashAlt;
+  images: Array<{
+    file: File,
+    url: any
+  }> = [];
+  removeFileIcon = faTimes;
+
+  @ViewChild('imageInput', {static: false})
+  InputVar: ElementRef | undefined;
+
 
   constructor() { }
 
@@ -20,18 +27,28 @@ export class ImageUploadComponent implements OnInit {
     if(files === null)
       return;
 
+    var reader = new FileReader();
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      this.images.push(file as File)
+      reader.readAsDataURL(file);
+
+      reader.onload = ev => {
+        this.images.push({
+          file :file as File,
+          url: reader.result
+        })
+      }
     }
+    if(this.InputVar != undefined)
+      this.InputVar.nativeElement.value = "";
   }
 
   //FIXME: Should return some kind of feedback of progress
   uploadImages(imagePath: string):void{
     for (const image of this.images) {
-      Storage.put(imagePath + "images/" + image.name, image, {
+      Storage.put(imagePath + "images/" + image.file.name, image, {
         level: "protected",
-        contentType: image.type
+        contentType: image.file.type
       }).then(r  => {
         console.log(r);
       }).catch(e => {
@@ -43,15 +60,16 @@ export class ImageUploadComponent implements OnInit {
   get imageFilePaths(): Array<string>{
     let filenames: Array<string> = [];
     for (let file of this.images){
-      filenames.push(file.name);
+      filenames.push(file.file.name);
     }
     return filenames
   }
 
   removeImageFromList(image: File) {
-    let index = this.images.indexOf(image);
-    if (index > -1) {
-      this.images.splice(index, 1);
+    for (let file of this.images){
+      if(file.file === image){
+        this.images.splice(this.images.indexOf(file),1);
+      }
     }
   }
 
