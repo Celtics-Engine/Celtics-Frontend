@@ -37,6 +37,8 @@ export class SearchPageComponent implements OnInit {
   }
 
   reloadAssets(): void{
+    this.assets = [];
+
     this.api.ListAssets({Name: {contains: this.searchTerm}}).then(asset=>{
       asset.items.forEach(asset=>{
         if (asset == null)
