@@ -7,7 +7,7 @@ import {Auth} from 'aws-amplify';
   providedIn: 'root'
 })
 export class WebsiteStateService {
-  private websiteState = new BehaviorSubject<PageState>(PageState.ASSET_POST);
+  private websiteState = new BehaviorSubject<PageState>(PageState.SEARCH);
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   private username = new BehaviorSubject<string>("")

@@ -36,12 +36,10 @@ export class SearchPannelComponent implements OnInit {
       return;
 
     let asset = this.asset;
-    console.log(asset.UserId ?? "")
 
     Storage.get( asset.id+ "/images/" + asset.Images![0] ?? "",
       {level: "protected",
         identityId: asset.UserId ?? ""}).then(link=>{
-      console.log(link)
       this.assetImage = link;
     }).catch(err=>{
       console.error(err);
