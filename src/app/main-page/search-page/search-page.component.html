@@ -1,5 +1,10 @@
 <div class="details-container">
   <h1>Search Asset</h1>
+  <form [formGroup]="searchForm" (ngSubmit)="reloadAssets()">
+    <input type="text" formControlName="search">
+    <!--TODO: Needs Icon-->
+    <button type="submit">Search</button>
+  </form>
   <div class="asset-cards" >
     <div class="card" *ngFor="let asset of assets">
       <p>Name: {{asset.Name}}</p>

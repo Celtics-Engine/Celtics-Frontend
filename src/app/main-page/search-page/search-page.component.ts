@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
 import {APIService} from "../../API.service";
 import {Assets} from "../../../models";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-search-page',
@@ -13,12 +14,11 @@ export class SearchPageComponent implements OnInit {
   private _loggedIn = false;
   private _user = "";
 
-  search: string = "";
 
 
   assets: Array<Assets> = [];
 
-  constructor(private websiteState: WebsiteStateService, private api: APIService) {
+  constructor(private websiteState: WebsiteStateService, private api: APIService, private fb: FormBuilder) {
     websiteState.loggedIn$.subscribe(state => {
       this._loggedIn = state;
     })
@@ -27,10 +27,17 @@ export class SearchPageComponent implements OnInit {
     })
   }
 
+  searchForm = this.fb.group({
+    search: ["asset"]
+  })
 
 
   ngOnInit(): void {
-    this.api.ListAssets({Name: {contains: this.search}}).then(asset=>{
+    this.reloadAssets();
+  }
+
+  reloadAssets(): void{
+    this.api.ListAssets({Name: {contains: this.searchTerm}}).then(asset=>{
       asset.items.forEach(asset=>{
         if (asset == null)
           return;
@@ -45,5 +52,8 @@ export class SearchPageComponent implements OnInit {
     })
   }
 
+  get searchTerm(): string {
+    return this.searchForm.get("search")?.value;
+  }
 
 }
