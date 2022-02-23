@@ -1,12 +1,22 @@
-<div class="container">
-  <h1>{{asset?.Name ?? ""}}</h1>
-  <h2>{{asset?.Description ?? ""}}</h2>
-  <img src="{{assetImage}}" (error)="resetLink()" height="500">
-  <h3>{{asset?.FileSize ?? ""}}</h3>
-  <h3>{{asset?.CompatableEngineVer ?? ""}}</h3>
-  <h3></h3>
+<main id="main">
+  <div class="container">
 
+    <h1>{{asset?.Name ?? ""}}</h1>
+
+    <div id="img-div">
+    <figure id="fig">
+    <img id="img" src="{{assetImage}}" (error)="resetLink()" height="500">
+      <figcaption id="img-caption"> {{asset?.Description ?? ""}}</figcaption>
+    </figure>
+    </div>
+
+    <h5>{{asset?.UserName}}</h5>
+    <h5>{{asset?.FileSize ?? ""}}</h5>
+    <h5>{{asset?.CompatableEngineVer ?? ""}}</h5>
+    <h5>{{asset?.updatedAt ?? ""}}</h5>
 
 </div>
+</main>
+
 
 
