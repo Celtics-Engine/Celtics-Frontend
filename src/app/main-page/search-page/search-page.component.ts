@@ -12,9 +12,9 @@ export class SearchPageComponent implements OnInit {
 
   private _loggedIn = false;
   private _user = "";
-  private _date = "";
-  private _version = 0;
-  private _description = "";
+
+  search: string = "";
+
 
   assets: Array<Assets> = [];
 
@@ -27,30 +27,18 @@ export class SearchPageComponent implements OnInit {
     })
   }
 
-  get name(): string {
-    return this._user;
-  }
 
-  get date(): string {
-    return this._date;
-  }
-
-  get version(): number {
-    return this._version;
-  }
-
-  get description(): string {
-    return this._description;
-  }
 
   ngOnInit(): void {
-    this.api.ListAssets({UserName: {eq: this._user}}).then(asset=>{
+    this.api.ListAssets({Name: {contains: this.search}}).then(asset=>{
       asset.items.forEach(asset=>{
-        if (asset == null || asset.owner != this._user)
+        if (asset == null)
           return;
+
         let temp = new Assets({
-          Name: asset.Name == null ? "" : asset.Name,
-          Description: asset.Description == null ? "" : asset.Description
+          Name: asset.Name ?? "",
+          Description: asset.Description ?? "",
+          Images: asset.Images ?? []
         })
         this.assets.push(temp);
       })
