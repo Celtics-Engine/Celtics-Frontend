@@ -1,6 +1,7 @@
 .flex-nav{
   display: flex;
   justify-content: space-between;
+  min-width: 390px;
 }
 
 .btn {
@@ -18,19 +19,20 @@
 
 h4 {
   color: #d2ea94;
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: .9rem;
+  padding: .9rem 0 .9rem .9rem;
 }
 
 #nav-bar-dropdown-menu {
+  position: static;
   $size: 2;
 
   #nav-icon {
     float: right;
     width: calc(60px / #{$size});
     height: calc(45px / #{$size});
-    margin: 1.3rem;
+    margin: 1.3rem 1rem 0 1.3rem;
     transform: rotate(0deg);
     -webkit-transition: .9s ease-in-out;
     -moz-transition: .5s ease-in-out;
