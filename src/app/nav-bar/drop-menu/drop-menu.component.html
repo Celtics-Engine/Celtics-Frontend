@@ -11,6 +11,7 @@
       <span></span>
       <span></span>
     </div>
+    <!--TODO: needs to be conditional if the user is logged in or not-->
     <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()"
          *ngFor="let option of menuOpts" (click)="onClickOption(option)">
       <div id="nav-dropdown-menu-options-items">
