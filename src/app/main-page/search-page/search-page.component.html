@@ -6,13 +6,11 @@
       <button type="submit"><i class="material-icons" >search</i></button>
     </div>
   </form>
-  <!--TODO: Needs Css to go with it-->
   <h1 *ngIf="loading && !noAssets">Loading</h1>
   <h1 *ngIf="!loading && noAssets">No Assets Found</h1>
-
   <div class="asset-cards" *ngIf="!loading && !noAssets">
     <div class="card" *ngFor="let asset of assets">
-      <app-search-pannel [asset]="asset"></app-search-pannel>
+      <app-search-pannel [asset]="asset" ></app-search-pannel>
     </div>
   </div>
 </div>
