@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Storage} from "aws-amplify";
+import {GetAssetsQuery} from "../../../API.service";
 
 @Component({
   selector: 'app-search-pannel',
@@ -8,26 +9,9 @@ import {Storage} from "aws-amplify";
 })
 export class SearchPannelComponent implements OnInit {
   @Input()
-  asset: {
-    __typename: "Assets";
-    id: string;
-    Name?: string | null;
-    Description?: string | null;
-    Images?: Array<string | null> | null;
-    AssetFile?: string | null;
-    FileSize?: string | null;
-    CompatableEngineVer?: Array<string | null> | null;
-    UserName?: string | null;
-    UserId?: string | null;
-    createdAt: string;
-    updatedAt: string;
-    _version: number;
-    _deleted?: boolean | null;
-    _lastChangedAt: number;
-    owner?: string | null;
-  } | undefined;
+  asset: GetAssetsQuery | undefined;
 
-  assetImage: string = "https://images.unsplash.com/photo-1611488006001-eb993d4d2ec4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1635&q=80";
+  assetImage: string = "assets/loading-bar.png";
 
   constructor() { }
 
@@ -47,7 +31,7 @@ export class SearchPannelComponent implements OnInit {
   }
 
   resetLink(): void{
-    this.assetImage = "https://images.unsplash.com/photo-1611488006001-eb993d4d2ec4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1635&q=80"
+    this.assetImage = "assets/loading-bar.png"
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
-import {APIService, Assets} from "../../API.service";
+import {APIService, Assets, GetAssetsQuery} from "../../API.service";
 import {FormBuilder} from "@angular/forms";
 import {Storage} from "aws-amplify";
 
@@ -10,24 +10,7 @@ import {Storage} from "aws-amplify";
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit {
-  assets: Array<{
-    __typename: "Assets";
-    id: string;
-    Name?: string | null;
-    Description?: string | null;
-    Images?: Array<string | null> | null;
-    AssetFile?: string | null;
-    FileSize?: string | null;
-    CompatableEngineVer?: Array<string | null> | null;
-    UserName?: string | null;
-    UserId?: string | null;
-    createdAt: string;
-    updatedAt: string;
-    _version: number;
-    _deleted?: boolean | null;
-    _lastChangedAt: number;
-    owner?: string | null;
-  }> = [];
+  assets: Array<GetAssetsQuery> = [];
 
 
   noAssets: boolean = false;

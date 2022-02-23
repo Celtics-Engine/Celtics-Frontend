@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
 import {APIService} from "../../API.service";
 import {Assets} from "../../../models";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {PageState} from "../../types/page-state";
 
 @Component({
   selector: 'app-profile-page',
@@ -11,9 +13,26 @@ import {Assets} from "../../../models";
 export class ProfilePageComponent implements OnInit {
   private _user = "";
   private _loggedIn = false;
-  assets: Array<Assets> = [];
+  assets: Array<{
+    __typename: "Assets";
+    id: string;
+    Name?: string | null;
+    Description?: string | null;
+    Images?: Array<string | null> | null;
+    AssetFile?: string | null;
+    FileSize?: string | null;
+    CompatableEngineVer?: Array<string | null> | null;
+    UserName?: string | null;
+    UserId?: string | null;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    owner?: string | null;
+  }> = [];
 
-  constructor(private websiteState: WebsiteStateService, private api: APIService) {
+  constructor(private websiteState: WebsiteStateService, private api: APIService, private router: Router, private route: ActivatedRoute) {
     websiteState.loggedIn$.subscribe(state => {
       this._loggedIn = state;
     })
@@ -27,13 +46,24 @@ export class ProfilePageComponent implements OnInit {
       asset.items.forEach(asset=>{
         if (asset == null || asset.owner != this.user)
           return;
-        let temp = new Assets({
-          Name: asset.Name == null ? "" : asset.Name,
-          Description: asset.Description == null ? "" : asset.Description
-        })
-        this.assets.push(temp);
+
+        this.assets.push(asset);
       })
     })
+  }
+
+  assetDetails(asset: any): void{
+    const queryParams: Params = { assetId: asset.id };
+
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: queryParams,
+        queryParamsHandling: 'merge', // remove to replace all query params by provided
+      });
+
+    this.websiteState.changeWebsiteState(PageState.ASSET_DETAILS);
   }
 
   get user(): string {

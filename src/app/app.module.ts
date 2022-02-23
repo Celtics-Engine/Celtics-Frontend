@@ -23,6 +23,7 @@ import awsconfig from '../aws-exports';
 import {Amplify} from "aws-amplify";
 import { AssetUploadComponent } from './main-page/asset-post-page/asset-upload/asset-upload.component';
 import { SearchPannelComponent } from './main-page/search-page/search-pannel/search-pannel.component';
+import {RouterModule} from "@angular/router";
 
 Amplify.configure(awsconfig);
 
@@ -47,6 +48,7 @@ Amplify.configure(awsconfig);
     AmplifyAuthenticatorModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

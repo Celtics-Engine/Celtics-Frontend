@@ -675,9 +675,11 @@ export class APIService {
     const gqlAPIServiceArguments: any = {
       id
     };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
+    const response = (await API.graphql({
+      query: statement,
+      variables: gqlAPIServiceArguments,
+      authMode: "API_KEY"
+    })) as any;
     return <GetAssetsQuery>response.data.getAssets;
   }
   async ListAssets(
