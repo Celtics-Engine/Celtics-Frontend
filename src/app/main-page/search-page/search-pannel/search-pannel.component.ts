@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Storage} from "aws-amplify";
 import {GetAssetsQuery} from "../../../API.service";
-import {Params} from "@angular/router";
+import {Option} from "../../../nav-bar/drop-menu/Option";
 import {PageState} from "../../../types/page-state";
-import {promises} from "fs";
+import {WebsiteStateService} from "../../../services/website-state/website-state.service";
 
 @Component({
   selector: 'app-search-pannel',
@@ -16,7 +16,7 @@ export class SearchPannelComponent implements OnInit {
 
   assetImage: string = "assets/loading-bar.png";
 
-  constructor() { }
+  constructor(private websiteState: WebsiteStateService) { }
 
   ngOnInit(): void {
     if(this.asset === undefined)

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {APIService, GetAssetsQuery} from "../../API.service";
 import {ActivatedRoute} from "@angular/router";
-import {Auth, Storage} from "aws-amplify";
-import {DomSanitizer} from "@angular/platform-browser";
+import {Storage} from "aws-amplify";
+import {WebsiteStateService} from "../../services/website-state/website-state.service";
 
 @Component({
   selector: 'app-asset-details-page',
@@ -12,81 +12,40 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class AssetDetailsPageComponent implements OnInit {
   asset: GetAssetsQuery | undefined;
   assetImage: string = "assets/loading-bar.png";
-  url: URL | undefined;
+  imageLinks: Array<string | null> = new Array<string | null>();
+  updatedAt: string | undefined; // Nov 27, 2020
+  imageNumber: number = 1;
 
   constructor(private route: ActivatedRoute, private api: APIService, private sanitizer: DomSanitizer) {
 
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(prams=>{
-      this.api.GetAssets(prams['assetId']).then(asset=>{
+    this.route.queryParams.subscribe(prams => {
+      this.api.GetAssets(prams['assetId']).then(asset => {
         this.asset = asset;
-        Storage.get( asset.id+ "/images/" + asset.Images![0] ?? "",
-          {level: "protected", identityId: asset.UserId ?? ""}).then(link=>{
-          this.assetImage = link;
-        }).then(() => {
-          this.url = new URL(this.assetImage);
-        });
-      }).catch(err=>{
-        console.error(err);
+        let date = new Date(asset.updatedAt);
+        this.updatedAt = asset ? date.toLocaleString('default', {month: 'short'}) + " " + date.getDay() + ", " + date.getFullYear() : "";
+
+        asset.Images?.forEach(image =>
+          Storage.get(asset.id + "/images/" + image ?? "",
+            {level: "protected", identityId: asset.UserId ?? ""}).then(link => {
+            this.imageLinks?.push(link);
+          }).catch(err => {
+            console.error(err);
+          })
+        );
+
       })
     })
   }
 
-  downloadAsset() {
-    Storage.get( this.asset!.id+ "/" + this.asset!.AssetFile,
-      {level: "protected",
-        identityId: this.asset!.UserId ?? "",
-        download: true}).then(link=>{
-          console.log(link);
-          let url = window.URL.createObjectURL(link.Body as Blob);
-          let a = document.createElement("a");
-          document.body.appendChild(a);
-          a.setAttribute("style", "display: none");
-          a.href = url;
-          a.download = this.asset?.AssetFile ?? "";
-          a.click();
-          window.URL.revokeObjectURL(url);
-          a.remove();
-        })
-  }
-
-  removeAsset() {
-    Storage.remove(this.asset!.id+ "/" + this.asset!.AssetFile, {level: 'protected'}).then(value => {
-      console.log("removing asset: " + value)
-      for (let image of this.asset?.Images ?? []) {
-        Storage.remove(this.asset!.id + "/images/" + image).then(r => {
-          console.log("removing images: " + r);
-        }).catch(err => {
-          console.error(err);
-        })
-      }
-      this.api.DeleteAssets({id: this.asset!.id, _version : this.asset?._version}).then(r => console.log(r))
-    })
-  }
-
-  resetLink(): void{
+  resetLink(): void {
     this.assetImage = "assets/loading-bar.png"
   }
 
-  assets(): string | any[] {
-    return this.asset?.AssetFile ?? [];
+  onClickImage(imageNumber: number): void {
+    if(imageNumber > 0 && imageNumber <= this.imageLinks.length) this.imageNumber = imageNumber;
   }
 
-  assetId(): string {
-    return this.asset?.id ?? "";
-  }
-
-  assetName(): string {
-    return this.asset?.Name ?? "";
-  }
-
-  assetDescription(): string {
-    return this.asset?.Description ?? "";
-  }
-
-  getUrl() {
-    return this.url?.href ?? "";
-  }
 }

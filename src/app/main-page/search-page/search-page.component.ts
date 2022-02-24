@@ -4,7 +4,9 @@ import {APIService, Assets, GetAssetsQuery} from "../../API.service";
 import {FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Storage} from "aws-amplify";
+import {Option} from "../../nav-bar/drop-menu/Option";
 import {PageState} from "../../types/page-state";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-page',
@@ -18,7 +20,7 @@ export class SearchPageComponent implements OnInit {
   noAssets: boolean = false;
   loading: boolean = false;
 
-  constructor(private websiteState: WebsiteStateService, private api: APIService, private fb: FormBuilder,private route: ActivatedRoute,private router: Router) {
+  constructor(private websiteState: WebsiteStateService, private api: APIService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
   }
 
   searchForm = this.fb.group({
@@ -54,7 +56,7 @@ export class SearchPageComponent implements OnInit {
     return this.searchForm.get("search")?.value;
   }
 
-  assetDetails(asset: any): void{
+  onClickOption(asset: any): void {
     const queryParams: Params = { assetId: asset.id };
 
     this.router.navigate(
@@ -67,6 +69,4 @@ export class SearchPageComponent implements OnInit {
 
     this.websiteState.changeWebsiteState(PageState.ASSET_DETAILS);
   }
-
-
 }

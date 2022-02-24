@@ -1,20 +1,159 @@
 
-.asset-name{
+#main {
   display: flex;
-  justify-content: center;
-  align-content: center;
-  font-size: 3rem;
-}
-.asset-description{
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  margin: auto;
+  width: 95%;
+  min-width: 390px;
+  max-width: 1500px;
 }
 
-.asset-img{
+.container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  max-width: 1500px;
+}
+
+.page-element {
+  padding: 50px 10px;
+}
+
+h1 {
+  text-align: left;
+  text-shadow: 2px 2px white;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+#fig {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#img-side {
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 2%;
+  width: 30em;
+}
+
+.img-side-element {
+  padding: 15px 0px;
+}
+
+.info {
+  display: flex;
+}
+
+.info-box {
+  padding: 0em 1em 0em 0em;
+}
+
+.info-box-right {
+  text-align: right;
+}
+
+.info-text {
+  white-space: nowrap;
+}
+
+#fig-container {
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+}
+
+.badge{
+  height: 20px;
+  line-height: 20px;
+  border-radius: 10px;
+  padding: 0 7px;
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0,0,0,.5);
+  width: 55px;
+  text-align: center;
+  margin: 10px 10px;
+}
+
+#img {
+  min-width: 100%;
+  max-width: 100%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  width: 70%;
 }
 
+#overview {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+
+#img-div {
+  min-height: 480px;
+  border: 3px solid grey;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+h5 {
+  text-align: left;
+}
+
+h4 {
+  margin: 0 0 10px 0;
+}
+
+.secondary-text{
+  color: #555555;
+}
+
+.arrows {
+  display: flex;
+  margin: auto;
+}
+
+
+.arrow-element {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.arrow {
+  border: solid rgba(133, 66, 66, 0.5);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  &:hover {
+    //border: solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
