@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
 import {APIService, Assets, GetAssetsQuery} from "../../API.service";
 import {FormBuilder} from "@angular/forms";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Storage} from "aws-amplify";
-import {Option} from "../../nav-bar/drop-menu/Option";
 import {PageState} from "../../types/page-state";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 

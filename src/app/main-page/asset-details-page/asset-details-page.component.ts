@@ -16,7 +16,7 @@ export class AssetDetailsPageComponent implements OnInit {
   updatedAt: string | undefined; // Nov 27, 2020
   imageNumber: number = 1;
 
-  constructor(private route: ActivatedRoute, private api: APIService, private sanitizer: DomSanitizer) {
+  constructor(private route: ActivatedRoute, private api: APIService) {
 
   }
 
