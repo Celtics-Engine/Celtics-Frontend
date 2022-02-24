@@ -41,6 +41,7 @@ export class SearchPageComponent implements OnInit {
       asset.items.forEach(asset=>{
         if (asset == null || asset._deleted)
           return;
+        }
 
         this.assets.push(asset);
       })
@@ -62,7 +63,7 @@ export class SearchPageComponent implements OnInit {
         relativeTo: this.route,
         queryParams: queryParams,
         queryParamsHandling: 'merge', // remove to replace all query params by provided
-      });
+      })
 
     this.websiteState.changeWebsiteState(PageState.ASSET_DETAILS);
   }
