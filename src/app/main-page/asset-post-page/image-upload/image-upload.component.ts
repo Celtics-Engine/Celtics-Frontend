@@ -45,18 +45,16 @@ export class ImageUploadComponent implements OnInit {
       this.InputVar.nativeElement.value = "";
   }
 
-  //FIXME: Should return some kind of feedback of progress
-  uploadImages(imagePath: string):void{
+  async uploadImages(imagePath: string): Promise<Array<string>> {
+    let uploads = []
     for (const image of this.images) {
-      Storage.put(imagePath + "images/" + image.file.name, image.file, {
-        level: "protected",
-        contentType: image.file.type
-      }).then(r  => {
-        console.log(r);
-      }).catch(e => {
-        console.log(e);
-      });
+      try {
+        uploads.push((await Storage.put(imagePath + "images/" + image.file.name, image.file, {level: "protected", contentType: image.file.type})).key)
+      }catch (err){
+        return Promise.reject(err)
+      }
     }
+    return Promise.resolve(uploads);
   }
 
   get imageFilePaths(): Array<string>{

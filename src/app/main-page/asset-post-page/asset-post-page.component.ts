@@ -2,11 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {EngineVersions} from "../../types/engine-versions";
 import {ImageUploadComponent} from "./image-upload/image-upload.component";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {APIService, GetAssetsQuery} from '../../API.service'
-import {AppSync} from "aws-sdk";
-import {Auth} from "aws-amplify";
+import {APIService} from '../../API.service'
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
 import {AssetUploadComponent} from "./asset-upload/asset-upload.component";
+import {PageState} from "../../types/page-state";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 
 @Component({
@@ -25,8 +25,9 @@ export class AssetPostPageComponent implements OnInit {
   username: string = "";
   userId: string = "";
   loggedIn: boolean = false;
+  uploading: boolean = false;
 
-  constructor(private api: APIService,private fb: FormBuilder, private websiteState: WebsiteStateService) {
+  constructor(private api: APIService,private fb: FormBuilder, private websiteState: WebsiteStateService,private route: ActivatedRoute,private router: Router) {
     websiteState.username$.subscribe(user=>{
       this.username = user;
     })
@@ -49,11 +50,18 @@ export class AssetPostPageComponent implements OnInit {
   }
 
   postAsset(): void{
+
     if (this.assetUpload == undefined || this.imageUpload == undefined || !this.loggedIn)
       return;
 
-    if(!this.assetUpload.canUpload && !this.imageUpload.canUpload)
+    let bool1 = !this.imageUpload.canUpload;
+    let bool2 = !this.assetUpload.canUpload
+
+
+    if(bool1 || bool2)
       return;
+
+    this.uploading = true;
 
     this.api.CreateAssets({
       Name: this.assetName,
@@ -65,11 +73,30 @@ export class AssetPostPageComponent implements OnInit {
       UserName: this.username,
       UserId: this.userId
     }).then(data=>{
-      this.imageUpload?.uploadImages(data.id + "/");
-      this.assetUpload?.uploadAssetToBucket(data.id + "/")
+      this.imageUpload?.uploadImages(data.id + "/").then(result=>{
+        console.log(result);
+        this.assetUpload?.uploadAssetToBucket(data.id + "/").then(result=>{
+          console.log(result);
+          this.assetDetails(data.id);
+        })
+      });
     }).catch(err=>{
       console.log(err)
     })
+  }
+
+  assetDetails(assetId: string): void{
+    const queryParams: Params = { assetId: assetId };
+
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: queryParams,
+        queryParamsHandling: 'merge', // remove to replace all query params by provided
+      });
+
+    this.websiteState.changeWebsiteState(PageState.ASSET_DETAILS);
   }
 
   get engineVer(): Array<FormControl> {
