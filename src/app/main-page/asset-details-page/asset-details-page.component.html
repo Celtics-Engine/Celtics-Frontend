@@ -1,10 +1,14 @@
-<div class="container">
-  <td class="asset-name">{{asset?.Name ?? ""}}</td>
-  <img class="asset-img" src="{{assetImage}}" (error)="resetLink()" height="500">
-  <td class="description-area">Description</td>
-  <td class="asset-description"> {{asset?.Description ?? ""}}</td>
 
+<ng-container *ngIf="asset">
+  <div class="container">
+    <td class="asset-name">{{asset?.Name ?? ""}}</td>
+    <img class="asset-img" src="{{assetImage}}" (error)="resetLink()" height="500">
+    <td class="description-area">Description</td>
+    <td class="asset-description"> {{asset?.Description ?? ""}}</td>
 
-</div>
+    <button class="btn btn-primary" (click)="downloadAsset()">download</button>
+    <button class="btn btn-primary2" (click)="removeAsset()">remove</button>
+  </div>
+</ng-container>
 
 

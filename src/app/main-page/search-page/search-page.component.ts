@@ -40,7 +40,7 @@ export class SearchPageComponent implements OnInit {
     this.api.ListAssets({Name: {contains: this.searchTerm}}).then(asset=>{
       this.assets = [];
       asset.items.forEach(asset=>{
-        if (asset == null)
+        if (asset == null || asset._deleted)
           return;
 
         this.assets.push(asset);

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Assets} from "../../../models";
-import {WebsiteStateService} from "../../services/website-state/website-state.service";
 import {APIService, GetAssetsQuery} from "../../API.service";
 import {ActivatedRoute} from "@angular/router";
-import {Storage} from "aws-amplify";
+import {Auth, Storage} from "aws-amplify";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-asset-details-page',
@@ -13,25 +12,57 @@ import {Storage} from "aws-amplify";
 export class AssetDetailsPageComponent implements OnInit {
   asset: GetAssetsQuery | undefined;
   assetImage: string = "assets/loading-bar.png";
+  url: URL | undefined;
 
+  constructor(private route: ActivatedRoute, private api: APIService, private sanitizer: DomSanitizer) {
 
-  constructor(private route: ActivatedRoute, private api: APIService) {
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(prams=>{
       this.api.GetAssets(prams['assetId']).then(asset=>{
         this.asset = asset;
-
-
-        //FIXME: Will have to be done for all the images
         Storage.get( asset.id+ "/images/" + asset.Images![0] ?? "",
           {level: "protected", identityId: asset.UserId ?? ""}).then(link=>{
           this.assetImage = link;
-        }).catch(err=>{
+        }).then(() => {
+          this.url = new URL(this.assetImage);
+        });
+      }).catch(err=>{
+        console.error(err);
+      })
+    })
+  }
+
+  downloadAsset() {
+    Storage.get( this.asset!.id+ "/" + this.asset!.AssetFile,
+      {level: "protected",
+        identityId: this.asset!.UserId ?? "",
+        download: true}).then(link=>{
+          console.log(link);
+          let url = window.URL.createObjectURL(link.Body as Blob);
+          let a = document.createElement("a");
+          document.body.appendChild(a);
+          a.setAttribute("style", "display: none");
+          a.href = url;
+          a.download = this.asset?.AssetFile ?? "";
+          a.click();
+          window.URL.revokeObjectURL(url);
+          a.remove();
+        })
+  }
+
+  removeAsset() {
+    Storage.remove(this.asset!.id+ "/" + this.asset!.AssetFile, {level: 'protected'}).then(value => {
+      console.log("removing asset: " + value)
+      for (let image of this.asset?.Images ?? []) {
+        Storage.remove(this.asset!.id + "/images/" + image).then(r => {
+          console.log("removing images: " + r);
+        }).catch(err => {
           console.error(err);
         })
-      })
+      }
+      this.api.DeleteAssets({id: this.asset!.id, _version : this.asset?._version}).then(r => console.log(r))
     })
   }
 
@@ -39,4 +70,23 @@ export class AssetDetailsPageComponent implements OnInit {
     this.assetImage = "assets/loading-bar.png"
   }
 
+  assets(): string | any[] {
+    return this.asset?.AssetFile ?? [];
+  }
+
+  assetId(): string {
+    return this.asset?.id ?? "";
+  }
+
+  assetName(): string {
+    return this.asset?.Name ?? "";
+  }
+
+  assetDescription(): string {
+    return this.asset?.Description ?? "";
+  }
+
+  getUrl() {
+    return this.url?.href ?? "";
+  }
 }
