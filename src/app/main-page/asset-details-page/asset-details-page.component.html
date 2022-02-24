@@ -5,21 +5,19 @@
 
       <div id="fig-container">
         <div id="fig" *ngFor="let imageLink of imageLinks; let i = index">
-          <img id="img" src="{{imageLink}}" (error)="resetLink()" height="500" *ngIf="((i + 1) == imageNumber)" >
-        </div>
-<!--        <figure id="fig" >-->
-<!--          <img id="img" src="{{assetImage}}" (error)="resetLink()" height="500">-->
-<!--        </figure>-->
+          <img id="img" src="{{imageLink}}" (error)="resetLink()" height="500" *ngIf="((i + 1) == imageNumber)">
 
-        <div class="arrows">
-          <p class="arrow-element" (click)="onClickImage(imageNumber - 1)"><i class="arrow left"></i></p>
-          <p class="arrow-element" (click)="onClickImage(imageNumber + 1)"><i class="arrow right"></i></p>
+          <div class="arrows" *ngIf="((i + 1) == imageNumber)">
+            <p class="arrow-element" (click)="onClickImage(imageNumber - 1)"><i class="arrow left"></i></p>
+            <div class="badge" >{{i + 1}}/{{imageLinks.length}}</div>
+            <p class="arrow-element" (click)="onClickImage(imageNumber + 1)"><i class="arrow right"></i></p>
+          </div>
         </div>
       </div>
 
       <div id="img-side">
         <h1>{{asset?.Name ?? "Name is loading"}}</h1>
-        <p class="secondary-text">{{asset?.UserName?? "@Username"}}</p>
+        <p class="secondary-text">{{asset?.UserName ?? "@Username"}}</p>
 
         <div class="img-side-element info">
           <div class="info-box">
@@ -30,13 +28,17 @@
           <div class="info-box info-box-right">
             <p class="info-text">{{asset?.FileSize ?? "File size is loading"}}</p>
             <p class="info-text">{{asset?.CompatableEngineVer ?? "Version is loading"}}</p>
-            <p class="info-text">{{updatedAt?? "Date is loading"}}</p>
+            <p class="info-text">{{updatedAt ?? "Date is loading"}}</p>
           </div>
         </div>
         <div id="img-side-element overview">
           <h4>Overview</h4>
           <p> {{asset?.Description ?? "Overview is loading"}}</p>
-          <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+          <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+            justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
 
           </p>
         </div>
