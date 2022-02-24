@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Assets} from "../../../models";
-import {WebsiteStateService} from "../../services/website-state/website-state.service";
+import {Component, OnInit} from '@angular/core';
 import {APIService, GetAssetsQuery} from "../../API.service";
 import {ActivatedRoute} from "@angular/router";
 import {Storage} from "aws-amplify";
@@ -13,16 +11,21 @@ import {Storage} from "aws-amplify";
 export class AssetDetailsPageComponent implements OnInit {
   asset: GetAssetsQuery | undefined;
   assetImage: string = "assets/loading-bar.png";
+  imageLinks?: Array<string | null> | null;
+  updatedAt: string | undefined; // Nov 27, 2020
+  //imageNumber: number | undefined;
 
 
   constructor(private route: ActivatedRoute, private api: APIService) {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(prams=>{
-      this.api.GetAssets(prams['assetId']).then(asset=>{
+    this.route.queryParams.subscribe(prams => {
+      console.log(prams['assetId'] + "_______>>>>>>");
+      this.api.GetAssets(prams['assetId']).then(asset => {
         this.asset = asset;
-
+        let date = new Date(asset.updatedAt);
+        this.updatedAt = asset ? date.toLocaleString('default', {month: 'short'}) + " " + date.getDay() + ", " + date.getFullYear() : "";
 
         //FIXME: Will have to be done for all the images
         Storage.get( asset.id+ "/images/" + asset.Images![0] ?? "",
@@ -31,11 +34,22 @@ export class AssetDetailsPageComponent implements OnInit {
         }).catch(err=>{
           console.error(err);
         })
+
+        //
+        // asset.Images?.forEach(image =>
+        //   Storage.get(asset.id + "/images/" + asset.Images![0] ?? "",
+        //     {level: "protected", identityId: asset.UserId ?? ""}).then(link => {
+        //     console.log(link)
+        //     this.imageLinks?.push(link);
+        //   }).catch(err => {
+        //     console.error(err);
+        //   })
+        // )
       })
     })
   }
 
-  resetLink(): void{
+  resetLink(): void {
     this.assetImage = "assets/loading-bar.png"
   }
 

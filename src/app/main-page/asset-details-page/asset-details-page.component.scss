@@ -1,47 +1,126 @@
 
 #main {
-  background: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  margin: auto;
+  width: 95%;
+  min-width: 390px;
+  max-width: 1500px;
+}
+
+.container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-element {
+  padding: 50px 10px;
 }
 
 h1 {
-  text-align: center;
+  text-align: left;
   text-shadow: 2px 2px white;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
 }
 
-#fig{
-  margin: 5%;
+#fig {
+  display: flex;
+  flex-direction: column;
+}
+
+#img-side {
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.img-side-element {
+  padding: 15px 0px;
+}
+
+.info {
+  display: flex;
+}
+
+.info-box {
+  padding: 5px;
+}
+
+.info-box-right {
+  text-align: right;
+}
+
+.info-text {
+  white-space: nowrap;
+}
+
+#fig-container {
   display: flex;
   flex-direction: column;
 }
 
 #img {
+  min-width: 100%;
   max-width: 100%;
   display: block;
   height: auto;
-  margin: auto;
+  margin: 0 auto;
   border: 3px solid grey;
   width: 70%;
-  pandding:40px;
+  padding: 40px;
 }
 
-#img-caption{
-  padding: 20px;
-  text-align: center;
-  text-transform: uppercase;
+#overview {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #img-div {
   border: 3px solid grey;
   background: white;
-  padding: 10px;
-  width: 70%;
-  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
-h2{
-  text-align: center;
+
+h5 {
+  text-align: left;
 }
 
-h5{
-  text-align: center;
+.arrows {
+  display: flex;
+}
+
+.arrow-element {
+  padding: 5px;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }

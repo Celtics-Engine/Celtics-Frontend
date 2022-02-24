@@ -1,21 +1,49 @@
-<main id="main">
+<main id="main" xmlns="http://www.w3.org/1999/html">
   <div class="container">
 
-    <h1>{{asset?.Name ?? ""}}</h1>
+    <div class="page-element" id="img-div">
 
-    <div id="img-div">
-    <figure id="fig">
-    <img id="img" src="{{assetImage}}" (error)="resetLink()" height="500">
-      <figcaption id="img-caption"> {{asset?.Description ?? ""}}</figcaption>
-    </figure>
+      <div id="fig-container">
+<!--        <figure id="fig" *ngFor="let imageLink of imageLinks; let i = index">-->
+<!--          <p>{{i}} Something</p>-->
+<!--          <img id="img" src="{{imageLink}}" (error)="resetLink()" height="500">-->
+<!--        </figure>-->
+        <figure id="fig" >
+          <img id="img" src="{{assetImage}}" (error)="resetLink()" height="500">
+        </figure>
+
+        <div class="arrows">
+          <p class="arrow-element"><i class="arrow left"></i></p>
+          <p class="arrow-element"><i class="arrow right"></i></p>
+        </div>
+      </div>
+
+      <div id="img-side">
+        <h1>{{asset?.Name ?? "Name is loading"}}</h1>
+        <h5>{{asset?.UserName?? "@Username"}}</h5>
+
+        <div class="img-side-element info">
+          <div class="info-box">
+            <p class="info-text">File size</p>
+            <p class="info-text">Last version</p>
+            <p class="info-text">Latest release date</p>
+          </div>
+          <div class="info-box info-box-right">
+            <p class="info-text">{{asset?.FileSize ?? "File size is loading"}}</p>
+            <p class="info-text">{{asset?.CompatableEngineVer ?? "Version is loading"}}</p>
+            <p class="info-text">{{updatedAt?? "Date is loading"}}</p>
+          </div>
+        </div>
+        <div id="img-side-element overview">
+          <h4>Overview</h4>
+          <p> {{asset?.Description ?? "Overview is loading"}}</p>
+        </div>
+      </div>
+
     </div>
 
-    <h5>{{asset?.UserName}}</h5>
-    <h5>{{asset?.FileSize ?? ""}}</h5>
-    <h5>{{asset?.CompatableEngineVer ?? ""}}</h5>
-    <h5>{{asset?.updatedAt ?? ""}}</h5>
 
-</div>
+  </div>
 </main>
 
 
