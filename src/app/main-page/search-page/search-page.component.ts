@@ -41,7 +41,6 @@ export class SearchPageComponent implements OnInit {
       asset.items.forEach(asset=>{
         if (asset == null || asset._deleted)
           return;
-        }
 
         this.assets.push(asset);
       })
@@ -49,6 +48,7 @@ export class SearchPageComponent implements OnInit {
       this.loading = false;
     })
   }
+
 
   get searchTerm(): string {
     return this.searchForm.get("search")?.value;
