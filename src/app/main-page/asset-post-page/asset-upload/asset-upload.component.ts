@@ -37,7 +37,10 @@ export class AssetUploadComponent implements OnInit {
     if(this.file == undefined)
       return;
 
-    Storage.put(userPath + this.file.name, this.file, {level: 'protected'}).then(r => {
+    Storage.put(userPath + this.file.name, this.file, {
+      level: 'protected',
+      contentType: this.file.type
+    }).then(r => {
       console.log(r);
     }).catch(err => {
       console.log(err);
