@@ -32,19 +32,14 @@ export class AssetUploadComponent implements OnInit {
     this.file = undefined;
   }
 
-  //FIXME: Should return some kind of feedback of progress
-  uploadAssetToBucket(userPath: string): void {
+  async uploadAssetToBucket(userPath: string): Promise<string> {
     if(this.file == undefined)
-      return;
-
-    Storage.put(userPath + this.file.name, this.file, {
-      level: 'protected',
-      contentType: this.file.type
-    }).then(r => {
-      console.log(r);
-    }).catch(err => {
-      console.log(err);
-    })
+      return Promise.reject("File undefined");
+    try {
+      return Promise.resolve((await Storage.put(userPath + this.file.name, this.file, {level: 'protected', contentType: this.file.type})).key)
+    }catch (e) {
+      return Promise.reject(e)
+    }
   }
 
   get assetFileName(): string{
@@ -61,9 +56,8 @@ export class AssetUploadComponent implements OnInit {
   }
 
   get canUpload(): boolean{
-    this.fileNeeded = !this.file?.name != undefined
-
-   return !this.fileNeeded;
+    this.fileNeeded = this.file?.name == undefined;
+    return !this.fileNeeded;
   }
 
 }
