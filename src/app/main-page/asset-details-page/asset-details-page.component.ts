@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {APIService, GetAssetsQuery} from "../../API.service";
 import {ActivatedRoute} from "@angular/router";
 import {Storage} from "aws-amplify";
+import {WebsiteStateService} from "../../services/website-state/website-state.service";
 
 @Component({
   selector: 'app-asset-details-page',
