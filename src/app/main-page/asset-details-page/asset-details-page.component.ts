@@ -12,9 +12,9 @@ import {WebsiteStateService} from "../../services/website-state/website-state.se
 export class AssetDetailsPageComponent implements OnInit {
   asset: GetAssetsQuery | undefined;
   assetImage: string = "assets/loading-bar.png";
-  imageLinks?: Array<string | null> | null;
+  imageLinks: Array<string | null> = new Array<string | null>();
   updatedAt: string | undefined; // Nov 27, 2020
-  //imageNumber: number | undefined;
+  imageNumber: number = 1;
 
 
   constructor(private route: ActivatedRoute, private api: APIService) {
@@ -22,36 +22,30 @@ export class AssetDetailsPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(prams => {
-      console.log(prams['assetId'] + "_______>>>>>>");
       this.api.GetAssets(prams['assetId']).then(asset => {
         this.asset = asset;
         let date = new Date(asset.updatedAt);
         this.updatedAt = asset ? date.toLocaleString('default', {month: 'short'}) + " " + date.getDay() + ", " + date.getFullYear() : "";
 
-        //FIXME: Will have to be done for all the images
-        Storage.get( asset.id+ "/images/" + asset.Images![0] ?? "",
-          {level: "protected", identityId: asset.UserId ?? ""}).then(link=>{
-          this.assetImage = link;
-        }).catch(err=>{
-          console.error(err);
-        })
+        asset.Images?.forEach(image =>
+          Storage.get(asset.id + "/images/" + image ?? "",
+            {level: "protected", identityId: asset.UserId ?? ""}).then(link => {
+            this.imageLinks?.push(link);
+          }).catch(err => {
+            console.error(err);
+          })
+        );
 
-        //
-        // asset.Images?.forEach(image =>
-        //   Storage.get(asset.id + "/images/" + asset.Images![0] ?? "",
-        //     {level: "protected", identityId: asset.UserId ?? ""}).then(link => {
-        //     console.log(link)
-        //     this.imageLinks?.push(link);
-        //   }).catch(err => {
-        //     console.error(err);
-        //   })
-        // )
       })
     })
   }
 
   resetLink(): void {
     this.assetImage = "assets/loading-bar.png"
+  }
+
+  onClickImage(imageNumber: number): void {
+    if(imageNumber > 0 && imageNumber <= this.imageLinks.length) this.imageNumber = imageNumber;
   }
 
 }

@@ -15,6 +15,7 @@
   width: 80%;
   display: flex;
   flex-direction: column;
+  max-width: 1500px;
 }
 
 .page-element {
@@ -42,7 +43,8 @@ h1 {
   line-height: 1.5;
   display: flex;
   flex-direction: column;
-
+  padding: 0px 2%;
+  width: 30em;
 }
 
 .img-side-element {
@@ -54,7 +56,7 @@ h1 {
 }
 
 .info-box {
-  padding: 5px;
+  padding: 0em 1em 0em 0em;
 }
 
 .info-box-right {
@@ -68,6 +70,7 @@ h1 {
 #fig-container {
   display: flex;
   flex-direction: column;
+  width: 30em;
 }
 
 #img {
@@ -76,9 +79,7 @@ h1 {
   display: block;
   height: auto;
   margin: 0 auto;
-  border: 3px solid grey;
   width: 70%;
-  padding: 40px;
 }
 
 #overview {
@@ -88,16 +89,28 @@ h1 {
   align-items: flex-start;
 }
 
+
+
 #img-div {
+  min-height: 480px;
   border: 3px solid grey;
   background: white;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 
 h5 {
   text-align: left;
+}
+
+h4 {
+  margin: 0 0 10px 0;
+}
+
+.secondary-text{
+  color: #555555;
 }
 
 .arrows {
