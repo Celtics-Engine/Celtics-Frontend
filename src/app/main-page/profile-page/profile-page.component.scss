@@ -20,12 +20,11 @@
   align-items: center;
   padding: 1rem;
   margin: .5rem 0;
-  border: 3px solid #000;
+  border: 3px solid #627A8C;
   border-radius: 25px;
   box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
-  min-width: 250px;
-  min-height: 250px;
-  max-height: 500px;
+  min-width: 400px;
+  max-height: 700px;
 
   .card div {
     display: flex;
@@ -36,9 +35,9 @@
 h3 {
   font-size: 1rem;
   padding: 1rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  word-wrap: break-word;
+  color: #78ADB0;
+  text-shadow: 1px 1px #000000;
 }
 
 .tableCard {
@@ -47,16 +46,16 @@ h3 {
   text-align: center;
   padding: 1rem;
   margin: .5rem 0;
-  border: 3px solid #000;
+  border: 3px #627A8C solid;
   border-radius: 25px;
   box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
-  min-width: 300px;
-  min-height: 250px;
-  max-height: 500px;
+  min-width: 400px;
+  min-height: 500px;
+  max-height: 700px;
 
   .profileTable {
-    border-radius: 25px;
     width: 100%;
+    max-height: 350px;
     margin: 0 auto;
   }
 }
@@ -65,52 +64,76 @@ h3 {
 
 h1 {
   position: relative;
-  padding: 1rem;
+  padding: 1.7rem;
+  color: #78ADB0;
+  text-shadow: 2px 2px #000000;
   text-align: center;
 }
 
 img {
   margin: .5rem 0;
-  border: 3px black solid;
+  border: 3px #627A8C solid;
   border-radius: 50%;
   box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
 }
 
-tr, th, td {
+th, tr, td {
   font-size: 1rem;
   padding: .5rem;
   text-align: left;
 }
 
-td {
-  border: 3px black solid;
-  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
-}
 
 .asset-name {
+  font-weight: bold;
   width: 15rem;
+  background: none;
+  text-align: center;
+}
+
+tbody .asset-name {
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    color: #FFFFFF;
+  }
 }
 
 .asset-description {
   width: 50rem;
+  background: none;
 }
 
 tr:nth-child(even) {
-  background: #CCC;
+  color: #414a4c;
+  text-shadow: 1px 1px #000000;
+  background: #78ADB050;
 }
 
 tr:nth-child(odd) {
-  background: #FFF;
+  color: #78ADB0;
+  text-shadow: 1px 1px #000000;
+  background: #414a4c50;
 }
-table tbody {
-  height:300px;
+
+tbody {
+  height: auto;
   border-collapse: collapse;
   overflow-y:scroll;
   display:block;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 3px #627A8C solid;
+  border-radius: 25px;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
 }
 
 table thead {
   display:block;
+  border: 3px #627A8C solid;
+  border-radius: 25px;
+  box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
 }
 
 a {
@@ -133,6 +156,7 @@ a:hover {
   }
 
   .card {
+    min-width: 350px;
     flex-direction: column;
   }
 }
