@@ -23,7 +23,6 @@ export const MENU_OPTIONS: Option[] = [
     label: 'Profile',
     icon: faCalculator
   },
-
   {
     state: PageState.SEARCH,
     label: 'Search',
@@ -34,9 +33,4 @@ export const MENU_OPTIONS: Option[] = [
     label: 'Asset Post',
     icon: faChartPie
   },
-  {
-    state: PageState.ASSET_DETAILS,
-    label: 'Asset Details',
-    icon: faChartBar
-  }
 ];
