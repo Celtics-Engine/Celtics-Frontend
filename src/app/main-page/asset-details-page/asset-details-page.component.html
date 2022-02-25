@@ -42,7 +42,9 @@
           </p>
         </div>
         <button class="btn btn-primary" (click)="downloadAsset()">download</button>
-        <button class="btn btn-danger" (click)="removeAsset()">remove</button>
+
+        <button *ngIf="shown" class="btn btn-danger" (click)="removeAsset()">remove</button>
+
       </div>
     </div>
   </div>

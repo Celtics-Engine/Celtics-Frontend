@@ -15,12 +15,17 @@ export class AssetDetailsPageComponent implements OnInit {
   imageLinks: Array<string | null> = new Array<string | null>();
   updatedAt: string | undefined; // Nov 27, 2020
   imageNumber: number = 1;
+  shown: boolean = false;
+  private _user: string | undefined;
 
-  constructor(private route: ActivatedRoute, private api: APIService) {
-
+  constructor(private route: ActivatedRoute, private api: APIService, private websiteState: WebsiteStateService) {
   }
 
+
   ngOnInit() {
+    this.websiteState.username$.subscribe(state => {
+      this._user = state;
+    })
     this.route.queryParams.subscribe(prams => {
       this.api.GetAssets(prams['assetId']).then(asset => {
         this.asset = asset;
@@ -39,6 +44,8 @@ export class AssetDetailsPageComponent implements OnInit {
 
       })
     })
+
+    this.checkIfAssetBelongsToUser();
   }
 
   downloadAsset() {
@@ -93,4 +100,11 @@ export class AssetDetailsPageComponent implements OnInit {
     if(imageNumber > 0 && imageNumber <= this.imageLinks.length) this.imageNumber = imageNumber;
   }
 
+  checkIfAssetBelongsToUser() {
+    this.api.ListAssets({UserName: {eq: this._user}}).then(asset => {
+      asset.items = asset.items.filter(item => item!.id === this.assetId());
+      this.shown = asset.items.length > 0;
+    })
+  }
 }
+
