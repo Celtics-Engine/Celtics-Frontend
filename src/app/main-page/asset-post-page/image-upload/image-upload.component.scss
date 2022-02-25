@@ -11,7 +11,7 @@
   text-decoration: none;
   background-color: rgb(92 92 92);
   color: rgb(255 255 255);
-  padding: 2px 6px 2px 6px;
+  padding: 2px 6px;
   border-top: 1px solid #CCCCCC;
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
@@ -66,10 +66,10 @@
   }
 }
 
-.imageboxarea {
-  display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
+//.imageboxarea {
+//  display: flex;
+//  flex-flow: row wrap;
+//  align-content: flex-start;
+//  flex-direction: row;
+//  justify-content: space-evenly;
+//}

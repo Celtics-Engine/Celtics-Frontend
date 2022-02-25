@@ -8,24 +8,33 @@
 
 .btn {
   display: inline-block;
-  background: darkslategrey;
   cursor: pointer;
-  color: #d2ea94;
+  color: #FFFFFF;
   padding: .345rem;
   margin: .3rem;
-  border-radius: 5px;
+  border-radius: 25px;
   font-size: 18px;
   text-transform: uppercase;
-  box-shadow: 2px 2px rgba(210, 234, 148, .7);
+  text-shadow: .5px .5px #000000;
+  background: #78ADB0;
+  border:  3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+}
+
+.btn:hover {
+  background: #FFFFFF;
+  color: #78ADB0;
+  text-shadow: .5px .5px #000000;
+  border:  3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
 }
 
 h4 {
-  color: #d2ea94;
+  color: #627A8C;
   font-size: 1.5rem;
   cursor: pointer;
   padding: .9rem 0 .9rem .9rem;
   z-index: 5;
-  //word-wrap: break-word;
 }
 
 #nav-bar-dropdown-menu {
@@ -36,7 +45,7 @@ h4 {
     float: right;
     width: calc(60px / #{$size});
     height: calc(45px / #{$size});
-    margin: 1.3rem 1rem 1rem 1.3rem;
+    margin: 1.4rem;
     transform: rotate(0deg);
     -webkit-transition: .9s ease-in-out;
     -moz-transition: .5s ease-in-out;
@@ -49,7 +58,7 @@ h4 {
       position: absolute;
       height: calc(9px / #{$size});;
       width: 100%;
-      background: #d2ea94;
+      background: #627A8C;
       border-radius: calc(9px / #{$size});;
       opacity: 1;
     }
@@ -100,6 +109,5 @@ h4 {
     justify-content: flex-end;
     top: 5px;
     width: 100%;
-    padding: 1px;
   }
 }
