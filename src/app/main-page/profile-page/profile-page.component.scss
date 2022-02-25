@@ -39,6 +39,7 @@ h3 {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: #78ADB0
 }
 
 .tableCard {
@@ -91,10 +92,12 @@ td {
 
 .asset-name {
   width: 15rem;
+  background: #c7c5c5;
 }
 
 .asset-description {
   width: 50rem;
+  background: #c7c5c5;
 }
 
 tr:nth-child(even) {
