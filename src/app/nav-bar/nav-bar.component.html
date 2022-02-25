@@ -1,4 +1,28 @@
-<div id="Nav-Bar">
-  <app-drop-menu>
-  </app-drop-menu>
-</div>
+
+<nav class="navbar">
+  <div id="navbar-icon" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <h1>{{title}}</h1>
+  <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
+    <ul>
+      <ng-template [ngIf]="loggedin" [ngIfElse]="loggedout">
+      <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
+        <a *ngIf="option.state != pageState.LOGIN">{{ option.label + " "}}
+          <fa-icon [icon]="option.icon"></fa-icon>
+        </a>
+      </li>
+      </ng-template>
+      <ng-template #loggedout>
+        <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
+          <a *ngIf="option.state != pageState.LOGIN">{{ option.label + " "}}
+            <fa-icon [icon]="option.icon"></fa-icon>
+          </a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

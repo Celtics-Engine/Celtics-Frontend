@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Storage} from "aws-amplify";
 import {GetAssetsQuery} from "../../../API.service";
-import {Option} from "../../../nav-bar/drop-menu/Option";
+import {Option} from "../../../nav-bar/Option";
 import {PageState} from "../../../types/page-state";
 import {WebsiteStateService} from "../../../services/website-state/website-state.service";
 

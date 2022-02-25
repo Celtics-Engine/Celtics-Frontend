@@ -1,5 +1,5 @@
 
-import { PageState } from "../../types/page-state";
+import { PageState } from "../types/page-state";
 import {IconDefinition} from '@fortawesome/free-solid-svg-icons';
 
 export interface Option {

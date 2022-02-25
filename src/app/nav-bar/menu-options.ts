@@ -1,5 +1,5 @@
 import {Option} from './Option';
-import {PageState} from "../../types/page-state";
+import {PageState} from "../types/page-state";
 import {faCaretSquareDown, faCaretSquareUp} from '@fortawesome/free-solid-svg-icons';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
