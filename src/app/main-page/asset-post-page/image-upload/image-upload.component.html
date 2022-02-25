@@ -5,8 +5,8 @@
 </form>
 
 <div *ngFor="let image of images;">
-  <div >
-    <img [src]="image.url" alt="">
+  <div class="image-div">
     <button (click)="removeImageFromList(image.file)"><fa-icon [icon]="removeFileIcon"></fa-icon></button>
+    <img [src]="image.url" alt="">
   </div>
 </div>
