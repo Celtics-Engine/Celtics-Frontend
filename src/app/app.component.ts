@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
           Auth.currentUserCredentials().then(user=>{
             this.websiteState.userIdState(user.identityId)
           })
+          this.websiteState.changeWebsiteState(PageState.PROFILE);
           console.log('user signed in');
           break;
         case 'signUp':
