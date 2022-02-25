@@ -1,5 +1,5 @@
 <form>
-  <label for="ImageUploads" class="btn">UploadImages</label>
+  <label for="ImageUploads" class="btn">Upload Image</label>
   <input #imageInput type="file" id="ImageUploads" class="file-upload" (change)="addImage($event)" accept="image/*">
   <p *ngIf="fileNeeded" id="image-file-error">* File needed for upload</p>
 </form>
