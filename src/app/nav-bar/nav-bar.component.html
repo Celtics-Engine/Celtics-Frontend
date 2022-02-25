@@ -1,13 +1,7 @@
 
 <nav class="navbar">
-  <div id="navbar-icon" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
   <h1>{{title}}</h1>
-  <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
+  <div id="nav-dropdown-menu-options" [className]="shown == false ? 'shown' : 'open'" (click)="toggleMenu()">
     <ul>
       <ng-template [ngIf]="loggedin" [ngIfElse]="loggedout">
       <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
