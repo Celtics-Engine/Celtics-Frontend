@@ -6,16 +6,18 @@
       <textarea id="Description-Input" formControlName="description" placeholder="Description of asset"></textarea>
 
       <ng-container formArrayName="engineVer">
-        <div class="flex-container" *ngFor="let engine of engineVer; let i = index">
-          <input type="checkbox" id="{{'engine' + i}}" [formControlName]="i">
-          <label for="{{'engine' + i}}">{{engineStrings[i]}}</label>
+        <div class="flex-container">
+          <div *ngFor="let engine of engineVer; let i = index">
+            <input type="checkbox" id="{{'engine' + i}}" [formControlName]="i">
+            <label for="{{'engine' + i}}">{{engineStrings[i]}}</label>
+          </div>
         </div>
       </ng-container>
       <div class="button-container">
         <app-image-upload></app-image-upload>
         <app-asset-upload></app-asset-upload>
       </div>
-      <button  type="button" (click)="postAsset()">Submit</button>
+      <button type="button" (click)="postAsset()">Submit</button>
     </form>
     <h3 *ngIf="uploading">Asset Uploading... (Please wait for redirect)</h3>
   </div>

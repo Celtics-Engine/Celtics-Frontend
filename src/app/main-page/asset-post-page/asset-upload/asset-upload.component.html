@@ -1,13 +1,11 @@
 <div class="tableCard">
   <form>
     <div class="inline">
-      <label for="files" class="btn">Upload asset zip</label>
+      <label for="files" class="btn">Upload Asset Zip</label>
       <input id="files" type="file" class="file-upload" (change)="addAsset($event)"
              accept="application/zip">
       <td class="inline">{{file?.name}}</td>
-      <p *ngIf="fileNeeded" id="asset-file-error">* File needed for upload</p>
-
-
+      <p *ngIf="fileNeeded" id="asset-file-error">* File Needed For Upload</p>
     </div>
   </form>
 </div>

@@ -50,9 +50,11 @@ body {
 }
 
 .amplify-button[data-variation=primary] {
+  cursor: pointer;
   border-radius: 25px;
   background: #78ADB0;
   text-shadow: .5px .5px #000000;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
   border:  3px #627A8C solid;
 }
 
