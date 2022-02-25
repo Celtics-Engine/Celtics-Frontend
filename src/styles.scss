@@ -47,11 +47,6 @@ body {
 
 .amplify-button:hover {
   background: none;
-  color: #78ADB0;
-}
-
-amplify-button:focus .amplify-select:focus {
-  box-shadow: none;
 }
 
 .amplify-button[data-variation=primary] {
@@ -66,4 +61,8 @@ amplify-button:focus .amplify-select:focus {
   color: #78ADB0;
   text-shadow: .5px .5px #000000;
   border:  3px #627A8C solid;
+}
+
+.amplify-icon {
+  color: #78ADB0;
 }

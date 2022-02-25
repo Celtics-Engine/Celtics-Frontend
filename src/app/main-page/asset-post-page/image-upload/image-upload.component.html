@@ -2,18 +2,11 @@
   <label for="ImageUploads" class="btn">UploadImages</label>
   <input #imageInput type="file" id="ImageUploads" class="file-upload" (change)="addImage($event)" accept="image/*">
   <p *ngIf="fileNeeded" id="image-file-error">* File needed for upload</p>
-
 </form>
 
-<div *ngFor="let image of images;" class="imageboxarea">
-  <div class="imagebox">
+<div *ngFor="let image of images;">
+  <div >
     <img [src]="image.url" alt="">
     <button (click)="removeImageFromList(image.file)"><fa-icon [icon]="removeFileIcon"></fa-icon></button>
-<!--
-    <span class="badge">{{image.file.name}}</span>
--->
   </div>
 </div>
-
-
-
