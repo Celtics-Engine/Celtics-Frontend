@@ -9,27 +9,24 @@
 
 
 .btn {
-  text-decoration: none;
-  background-color: rgb(92 92 92);
-  color: rgb(255 255 255);
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
-  border-radius: 5px;
+  padding: .3rem .8rem;
+  color: #627A8C;
+  cursor: pointer;
+  border-radius: 25px;
+  background: #78ADB0;
+  text-shadow: .5px .5px #000000;
+  border:  3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
 
   &:hover{
-    background-color: #EEEEEE;
-    color: #333333;
-  }
-
-  &:active{
-    background-color: rgb(92 92 92);
-    color: rgb(255 255 255);
+    background: #FFFFFF;
+    color: #627A8C;
+    text-shadow: .5px .5px #000000;
+    box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+    border:  3px #627A8C solid;
   }
 }
 
 .inline {
- display: inline;
+  display: inline;
 }

@@ -1,10 +1,9 @@
-
 #main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 1rem;
+  padding:0 1rem 1rem;
   margin: auto;
   width: 95%;
   min-width: 390px;
@@ -23,8 +22,17 @@
 }
 
 h1 {
+  text-align: center;
+  padding: 1.7rem;
+  color: #78ADB0;
+  text-shadow: 2px 2px #000000;
+
+}
+
+h3 {
+  color: #78ADB0;
   text-align: left;
-  text-shadow: 2px 2px white;
+  text-shadow: 2px 2px black;
   font-size: 22px;
   font-weight: 700;
   line-height: 1.2;
@@ -80,8 +88,8 @@ h1 {
   border-radius: 10px;
   padding: 0 7px;
   font-size: 12px;
-  color: #fff;
-  background-color: rgba(0,0,0,.5);
+  color: #78ADB0;
+  background-color: #627A8C;
   width: 55px;
   text-align: center;
   margin: 10px 10px;
@@ -90,6 +98,9 @@ h1 {
 #img {
   min-width: 100%;
   max-width: 100%;
+  border: 3px #627A8C solid;
+  border-radius: 25px;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
   display: block;
   height: auto;
   margin: 0 auto;
@@ -103,17 +114,15 @@ h1 {
   align-items: flex-start;
 }
 
-
-
 #img-div {
   min-height: 480px;
-  border: 3px solid grey;
-  background: white;
+  border: 3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+  border-radius: 25px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 
 h5 {
   text-align: left;
@@ -121,10 +130,28 @@ h5 {
 
 h4 {
   margin: 0 0 10px 0;
+  color: #78ADB0;
+  text-shadow: .5px .5px #000000;
+}
+
+.btn {
+  border-radius: 25px;
+  background: #78ADB0;
+  text-shadow: .5px .5px #000000;
+  border:  3px #627A8C solid;
+  margin: 2rem 0 0;
+  padding: .3rem 0;
+
+  &:hover {
+    background: #FFFFFF;
+    color: #78ADB0;
+    text-shadow: .5px .5px #000000;
+    border:  3px #627A8C solid;
+  }
 }
 
 .secondary-text{
-  color: #555555;
+  color: #FFFFFF;
 }
 
 .arrows {
@@ -132,20 +159,16 @@ h4 {
   margin: auto;
 }
 
-
 .arrow-element {
-  padding: 5px;
+  padding: 6px;
   cursor: pointer;
 }
 
 .arrow {
-  border: solid rgba(133, 66, 66, 0.5);
+  border: #627A8C solid;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
-  &:hover {
-    //border: solid rgba(0, 0, 0, 0.5);
-  }
 }
 
 .right {
@@ -156,4 +179,9 @@ h4 {
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
+}
+
+p {
+  color: #78ADB0;
+  text-shadow: .5px .5px black;
 }

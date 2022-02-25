@@ -1,8 +1,8 @@
 <main id="main" xmlns="http://www.w3.org/1999/html">
   <div class="container">
+    <h1>Asset Details</h1>
 
     <div class="page-element" id="img-div">
-
       <div id="fig-container">
         <div id="fig" *ngFor="let imageLink of imageLinks; let i = index">
           <img id="img" src="{{imageLink}}" (error)="resetLink()" height="500" *ngIf="((i + 1) == imageNumber)">
@@ -16,7 +16,7 @@
       </div>
 
       <div id="img-side">
-        <h1>{{asset?.Name ?? "Name is loading"}}</h1>
+        <h3>{{asset?.Name ?? "Name is loading"}}</h3>
         <p class="secondary-text">{{asset?.UserName ?? "@Username"}}</p>
 
         <div class="img-side-element info">
@@ -41,10 +41,8 @@
             justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
           </p>
         </div>
-        <button class="btn btn-primary" (click)="downloadAsset()">download</button>
-
+        <button class="btn" (click)="downloadAsset()">download</button>
         <button *ngIf="shown" class="btn btn-danger" (click)="removeAsset()">remove</button>
-
       </div>
     </div>
   </div>
