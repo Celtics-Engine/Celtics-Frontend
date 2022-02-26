@@ -4,6 +4,7 @@ import {PageState} from "../types/page-state";
 import {Option} from "./Option";
 import {MENU_OPTIONS} from "./menu-options";
 import {Auth} from "aws-amplify";
+import {Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-nav-bar',
@@ -26,6 +27,7 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.filterMenuOptions();
   }
 
   toggleMenu() {
@@ -33,8 +35,7 @@ export class NavBarComponent implements OnInit {
   }
 
   onClickOption(option: Option): void {
-    if(option.state == PageState.LOGOUT){
-      this.filterMenuOptions();
+    if(option.state == PageState.LOGOUT) {
       Auth.signOut().catch(err=>{
         console.log(err);
       })
