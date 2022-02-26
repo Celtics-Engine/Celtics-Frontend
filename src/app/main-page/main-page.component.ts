@@ -3,6 +3,7 @@ import {PageState} from "../types/page-state";
 import {WebsiteStateService} from "../services/website-state/website-state.service";
 
 
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -21,7 +22,6 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(PageState[this.state])
-
   }
 
 

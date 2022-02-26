@@ -12,6 +12,7 @@ import {Auth} from "aws-amplify";
 })
 export class NavBarComponent implements OnInit {
   menuOpts: Option[] = MENU_OPTIONS
+  menuOptsLoggedOut: Option[] = MENU_OPTIONS
   pageState = PageState;
   shown: boolean = true;
   loggedin: boolean = false;
@@ -33,12 +34,18 @@ export class NavBarComponent implements OnInit {
 
   onClickOption(option: Option): void {
     if(option.state == PageState.LOGOUT){
+      this.filterMenuOptions();
       Auth.signOut().catch(err=>{
         console.log(err);
       })
     } else {
       this.websiteState.changeWebsiteState(option.state);
     }
+  }
+
+  filterMenuOptions() {
+    this.menuOptsLoggedOut = this.menuOpts.filter(value => value === MENU_OPTIONS[0]);
+    this.menuOptsLoggedOut.push(MENU_OPTIONS[2])
   }
 
 }

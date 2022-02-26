@@ -13,7 +13,7 @@
       </li>
       </ng-template>
       <ng-template #loggedout>
-        <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
+        <li *ngFor="let option of menuOptsLoggedOut" (click)="onClickOption(option)">
           <a *ngIf="option.state != pageState.LOGOUT">
             <fa-icon [icon]="option.icon"></fa-icon>
             {{ option.label + " "}}
