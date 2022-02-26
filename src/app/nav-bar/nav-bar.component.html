@@ -1,10 +1,11 @@
 
 <nav class="navbar">
   <h1>{{title}}</h1>
-  <div id="nav-dropdown-menu-options" [className]="shown == false ? 'shown' : 'open'" (click)="toggleMenu()">
+  <!--  <a><img src="/src/assets/CelticsAssetManagementThumbnail.png" alt=""></a>-->
+  <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
     <ul>
       <ng-template [ngIf]="loggedin" [ngIfElse]="loggedout">
-      <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
+        <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
         <a *ngIf="option.state != pageState.LOGIN">{{ option.label + " "}}
           <fa-icon [icon]="option.icon"></fa-icon>
         </a>
@@ -12,7 +13,7 @@
       </ng-template>
       <ng-template #loggedout>
         <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
-          <a *ngIf="option.state != pageState.LOGIN">{{ option.label + " "}}
+          <a *ngIf="option.state != pageState.LOGOUT">{{ option.label + " "}}
             <fa-icon [icon]="option.icon"></fa-icon>
           </a>
         </li>

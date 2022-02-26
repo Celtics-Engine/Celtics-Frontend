@@ -5,6 +5,11 @@
   top: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+
+  img {
+
+  }
 
   h1 {
     position: fixed;
@@ -39,15 +44,15 @@
       }
     }
   }
-
-  //#nav-dropdown-menu-options {
-  //  display: contents;
-  //  &.open {
-  //    display: none;
-  //    position: relative;
-  //  }
-  //}
 }
+
+//#nav-dropdown-menu-options {
+//  display: contents;
+//  &.open {
+//    display: none;
+//    position: relative;
+//  }
+//}
 
 //.navbar {
 //
