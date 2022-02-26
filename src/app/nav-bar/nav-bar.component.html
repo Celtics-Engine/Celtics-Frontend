@@ -6,15 +6,17 @@
     <ul>
       <ng-template [ngIf]="loggedin" [ngIfElse]="loggedout">
         <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
-        <a *ngIf="option.state != pageState.LOGIN">{{ option.label + " "}}
+        <a *ngIf="option.state != pageState.LOGIN">
           <fa-icon [icon]="option.icon"></fa-icon>
+          {{ option.label + " "}}
         </a>
       </li>
       </ng-template>
       <ng-template #loggedout>
         <li *ngFor="let option of menuOpts" (click)="onClickOption(option)">
-          <a *ngIf="option.state != pageState.LOGOUT">{{ option.label + " "}}
+          <a *ngIf="option.state != pageState.LOGOUT">
             <fa-icon [icon]="option.icon"></fa-icon>
+            {{ option.label + " "}}
           </a>
         </li>
       </ng-template>
