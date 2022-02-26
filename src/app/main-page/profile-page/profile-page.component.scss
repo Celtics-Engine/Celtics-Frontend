@@ -38,6 +38,10 @@ h3 {
   word-wrap: break-word;
   color: #78ADB0;
   text-shadow: 1px 1px #000000;
+  span {
+    font-size: 1.5rem;
+    text-shadow: 2px 2px #000000;
+  }
 }
 
 .tableCard {
@@ -87,7 +91,6 @@ th, tr, td {
 .asset-name {
   font-weight: bold;
   width: 15rem;
-  background: none;
   text-align: center;
 }
 
@@ -102,37 +105,41 @@ tbody .asset-name {
 
 .asset-description {
   width: 50rem;
-  background: none;
 }
 
-tr:nth-child(even) {
-  color: #414a4c;
-  text-shadow: 1px 1px #000000;
-  background: #78ADB050;
-}
+tr {
+  border-radius: 25px;
 
-tr:nth-child(odd) {
-  color: #78ADB0;
-  text-shadow: 1px 1px #000000;
-  background: #414a4c50;
+  &:nth-child(even) {
+    color: #414a4c;
+    text-shadow: .5px .5px #000000;
+    background: #78ADB070;
+  }
+
+  &:nth-child(odd) {
+    color: #78ADB0;
+    text-shadow: .5px .5px #000000;
+    background: #414a4c70;
+  }
 }
 
 tbody {
   height: auto;
   border-collapse: collapse;
-  overflow-y:scroll;
+  overflow-y: scroll;
   display:block;
   margin: 1rem 0;
-  padding: 1rem;
   border: 3px #627A8C solid;
   border-radius: 25px;
   box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
 }
 
-table thead {
+thead {
   display:block;
-  border: 3px #627A8C solid;
+  border-collapse: collapse;
+  overflow: hidden;
   border-radius: 25px;
+  border: 3px #627A8C solid;
   box-shadow: 3px 3px 8px 0px rgba(0,0,0,0.3);
 }
 
