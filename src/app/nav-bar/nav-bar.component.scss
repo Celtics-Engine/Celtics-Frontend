@@ -1,45 +1,53 @@
 .navbar {
-
   cursor: default;
   position: fixed;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   top: 0;
+  height: 6.5rem;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #78ADB0;
   z-index: 1;
 
   img {
-
-  }
-
-  h1 {
+    width: 260px;
+    height: 100px;
+    cursor: pointer;
     position: fixed;
-    display: inherit;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #fce689;
-    margin: 0;
+    z-index: 2;
   }
+
   ul {
+    display: inline-block;
     position: relative;
-    float: right;
-    display: flex;
-    justify-content: center;
-    margin-left: 1em;
+    margin: -7px 0;
+    width: 100%;
+    border-bottom: 3px #627A8C solid;
+
     li {
-      display: inline;
+      float: right;
+      display: inline-block;
+      margin: 0 .3rem;
+
       a {
-        background-color: inherit;
-        float: left;
         text-decoration: none;
-        color: #ffe7d0;
-        padding: 10.5px 11px;
+        color: #26292a;
+        padding: .5rem .5rem .3rem;
+        background-color: #627A8C;
+        border-radius: 10px 10px 0 0;
+        text-shadow: .5px .5px #78ADB0;
+        cursor: pointer;
+        font-weight: bold;
+
         &:hover {
-          cursor: pointer;
-          background-color: #62a466;
+          background-color: #627A8C95;
+          border-radius: 10px 10px 0 0;
         }
-      }
-      .current {
-        background-color: #5FD367;
+
+        fa-icon {
+          color: #26292a;
+        }
       }
     }
   }
