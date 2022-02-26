@@ -4,7 +4,6 @@ import {PageState} from "../types/page-state";
 import {Option} from "./Option";
 import {MENU_OPTIONS} from "./menu-options";
 import {Auth} from "aws-amplify";
-import {Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-nav-bar',
