@@ -38,6 +38,7 @@ h3 {
   word-wrap: break-word;
   color: #78ADB0;
   text-shadow: 1px 1px #000000;
+
   span {
     font-size: 1.5rem;
     text-shadow: 2px 2px #000000;
@@ -67,8 +68,7 @@ h3 {
 
 
 h1 {
-  position: relative;
-  padding: 1.7rem;
+  padding: 1.7rem 0 .7rem;
   color: #78ADB0;
   text-shadow: 2px 2px #000000;
   text-align: center;
@@ -85,6 +85,8 @@ th, tr, td {
   font-size: 1rem;
   padding: .5rem;
   text-align: left;
+  overflow-y: hidden;
+
 }
 
 

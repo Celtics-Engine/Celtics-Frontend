@@ -1,7 +1,5 @@
-
 <nav class="navbar">
-  <h1>{{title}}</h1>
-  <!--  <a><img src="/src/assets/CelticsAssetManagementThumbnail.png" alt=""></a>-->
+  <a href="/"><img src="/assets/CelticsAssetManagement.png" alt=""></a>
   <div id="nav-dropdown-menu-options" [className]="shown ? 'shown' : 'open'" (click)="toggleMenu()">
     <ul>
       <ng-template [ngIf]="loggedin" [ngIfElse]="loggedout">
