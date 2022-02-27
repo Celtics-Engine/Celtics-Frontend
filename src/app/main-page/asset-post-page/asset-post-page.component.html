@@ -2,8 +2,14 @@
   <h1>Asset Posts</h1>
   <div id="asset-post" class="container">
     <form id="asset-post-form" [formGroup]="assetForm">
-      <input id="Name-Input" type="text" value="Name" formControlName="name" placeholder="Name of asset">
-      <textarea id="Description-Input" formControlName="description" placeholder="Description of asset"></textarea>
+        <input id="Name-Input" type="text" value="Name" formControlName="name" placeholder="Name of asset" (change)="inputNameIsEmpty()">
+      <div>
+        <p *ngIf="inputDefined == false" id="name-error">* Name needed</p>
+      </div>
+        <textarea id="Description-Input" formControlName="description" placeholder="Description of asset" (change)="descriptionIsEmpty()"></textarea>
+      <div>
+        <p *ngIf="descriptionDefined == false" id="description-error">* Description needed</p>
+      </div>
 
       <ng-container formArrayName="engineVer">
         <div class="flex-container">

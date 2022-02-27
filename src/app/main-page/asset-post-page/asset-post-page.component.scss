@@ -32,6 +32,16 @@ app-image-upload {
   width: 40%;
 }
 
+#name-error{
+  color: red;
+  margin: 0rem 1rem;
+}
+
+#description-error{
+  color: red;
+  margin: 0rem 1rem;
+}
+
 #Name-Input{
   border: 3px #627A8C solid;
   box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);

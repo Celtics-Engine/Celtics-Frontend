@@ -26,6 +26,8 @@ export class AssetPostPageComponent implements OnInit {
   userId: string = "";
   loggedIn: boolean = false;
   uploading: boolean = false;
+  inputDefined: boolean | undefined = undefined;
+  descriptionDefined: boolean | undefined = undefined;
 
   constructor(private api: APIService,private fb: FormBuilder, private websiteState: WebsiteStateService,private route: ActivatedRoute,private router: Router) {
     websiteState.username$.subscribe(user=>{
@@ -49,10 +51,37 @@ export class AssetPostPageComponent implements OnInit {
 
   }
 
+  inputNameIsEmpty(): boolean {
+    if (this.assetForm.get("name")?.value == "") {
+      this.inputDefined = false;
+      return true;
+    }
+    this.inputDefined = true;
+    return false;
+  }
+
+  descriptionIsEmpty(): boolean {
+    if (this.assetForm.get("description")?.value == "") {
+      this.descriptionDefined = false;
+      return true;
+    }
+    this.descriptionDefined = true;
+    return false;
+  }
+
+
   postAsset(): void{
 
     if (this.assetUpload == undefined || this.imageUpload == undefined || !this.loggedIn)
       return;
+
+    if (this.inputNameIsEmpty()) {
+      return;
+    }
+
+    if (this.descriptionIsEmpty()) {
+      return;
+    }
 
     let bool1 = !this.imageUpload.canUpload;
     let bool2 = !this.assetUpload.canUpload
@@ -84,6 +113,7 @@ export class AssetPostPageComponent implements OnInit {
       console.log(err)
     })
   }
+
 
   assetDetails(assetId: string): void{
     const queryParams: Params = { assetId: assetId };
