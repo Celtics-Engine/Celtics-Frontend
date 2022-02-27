@@ -17,13 +17,13 @@ export class SearchPageComponent implements OnInit {
   noAssets: boolean = false;
   loading: boolean = false;
 
-  constructor(private websiteState: WebsiteStateService, private api: APIService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
+  constructor(private websiteState: WebsiteStateService, private api: APIService,
+              private fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
   }
 
   searchForm = this.fb.group({
     search: [""]
   })
-
 
   ngOnInit(): void {
     this.reloadAssets();

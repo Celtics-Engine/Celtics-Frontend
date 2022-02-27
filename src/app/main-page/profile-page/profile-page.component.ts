@@ -13,8 +13,8 @@ import {PageState} from "../../types/page-state";
 export class ProfilePageComponent implements OnInit {
   private _user = "";
   private _loggedIn = false;
-  assets: Array<{
-    __typename: "Assets";
+
+  userAssets!: ({ __typename: "Assets";
     id: string;
     Name?: string | null;
     Description?: string | null;
@@ -29,10 +29,12 @@ export class ProfilePageComponent implements OnInit {
     _version: number;
     _deleted?: boolean | null;
     _lastChangedAt: number;
-    owner?: string | null;
-  }> = [];
+    owner?: string | null } | null)[];
 
-  constructor(private websiteState: WebsiteStateService, private api: APIService, private router: Router, private route: ActivatedRoute) {
+  length!: number;
+
+  constructor(private websiteState: WebsiteStateService, private api: APIService,
+              private router: Router, private route: ActivatedRoute) {
     websiteState.loggedIn$.subscribe(state => {
       this._loggedIn = state;
     })
@@ -42,13 +44,9 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.api.ListAssets({UserName: {eq: this.user}}).then(asset=>{
-      asset.items.forEach(asset=>{
-        if (asset == null || asset.owner != this.user)
-          return;
-
-        this.assets.push(asset);
-      })
+    this.api.ListAssets({UserName: {eq: this._user}}).then(asset => {
+      this.userAssets = asset.items.filter(a => a!.owner == this._user).filter(a => a!._deleted == null);
+      this.length = this.userAssets.length;
     })
   }
 

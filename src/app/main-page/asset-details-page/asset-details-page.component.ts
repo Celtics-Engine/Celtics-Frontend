@@ -51,7 +51,7 @@ export class AssetDetailsPageComponent implements OnInit {
   downloadAsset() {
     Storage.get( this.assetId() + "/" + this.assetFile(),
       {level: "protected",
-        identityId: this.assetUserId() ?? "",
+        identityId: this.assetUserId(),
         download: true}).then(link=>{
       console.log(link);
       let url = window.URL.createObjectURL(link.Body as Blob);
@@ -59,13 +59,14 @@ export class AssetDetailsPageComponent implements OnInit {
       document.body.appendChild(a);
       a.setAttribute("style", "display: none");
       a.href = url;
-      a.download = this.asset?.AssetFile ?? "";
+      a.download = this.assetFile();
       a.click();
       window.URL.revokeObjectURL(url);
       a.remove();
     })
   }
 
+  // TODO: add an indicator that asset is deleted and maybe a progress bar if it takes a second to accomplish
   removeAsset() {
     Storage.remove(this.assetId() + "/" + this.assetFile(), {level: 'protected'}).then(value => {
       console.log("removing asset: " + value)
