@@ -4,7 +4,9 @@
       <label for="files" class="btn">Upload asset zip</label>
       <input id="files" type="file" class="file-upload" (click)="(resetInputValue($event))" (change)="addAsset($event)"
              accept="application/zip">
-      <p *ngIf="fileNeeded" id="asset-file-error">* File needed for upload</p>
+      <div *ngIf="file == undefined">
+        <p *ngIf="fileNeeded" id="asset-file-error">* File needed for upload</p>
+      </div>
     </div>
   </form>
 
