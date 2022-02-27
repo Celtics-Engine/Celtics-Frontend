@@ -14,11 +14,14 @@
       <ng-container formArrayName="engineVer">
         <div class="flex-container">
           <div *ngFor="let engine of engineVer; let i = index">
-            <input type="checkbox" id="{{'engine' + i}}" [formControlName]="i">
+            <input type="checkbox" id="{{'engine' + i}}" [formControlName]="i" (change)="engineVerIsMarked()">
             <label for="{{'engine' + i}}">{{engineStrings[i]}}</label>
           </div>
         </div>
       </ng-container>
+      <div>
+        <p *ngIf="engineVerDefined == false" id="engineVer-error">* Mark engineVer needed</p>
+      </div>
       <div class="button-container">
         <app-image-upload></app-image-upload>
         <app-asset-upload></app-asset-upload>

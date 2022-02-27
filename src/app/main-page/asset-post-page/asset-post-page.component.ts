@@ -16,10 +16,10 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 })
 export class AssetPostPageComponent implements OnInit {
   @ViewChild(ImageUploadComponent, {static: true})
-  imageUpload : ImageUploadComponent | undefined;
+  imageUpload: ImageUploadComponent | undefined;
 
   @ViewChild(AssetUploadComponent, {static: true})
-  assetUpload : AssetUploadComponent | undefined;
+  assetUpload: AssetUploadComponent | undefined;
 
   engineStrings: Array<string> = Object.values(EngineVersions);
   username: string = "";
@@ -28,15 +28,16 @@ export class AssetPostPageComponent implements OnInit {
   uploading: boolean = false;
   inputDefined: boolean | undefined = undefined;
   descriptionDefined: boolean | undefined = undefined;
+  engineVerDefined: boolean | undefined = undefined;
 
-  constructor(private api: APIService,private fb: FormBuilder, private websiteState: WebsiteStateService,private route: ActivatedRoute,private router: Router) {
-    websiteState.username$.subscribe(user=>{
+  constructor(private api: APIService, private fb: FormBuilder, private websiteState: WebsiteStateService, private route: ActivatedRoute, private router: Router) {
+    websiteState.username$.subscribe(user => {
       this.username = user;
     })
-    websiteState.userId$.subscribe(userId=>{
+    websiteState.userId$.subscribe(userId => {
       this.userId = userId;
     })
-    websiteState.loggedIn$.subscribe(loggedIn=>{
+    websiteState.loggedIn$.subscribe(loggedIn => {
       this.loggedIn = loggedIn;
     })
   }
@@ -44,7 +45,7 @@ export class AssetPostPageComponent implements OnInit {
   assetForm = this.fb.group({
     name: ["", [Validators.required]],
     description: [""],
-    engineVer:this.fb.array(this.engineVer)
+    engineVer: this.fb.array(this.engineVer)
   })
 
   ngOnInit(): void {
@@ -69,8 +70,19 @@ export class AssetPostPageComponent implements OnInit {
     return false;
   }
 
+  engineVerIsMarked(): boolean {
+    for (let i = 0; i < this.assetForm.get("engineVer")?.value.length; i++) {
+      if (this.assetForm.get("engineVer")?.value[i] == true) {
+        this.engineVerDefined = true;
+        return true;
+      }
+    }
+    this.engineVerDefined = false;
+    return false;
+  }
 
-  postAsset(): void{
+
+  postAsset(): void {
 
     if (this.assetUpload == undefined || this.imageUpload == undefined || !this.loggedIn)
       return;
@@ -83,11 +95,15 @@ export class AssetPostPageComponent implements OnInit {
       return;
     }
 
+    if (!this.engineVerIsMarked()) {
+      return;
+    }
+
     let bool1 = !this.imageUpload.canUpload;
     let bool2 = !this.assetUpload.canUpload
 
 
-    if(bool1 || bool2)
+    if (bool1 || bool2)
       return;
 
     this.uploading = true;
@@ -101,22 +117,22 @@ export class AssetPostPageComponent implements OnInit {
       FileSize: this.assetUpload.fileSize,
       UserName: this.username,
       UserId: this.userId
-    }).then(data=>{
-      this.imageUpload?.uploadImages(data.id + "/").then(result=>{
+    }).then(data => {
+      this.imageUpload?.uploadImages(data.id + "/").then(result => {
         console.log(result);
-        this.assetUpload?.uploadAssetToBucket(data.id + "/").then(result=>{
+        this.assetUpload?.uploadAssetToBucket(data.id + "/").then(result => {
           console.log(result);
           this.assetDetails(data.id);
         })
       });
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err)
     })
   }
 
 
-  assetDetails(assetId: string): void{
-    const queryParams: Params = { assetId: assetId };
+  assetDetails(assetId: string): void {
+    const queryParams: Params = {assetId: assetId};
 
     this.router.navigate(
       [],
@@ -131,17 +147,17 @@ export class AssetPostPageComponent implements OnInit {
 
   get engineVer(): Array<FormControl> {
     let array = new Array<FormControl>();
-    for (const engine of Object.values(EngineVersions)){
+    for (const engine of Object.values(EngineVersions)) {
       array.push(new FormControl(false));
     }
     return array
   }
 
-  get engineEngineCompat(): Array<EngineVersions>{
+  get engineEngineCompat(): Array<EngineVersions> {
     let compatibleEngineVer = new Array<EngineVersions>();
     let index = 0;
-    for (let engine of this.assetForm.get("engineVer")?.value){
-      if(engine){
+    for (let engine of this.assetForm.get("engineVer")?.value) {
+      if (engine) {
         compatibleEngineVer.push(Object.values(EngineVersions)[index])
       }
       index++;
@@ -149,10 +165,11 @@ export class AssetPostPageComponent implements OnInit {
     return compatibleEngineVer;
   }
 
-  get assetName(): string{
+  get assetName(): string {
     return this.assetForm.get("name")?.value
   }
-  get assetDescription(): string{
+
+  get assetDescription(): string {
     return this.assetForm.get("description")?.value
   }
 }
