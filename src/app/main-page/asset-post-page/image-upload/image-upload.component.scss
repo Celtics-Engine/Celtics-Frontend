@@ -17,6 +17,7 @@
   border:  3px #627A8C solid;
   box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
   white-space: nowrap;
+  margin: 22px;
 
   &:hover{
     background: #FFFFFF;
@@ -36,14 +37,14 @@
 }
 
 .image-div {
-  padding: 0 2.2rem .4rem;
+  padding: 0 0.2rem .4rem;
 }
 
 img {
   height: auto;
   width: auto;
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 150px;
+  max-height: 200px;
   z-index: 0;
   border-radius: 25px;
   border: #627A8C;

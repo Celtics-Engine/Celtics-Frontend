@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {faTimes, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {Storage} from "aws-amplify";
 
 @Component({
@@ -9,7 +9,7 @@ import {Storage} from "aws-amplify";
 })
 export class AssetUploadComponent implements OnInit {
 
-  removeFileIcon = faTrashAlt;
+  removeFileIcon = faTimes;
   file: File | undefined;
 
   fileNeeded: boolean = false;
@@ -21,15 +21,18 @@ export class AssetUploadComponent implements OnInit {
 
   addAsset($event: Event) {
     let files = ($event.target as HTMLInputElement).files;
-    if(files === null)
-      return;
+    if(files === null) return;
 
     this.file = (files[0] as File)
+  }
 
+  resetInputValue($event: Event){
+    const element = $event.target as HTMLInputElement
+    element.value = ''
   }
 
   removeFile() {
-    this.file = undefined;
+    if(this.file != null) this.file = undefined;
   }
 
   async uploadAssetToBucket(userPath: string): Promise<string> {
