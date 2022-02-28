@@ -73,9 +73,8 @@ export class ProfilePageComponent implements OnInit {
   }
 
   removeAsset(id: String): boolean {
-    console.log("remove asset ================>")
+
     this.userAssets = this.userAssets.filter(asset =>{
-      console.log(asset?.Name)
       return asset != undefined && asset.id != id;
 
     } );

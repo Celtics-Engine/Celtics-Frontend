@@ -84,8 +84,8 @@ export class AssetDetailsPageComponent implements OnInit {
         })
       }
       this.api.DeleteAssets({id: this.asset!.id, _version : this.asset?._version}).then(r => console.log(r))
-     let removed = this.profilePage?.removeAsset(this.asset?.id ?? "");
-      if(removed) this.websiteState.changeWebsiteState(PageState.PROFILE);
+      this.profilePage?.removeAsset(this.asset?.id ?? "");
+      this.websiteState.changeWebsiteState(PageState.PROFILE);
     })
   }
 
