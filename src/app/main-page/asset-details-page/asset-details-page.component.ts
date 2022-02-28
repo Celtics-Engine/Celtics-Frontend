@@ -3,6 +3,7 @@ import {APIService, GetAssetsQuery} from "../../API.service";
 import {ActivatedRoute} from "@angular/router";
 import {Storage} from "aws-amplify";
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
+import {PageState} from "../../types/page-state";
 
 @Component({
   selector: 'app-asset-details-page',
@@ -78,6 +79,7 @@ export class AssetDetailsPageComponent implements OnInit {
         })
       }
       this.api.DeleteAssets({id: this.asset!.id, _version : this.asset?._version}).then(r => console.log(r))
+      this.websiteState.changeWebsiteState(PageState.PROFILE);
     })
   }
 
