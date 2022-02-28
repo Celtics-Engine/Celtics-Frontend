@@ -71,4 +71,15 @@ export class ProfilePageComponent implements OnInit {
   get loggedIn(): boolean {
     return this._loggedIn;
   }
+
+  removeAsset(id: String): boolean {
+    console.log("remove asset ================>")
+    this.userAssets = this.userAssets.filter(asset =>{
+      console.log(asset?.Name)
+      return asset != undefined && asset.id != id;
+
+    } );
+
+    return true;
+  }
 }

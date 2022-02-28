@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {APIService, GetAssetsQuery} from "../../API.service";
 import {ActivatedRoute} from "@angular/router";
 import {Storage} from "aws-amplify";
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
 import {PageState} from "../../types/page-state";
+import {ProfilePageComponent} from "../profile-page/profile-page.component";
 
 @Component({
   selector: 'app-asset-details-page',
@@ -19,7 +20,11 @@ export class AssetDetailsPageComponent implements OnInit {
   shown: boolean = false;
   private _user: string | undefined;
 
+  @ViewChild(ProfilePageComponent,{static: true})
+  profilePage: ProfilePageComponent | undefined;
+
   constructor(private route: ActivatedRoute, private api: APIService, private websiteState: WebsiteStateService) {
+    this.checkIfAssetBelongsToUser();
   }
 
 
@@ -79,7 +84,8 @@ export class AssetDetailsPageComponent implements OnInit {
         })
       }
       this.api.DeleteAssets({id: this.asset!.id, _version : this.asset?._version}).then(r => console.log(r))
-      this.websiteState.changeWebsiteState(PageState.PROFILE);
+     let removed = this.profilePage?.removeAsset(this.asset?.id ?? "");
+      if(removed) this.websiteState.changeWebsiteState(PageState.PROFILE);
     })
   }
 
