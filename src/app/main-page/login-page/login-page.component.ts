@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {WebsiteStateService} from "../../services/website-state/website-state.service";
-import {Auth, Hub} from 'aws-amplify';
 
 
 @Component({
@@ -10,7 +9,6 @@ import {Auth, Hub} from 'aws-amplify';
 })
 export class LoginPageComponent implements OnInit {
   loggedIn = false;
-  private user: any;
 
   constructor(private websiteState: WebsiteStateService) {
     websiteState.loggedIn$.subscribe(state => {
@@ -19,8 +17,5 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Auth.currentUserInfo().then(user => {
-      this.user = user;
-    })
   }
 }
