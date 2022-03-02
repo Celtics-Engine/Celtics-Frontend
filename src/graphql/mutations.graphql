@@ -1,0 +1,67 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateAssets(
+  $input: CreateAssetsInput!
+  $condition: ModelAssetsConditionInput
+) {
+  createAssets(input: $input, condition: $condition) {
+    id
+    Name
+    Description
+    Images
+    AssetFile
+    FileSize
+    CompatableEngineVer
+    UserName
+    UserId
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    owner
+  }
+}
+mutation UpdateAssets(
+  $input: UpdateAssetsInput!
+  $condition: ModelAssetsConditionInput
+) {
+  updateAssets(input: $input, condition: $condition) {
+    id
+    Name
+    Description
+    Images
+    AssetFile
+    FileSize
+    CompatableEngineVer
+    UserName
+    UserId
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    owner
+  }
+}
+mutation DeleteAssets(
+  $input: DeleteAssetsInput!
+  $condition: ModelAssetsConditionInput
+) {
+  deleteAssets(input: $input, condition: $condition) {
+    id
+    Name
+    Description
+    Images
+    AssetFile
+    FileSize
+    CompatableEngineVer
+    UserName
+    UserId
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    owner
+  }
+}

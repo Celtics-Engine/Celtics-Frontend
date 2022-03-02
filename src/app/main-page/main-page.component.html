@@ -1,0 +1,16 @@
+<div *ngIf="state == PageState.LOGIN">
+  <app-login-page></app-login-page>
+</div>
+<div *ngIf="state == PageState.PROFILE">
+  <app-profile-page></app-profile-page>
+</div>
+<div *ngIf="state == PageState.SEARCH">
+  <app-search-page></app-search-page>
+</div>
+<div *ngIf="state == PageState.ASSET_POST">
+  <app-asset-post-page></app-asset-post-page>
+</div>
+<div *ngIf="state == PageState.ASSET_DETAILS">
+  <app-asset-details-page></app-asset-details-page>
+</div>
+

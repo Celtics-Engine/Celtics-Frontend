@@ -1,0 +1,77 @@
+#files {
+  visibility: hidden;
+  width: 10px;
+}
+#asset-file-error{
+  color: red;
+  font-style: italic;
+  margin: 0 4.9rem;
+}
+
+
+.btn {
+  padding: .3rem .8rem;
+  color: #627A8C;
+  cursor: pointer;
+  border-radius: 25px;
+  background: #78ADB0;
+  text-shadow: .5px .5px #000000;
+  border:  3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+  margin: 35px;
+
+  &:hover{
+    background: #FFFFFF;
+    color: #627A8C;
+    text-shadow: .5px .5px #000000;
+    box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+    border:  3px #627A8C solid;
+  }
+}
+
+.asset {
+  z-index: 0;
+  border-radius: 25px;
+  border: #627A8C;
+  padding: 1rem 3rem 1rem 4rem;
+  color: #78ADB0;
+  background: #404040;
+  width: 13rem;
+  margin: 0 0 0 3rem;
+}
+
+.asset-div{
+  padding: 0 0.2rem .4rem;
+
+}
+
+.inline {
+  display: inline;
+  color: #78ADB0;
+  height: auto;
+  width: auto;
+  max-width: 300px;
+  max-height: 300px;
+  z-index: 0;
+  border-radius: 25px;
+  border: #627A8C;
+}
+
+button {
+  margin: 0rem 3rem;
+  color: #627A8C;
+  border-radius: 25px;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  background: #78ADB0;
+  text-shadow: .5px .5px #000000;
+  border: 3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background: #FFFFFF;
+    color: #78ADB0;
+    text-shadow: .5px .5px #000000;
+    border: 3px #627A8C solid;
+  }
+}

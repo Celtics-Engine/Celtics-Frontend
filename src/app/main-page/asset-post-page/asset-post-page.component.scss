@@ -1,0 +1,99 @@
+.post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 500px;
+  min-height: 300px;
+  border: 3px #627A8C solid;
+  padding: 1rem;
+  border-radius: 25px;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-direction: row;
+  padding: 1rem 1rem 0;
+}
+
+app-image-upload {
+  width: 40%;
+}
+
+#name-error{
+  color: red;
+  margin: 0rem 1rem;
+}
+
+#description-error{
+  color: red;
+  margin: 0rem 1rem;
+}
+
+#engineVer-error{
+  color: red;
+  margin: 0rem 1rem;
+}
+
+#Name-Input{
+  border: 3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 1rem;
+  border-radius: 25px;
+}
+
+#Description-Input{
+  border: 3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+  width: 100%;
+  height: 15rem;
+  border-radius: 25px;
+  padding: 1rem;
+}
+
+h1 {
+  padding: 1.7rem;
+  color: #78ADB0;
+  text-shadow: 2px 2px #000000;
+}
+
+button {
+  width: 100%;
+  color: #627A8C;
+  padding: 2px 6px;
+  margin-top: .3rem;
+  cursor: pointer;
+  border-radius: 25px;
+  background: #78ADB0;
+  text-shadow: .5px .5px #000000;
+  border:  3px #627A8C solid;
+  box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+
+  &:hover{
+    background: #FFFFFF;
+    color: #78ADB0;
+    text-shadow: .5px .5px #000000;
+    box-shadow: 3px 3px 8px 0 rgba(0,0,0,0.3);
+    border:  3px #627A8C solid;
+  }
+}
+
+label {
+  padding: 0 .3rem;
+  color: #78ADB0;
+  text-shadow: 2px 2px #414a4c;
+}

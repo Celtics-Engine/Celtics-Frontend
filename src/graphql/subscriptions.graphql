@@ -1,0 +1,58 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateAssets {
+  onCreateAssets {
+    id
+    Name
+    Description
+    Images
+    AssetFile
+    FileSize
+    CompatableEngineVer
+    UserName
+    UserId
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    owner
+  }
+}
+subscription OnUpdateAssets {
+  onUpdateAssets {
+    id
+    Name
+    Description
+    Images
+    AssetFile
+    FileSize
+    CompatableEngineVer
+    UserName
+    UserId
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    owner
+  }
+}
+subscription OnDeleteAssets {
+  onDeleteAssets {
+    id
+    Name
+    Description
+    Images
+    AssetFile
+    FileSize
+    CompatableEngineVer
+    UserName
+    UserId
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    owner
+  }
+}

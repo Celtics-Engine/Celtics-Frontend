@@ -1,0 +1,16 @@
+<div class="details-container">
+  <h1>Search Assets</h1>
+  <form [formGroup]="searchForm" (ngSubmit)="reloadAssets()">
+    <div class="search">
+      <input type="text" formControlName="search" placeholder="Search...">
+      <button type="submit"><i class="material-icons" >search</i></button>
+    </div>
+  </form>
+  <h1 *ngIf="loading && !noAssets">Loading</h1>
+  <h1 *ngIf="!loading && noAssets">No Assets Found</h1>
+  <div class="asset-cards" *ngIf="!loading && !noAssets">
+    <div class="card" *ngFor="let asset of assets" (click)="onClickOption(asset)">
+      <app-search-pannel [asset]="asset"></app-search-pannel>
+    </div>
+  </div>
+</div>

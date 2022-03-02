@@ -1,27 +1,221 @@
-# CelticsFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+# Problem Statement
 
-## Development server
+- The Users of the game engine will need a way to share asset models they have created with other users.
+- The Asset Management web application should provide the necessary functionality to allow users to share their assets with other users
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# Top Questions to Resolve in Review
+- What tools should we use to build the application?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Does it make more sense to use a single page application or a multi-page application?
+- Should the asset management system be a single full-stack application or a separate web application?
+- How should we structure the application? (Auth, Api, UI, etc...)
+- What should the user experience be like?
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Client Use Cases
+- Post 3d asset models publicly so that others can use it their own work and/or get inspiration from it.
 
-## Running unit tests
+- Browse the communities models and see what others have created.
+- See which assets I've publicly posted or shared with others.
+- Have the ability delete my assets from the community search page.
+- Have the ability to sort my assets by popularity and other basic search criteria.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+# Project Scope
+- Create a single page application that allows users to manage and share their own custom asset models with other users publicly.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Retrieve and display the latest 3d assets from the community.
+- Make user profiles for reference and organization of which assets they have uploaded publicly.
 
-## Further help
+# Out of Project Scope
+- Storage solution for ALL user asset models, not just the ones they would like to share
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Ability to create or edit an asset model from the browser
+
+
+# Proposed Architecture Overview
+
+
+### 1. Users & Authentication [Conginto]
+- authentication and user managment will be handled by aws cognito
+
+- login and register with the application
+- confirmation email on registration
+- change password 
+
+
+### 2. Single Page Application & UI [Angular] 
+
+- Navigation bar will be explicitly linked to the different PageStates of the 
+application 
+
+- The PageState will have logic to determine permissions for the user
+
+- Redirect routes will be necessary to handle some navigation
+    - Redirect to the home page after login
+
+    - Redirect to asset details page if thumbnail is clicked
+
+- UI pages
+    - Login 
+
+    - Profile 
+    - Asset Upload 
+    - Asset Details
+    - Search / Explore    
+
+### 3. Storage [S3]
+- Storage access rules:
+
+    - Signed-in users: upload, view, and delete 
+
+    - Signed-out users: view 
+
+- Asset upload to S3 Bucket from user local machine
+- Upload forms will be limited to zip files and images exclusively
+- A storage cap will be set for the user to upload
+
+### 4. API [GraphQL]
+- Provides main functionality for public searchable asset models
+
+- Queries will be used to retrieve asset models
+- Linked to S3 for identification of the asset model
+- Linked to cognito for authentication
+- Linked to DynamoDB for data model
+
+### 5. Continues Deployment [AWS]
+- Deployment will be handled by AWS Amplify
+- Amplify push cmd will be used to deploy the application to either production or development
+- Cloudformation will be used to create the necessary resources for the application
+
+
+
+# API Design [Gql Schema]
+```json
+"models": {
+    "Assets": {
+        "name": "Assets",
+        "fields": {
+            "id": {
+                "name": "id",
+                "isArray": false,
+                "type": "ID",
+                "isRequired": true,
+                "attributes": []
+            },
+            "Name": {
+                "name": "Name",
+                "isArray": false,
+                "type": "String",
+                "isRequired": false,
+                "attributes": []
+            },
+            "Description": {
+                "name": "Description",
+                "isArray": false,
+                "type": "String",
+                "isRequired": false,
+                "attributes": []
+            },
+            "Images": {
+                "name": "Images",
+                "isArray": true,
+                "type": "String",
+                "isRequired": false,
+                "attributes": [],
+                "isArrayNullable": true
+            },
+            "AssetFile": {
+                "name": "AssetFile",
+                "isArray": false,
+                "type": "String",
+                "isRequired": false,
+                "attributes": []
+            },
+            "FileSize": {
+                "name": "FileSize",
+                "isArray": false,
+                "type": "String",
+                "isRequired": false,
+                "attributes": []
+            },
+            "CompatableEngineVer": {
+                "name": "CompatableEngineVer",
+                "isArray": true,
+                "type": "String",
+                "isRequired": false,
+                "attributes": [],
+                "isArrayNullable": true
+            },
+            "UserName": {
+                "name": "UserName",
+                "isArray": false,
+                "type": "String",
+                "isRequired": false,
+                "attributes": []
+            },
+            "UserId": {
+                "name": "UserId",
+                "isArray": false,
+                "type": "String",
+                "isRequired": false,
+                "attributes": []
+            },
+            "createdAt": {
+                "name": "createdAt",
+                "isArray": false,
+                "type": "AWSDateTime",
+                "isRequired": false,
+                "attributes": [],
+                "isReadOnly": true
+            },
+            "updatedAt": {
+                "name": "updatedAt",
+                "isArray": false,
+                "type": "AWSDateTime",
+                "isRequired": false,
+                "attributes": [],
+                "isReadOnly": true
+            }
+        },
+        "syncable": true,
+        "pluralName": "Assets",
+        "attributes": [
+            {
+                "type": "model",
+                "properties": {}
+            },
+            {
+                "type": "searchable",
+                "properties": {}
+            },
+            {
+                "type": "auth",
+                "properties": {
+                    "rules": [
+                        {
+                            "allow": "public",
+                            "operations": [
+                                "read"
+                            ]
+                        },
+                        {
+                            "provider": "userPools",
+                            "ownerField": "owner",
+                            "allow": "owner",
+                            "operations": [
+                                "create",
+                                "update",
+                                "delete"
+                            ],
+                            "identityClaim": "cognito:username"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+},
+```

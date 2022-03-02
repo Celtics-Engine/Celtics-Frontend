@@ -1,0 +1,131 @@
+# this is an auto generated file. This will be overwritten
+query GetAssets($id: ID!) {
+  getAssets(id: $id) {
+    id
+    Name
+    Description
+    Images
+    AssetFile
+    FileSize
+    CompatableEngineVer
+    UserName
+    UserId
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    owner
+  }
+}
+query ListAssets(
+  $filter: ModelAssetsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAssets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      Name
+      Description
+      Images
+      AssetFile
+      FileSize
+      CompatableEngineVer
+      UserName
+      UserId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncAssets(
+  $filter: ModelAssetsFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncAssets(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      Name
+      Description
+      Images
+      AssetFile
+      FileSize
+      CompatableEngineVer
+      UserName
+      UserId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+    nextToken
+    startedAt
+  }
+}
+query SearchAssets(
+  $filter: SearchableAssetsFilterInput
+  $sort: [SearchableAssetsSortInput]
+  $limit: Int
+  $nextToken: String
+  $from: Int
+  $aggregates: [SearchableAssetsAggregationInput]
+) {
+  searchAssets(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+    from: $from
+    aggregates: $aggregates
+  ) {
+    items {
+      id
+      Name
+      Description
+      Images
+      AssetFile
+      FileSize
+      CompatableEngineVer
+      UserName
+      UserId
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+    nextToken
+    total
+    aggregateItems {
+      name
+      result {
+        ... on SearchableAggregateScalarResult {
+          value
+        }
+        ... on SearchableAggregateBucketResult {
+          buckets {
+            key
+            doc_count
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<main id="main" xmlns="http://www.w3.org/1999/html">
+  <div class="container">
+    <h1>Asset Details</h1>
+
+    <div class="page-element" id="img-div">
+      <div id="fig-container">
+        <div id="fig" *ngFor="let imageLink of imageLinks; let i = index">
+          <img id="img" src="{{imageLink}}" (error)="resetLink()" height="500" *ngIf="((i + 1) == imageNumber)">
+
+          <div class="arrows" *ngIf="((i + 1) == imageNumber)">
+            <p class="arrow-element" (click)="onClickImage(imageNumber - 1)"><i class="arrow left"></i></p>
+            <div class="badge" >{{i + 1}}/{{imageLinks.length}}</div>
+            <p class="arrow-element" (click)="onClickImage(imageNumber + 1)"><i class="arrow right"></i></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="img-side">
+        <h3>{{asset?.Name ?? "Name is loading"}}</h3>
+        <p class="secondary-text">{{asset?.UserName ?? "@Username"}}</p>
+
+        <div class="img-side-element info">
+          <div class="info-box">
+            <p class="info-text">File size</p>
+            <p class="info-text">Last version</p>
+            <p class="info-text">Latest release date</p>
+          </div>
+          <div class="info-box info-box-right">
+            <p class="info-text">{{asset?.FileSize ?? "File size is loading"}}</p>
+            <p class="info-text">{{asset?.CompatableEngineVer ?? "Version is loading"}}</p>
+            <p class="info-text">{{updatedAt ?? "Date is loading"}}</p>
+          </div>
+        </div>
+        <div id="img-side-element overview">
+          <h4>Overview</h4>
+          <p> {{asset?.Description ?? "Overview is loading"}}</p>
+        </div>
+        <button class="btn" (click)="downloadAsset()">download</button>
+        <button *ngIf="shown" class="btn btn-danger" (click)="removeAsset()">remove</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+

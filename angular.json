@@ -17,6 +17,21 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "isomorphic-unfetch",
+              "crypto-js",
+              "buffer",
+              "uuid",
+              "@aws-crypto",
+              "fast-xml-parser",
+              "camelcase-keys",
+              "lodash",
+              "url",
+              "@aws-crypto/sha256-js",
+              "ulid",
+              "@aws-crypto/sha256-browser",
+              "@aws-crypto/crc32"
+            ],
             "outputPath": "dist/celtics-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,7 +42,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -37,7 +52,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -94,12 +109,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
     }
   },
   "defaultProject": "Celtics-Frontend"

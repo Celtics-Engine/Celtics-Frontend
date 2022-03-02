@@ -1,0 +1,13 @@
+<div class="container">
+<!--  <h1>Celtic Login</h1>-->
+  <div class="login-container">
+  <amplify-authenticator>
+      <ng-template
+      amplifySlot="authenticated"
+      let-user="user"
+      let-signOut="signOut">
+        <button (click)="signOut()">Sign Out</button>
+      </ng-template>
+    </amplify-authenticator>
+  </div>
+</div>

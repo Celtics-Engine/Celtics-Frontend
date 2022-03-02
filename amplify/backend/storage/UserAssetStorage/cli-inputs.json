@@ -1,0 +1,16 @@
+{
+  "resourceName": "UserAssetStorage",
+  "policyUUID": "7362b72e",
+  "bucketName": "assets",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Triggerf17dc664",
+  "groupAccess": {}
+}
