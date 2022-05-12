@@ -343,4 +343,5 @@ This should be able to take a list of any number of the assets attributes and fi
 #### Errors
 - No assets found
 
-- [full project documentation / assignment](https://github.com/Celtics-Engine/Celtics-Docs)
+
+# [full project documentation / assignment](https://github.com/Celtics-Engine/Celtics-Docs)
