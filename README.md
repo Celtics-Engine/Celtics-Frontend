@@ -326,7 +326,7 @@ Updates user password
 
 
 
-## SearchAssets `NEEDS WORK`
+## SearchAssets
 #### Discription
 This should be able to take a list of any number of the assets attributes and find ones simlar to  
 #### Parameters 
